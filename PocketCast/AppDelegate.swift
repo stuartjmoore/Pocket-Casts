@@ -44,6 +44,15 @@ import WebKit
         webView.stringByEvaluatingJavaScriptFromString("document.getElementById('main').style.paddingTop = 0;")
     }
 
+    func sendJSEventForSearchChange(text: String) {
+        webView.stringByEvaluatingJavaScriptFromString("document.getElementById('search_input_value').value = '\(text)';")
+        // TODO: fire onChange()
+    }
+
+    func sendJSEventForSettingsTap() {
+        webView.stringByEvaluatingJavaScriptFromString("document.getElementsByClassName('dropdown-toggle')[0].firstChild.click();")
+    }
+
     func sendJSEventForAction(action: KeyAction) {
         switch action {
         case .PlayPause:
