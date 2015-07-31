@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7531"/>
-        <plugIn identifier="com.apple.WebKitIBPlugin" version="7531"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7706"/>
+        <plugIn identifier="com.apple.WebKitIBPlugin" version="7706"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MyApplication">
@@ -669,12 +669,10 @@
             </items>
         </menu>
         <window title="PocketCast" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g">
-            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" unifiedTitleAndToolbar="YES"/>
             <windowCollectionBehavior key="collectionBehavior" fullScreenPrimary="YES"/>
-            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="254" y="148" width="980" height="540"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
-            <value key="minSize" type="size" width="980" height="540"/>
+            <rect key="contentRect" x="336" y="289" width="980" height="540"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
             <view key="contentView" id="EiT-Mj-1SZ">
                 <rect key="frame" x="0.0" y="0.0" width="980" height="540"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -698,6 +696,19 @@
                     <constraint firstAttribute="trailing" secondItem="6mA-qh-89b" secondAttribute="trailing" id="WSd-pH-YfU"/>
                 </constraints>
             </view>
+            <toolbar key="toolbar" implicitIdentifier="38D95F60-63DC-4866-9269-8320DA8EC150" autosavesConfiguration="NO" displayMode="iconOnly" sizeMode="regular" id="ByJ-by-wpx">
+                <allowedToolbarItems>
+                    <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="sJ1-wY-Eg4"/>
+                    <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="BNK-ej-ulO"/>
+                    <toolbarItem implicitItemIdentifier="778FA609-CFA9-49B4-A9E8-82EB8A780F46" label="Search" paletteLabel="Search Item" tag="-1" image="NSAddTemplate" id="n41-g2-H6M"/>
+                    <toolbarItem implicitItemIdentifier="9196D700-2A64-4104-A3CA-1172E0878F5D" label="Settings" paletteLabel="Settings" tag="-1" image="NSActionTemplate" id="8Kt-HR-05w"/>
+                </allowedToolbarItems>
+                <defaultToolbarItems>
+                    <toolbarItem reference="BNK-ej-ulO"/>
+                    <toolbarItem reference="n41-g2-H6M"/>
+                    <toolbarItem reference="8Kt-HR-05w"/>
+                </defaultToolbarItems>
+            </toolbar>
             <userDefinedRuntimeAttributes>
                 <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
                     <color key="value" red="0.96522635221481323" green="0.42303839325904846" blue="0.36406642198562622" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -705,4 +716,8 @@
             </userDefinedRuntimeAttributes>
         </window>
     </objects>
+    <resources>
+        <image name="NSActionTemplate" width="14" height="14"/>
+        <image name="NSAddTemplate" width="11" height="11"/>
+    </resources>
 </document>
