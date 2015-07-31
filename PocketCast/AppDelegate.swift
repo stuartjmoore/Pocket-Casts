@@ -11,6 +11,10 @@ import WebKit
 
 @NSApplicationMain class AppDelegate: NSObject, NSApplicationDelegate {
 
+    enum KeyAction {
+        case PlayPause, SkipForward, SkipBack
+    }
+
     @IBOutlet weak var webView: WebView!
     @IBOutlet weak var window: NSWindow!
 
@@ -26,8 +30,6 @@ import WebKit
         window.titleVisibility = .Hidden
         window.styleMask |= NSFullSizeContentViewWindowMask
 
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "gotNotification:", name: "pocketEvent", object: nil)
-
         webView.mainFrameURL = "https://play.pocketcasts.com/"
 
         mediaKeyTap = SPMediaKeyTap(delegate: self)
@@ -37,24 +39,22 @@ import WebKit
         }
     }
 
-    func gotNotification(notification : NSNotification){
-        if let u = notification.userInfo as? [String:String], action = u["action"] {
-            switch action {
-            case "playPause":
-                println("playpause")
-                webView.stringByEvaluatingJavaScriptFromString("angular.element(document).injector().get('mediaPlayer').playPause()")
+    func sendJSEventForAction(action: KeyAction){
+        switch action {
+        case .PlayPause:
+            println("playpause")
+            webView.stringByEvaluatingJavaScriptFromString("angular.element(document).injector().get('mediaPlayer').playPause()")
 
-            case "skipForward":
-                println("skipping forward")
-                webView.stringByEvaluatingJavaScriptFromString("angular.element(document).injector().get('mediaPlayer').jumpForward()")
+        case .SkipForward:
+            println("skipping forward")
+            webView.stringByEvaluatingJavaScriptFromString("angular.element(document).injector().get('mediaPlayer').jumpForward()")
 
-            case "skipBack":
-                println("skipping back")
-                webView.stringByEvaluatingJavaScriptFromString("angular.element(document).injector().get('mediaPlayer').jumpBack()")
+        case .SkipBack:
+            println("skipping back")
+            webView.stringByEvaluatingJavaScriptFromString("angular.element(document).injector().get('mediaPlayer').jumpBack()")
 
-            default:
-                break
-            }
+        default:
+            break
         }
     }
 
@@ -67,13 +67,13 @@ import WebKit
         if keyIsPressed {
             switch keyCode {
             case Int(NX_KEYTYPE_PLAY):
-                NSNotificationCenter.defaultCenter().postNotificationName("pocketEvent", object:NSApp, userInfo:["action":"playPause"])
+                sendJSEventForAction(.PlayPause)
 
             case Int(NX_KEYTYPE_FAST):
-                NSNotificationCenter.defaultCenter().postNotificationName("pocketEvent", object: NSApp, userInfo:["action":"skipForward"])
+                sendJSEventForAction(.SkipForward)
 
             case Int(NX_KEYTYPE_REWIND):
-                NSNotificationCenter.defaultCenter().postNotificationName("pocketEvent", object: NSApp, userInfo:["action":"skipBack"])
+                sendJSEventForAction(.SkipBack)
 
             default:
                 break
@@ -82,7 +82,7 @@ import WebKit
     }
 
     func applicationWillTerminate(aNotification: NSNotification) {
-        // Insert code here to tear down your application
+        return
     }
 
 }
