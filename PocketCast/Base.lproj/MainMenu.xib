@@ -679,14 +679,15 @@
                 <subviews>
                     <webView translatesAutoresizingMaskIntoConstraints="NO" id="6mA-qh-89b">
                         <rect key="frame" x="0.0" y="0.0" width="980" height="540"/>
-                        <webPreferences key="preferences" defaultFontSize="12" defaultFixedFontSize="12">
-                            <nil key="identifier"/>
-                        </webPreferences>
+                        <webPreferences key="preferences" identifier="pockcastsWebView" defaultFontSize="12" defaultFixedFontSize="12" javaScriptCanOpenWindowsAutomatically="NO"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
                                 <color key="value" red="0.96522635221481323" green="0.42303839325904846" blue="0.36406642198562622" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
+                        <connections>
+                            <outlet property="frameLoadDelegate" destination="Voe-Tx-rLC" id="eJA-Kq-29G"/>
+                        </connections>
                     </webView>
                 </subviews>
                 <constraints>

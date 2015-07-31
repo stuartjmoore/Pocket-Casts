@@ -39,7 +39,12 @@ import WebKit
         }
     }
 
-    func sendJSEventForAction(action: KeyAction){
+    func sendJSEventForHidingToolbar() {
+        webView.stringByEvaluatingJavaScriptFromString("document.getElementById('header').style.visibility = 'hidden';")
+        webView.stringByEvaluatingJavaScriptFromString("document.getElementById('main').style.paddingTop = 0;")
+    }
+
+    func sendJSEventForAction(action: KeyAction) {
         switch action {
         case .PlayPause:
             println("playpause")
@@ -83,6 +88,14 @@ import WebKit
 
     func applicationWillTerminate(aNotification: NSNotification) {
         return
+    }
+
+}
+
+extension AppDelegate {
+
+    override func webView(webView: WebView!, didFinishLoadForFrame: WebFrame!) {
+        sendJSEventForHidingToolbar()
     }
 
 }

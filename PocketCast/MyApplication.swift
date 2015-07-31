@@ -15,8 +15,6 @@ import Cocoa
     }
 
     override func sendEvent(theEvent: NSEvent) {
-        var asd:NSEventSubtype;
-
         let shouldHandleMediaKeyLocally = !SPMediaKeyTap.usesGlobalMediaKeyTap()
 
         if shouldHandleMediaKeyLocally
