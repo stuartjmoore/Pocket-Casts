@@ -40,12 +40,14 @@ import WebKit
     }
 
     func sendJSEventForHidingToolbar() {
-        webView.stringByEvaluatingJavaScriptFromString("document.getElementById('header').style.visibility = 'hidden';")
+        webView.stringByEvaluatingJavaScriptFromString("document.getElementById('header').style.top = '-70px';") /* header height */
         webView.stringByEvaluatingJavaScriptFromString("document.getElementById('main').style.paddingTop = 0;")
     }
 
     func sendJSEventForSearchChange(text: String) {
         webView.stringByEvaluatingJavaScriptFromString("document.getElementById('search_input_value').value = '\(text)';")
+        // angular.element("#search_input_value").scope().inputChangeHandler("alison")
+        //
         // TODO: fire onChange()
     }
 
@@ -70,6 +72,10 @@ import WebKit
         default:
             break
         }
+    }
+
+    @IBAction func settingsTapped(sender: NSToolbarItem) {
+        sendJSEventForSettingsTap()
     }
 
     override func mediaKeyTap(mediaKeyTap: SPMediaKeyTap?, receivedMediaKeyEvent event: NSEvent) {

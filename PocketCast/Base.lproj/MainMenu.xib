@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7706" systemVersion="14F6a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7706"/>
         <plugIn identifier="com.apple.WebKitIBPlugin" version="7706"/>
@@ -672,7 +672,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" unifiedTitleAndToolbar="YES"/>
             <windowCollectionBehavior key="collectionBehavior" fullScreenPrimary="YES"/>
             <rect key="contentRect" x="336" y="289" width="980" height="540"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1177"/>
             <view key="contentView" id="EiT-Mj-1SZ">
                 <rect key="frame" x="0.0" y="0.0" width="980" height="540"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -701,13 +701,41 @@
                 <allowedToolbarItems>
                     <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="sJ1-wY-Eg4"/>
                     <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="BNK-ej-ulO"/>
-                    <toolbarItem implicitItemIdentifier="778FA609-CFA9-49B4-A9E8-82EB8A780F46" label="Search" paletteLabel="Search Item" tag="-1" image="NSAddTemplate" id="n41-g2-H6M"/>
-                    <toolbarItem implicitItemIdentifier="9196D700-2A64-4104-A3CA-1172E0878F5D" label="Settings" paletteLabel="Settings" tag="-1" image="NSActionTemplate" id="8Kt-HR-05w"/>
+                    <toolbarItem implicitItemIdentifier="8F628D90-C167-49EB-891F-91186B370436" label="Search" paletteLabel="Search" id="Mpc-Yu-Pry">
+                        <nil key="toolTip"/>
+                        <size key="minSize" width="96" height="22"/>
+                        <size key="maxSize" width="96" height="22"/>
+                        <searchField key="view" wantsLayer="YES" verticalHuggingPriority="750" id="yhS-MG-opa">
+                            <rect key="frame" x="0.0" y="0.0" width="96" height="22"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <searchFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" sendsSearchStringImmediately="YES" sendsWholeSearchString="YES" id="T1h-HT-sPI">
+                                <font key="font" metaFont="system"/>
+                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </searchFieldCell>
+                        </searchField>
+                    </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="20D10335-6144-4059-9BDF-91E3B5DD014C" label="Settings" paletteLabel="Settings" image="NSActionTemplate" id="qLS-Ck-rIo">
+                        <nil key="toolTip"/>
+                        <size key="minSize" width="25" height="28"/>
+                        <size key="maxSize" width="82" height="32"/>
+                        <button key="view" verticalHuggingPriority="750" id="3XU-bW-Hrd">
+                            <rect key="frame" x="12" y="14" width="35" height="28"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="NSActionTemplate" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ab9-Ty-4rt">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                        </button>
+                        <connections>
+                            <action selector="settingsTapped:" target="Voe-Tx-rLC" id="gEy-cb-rjr"/>
+                        </connections>
+                    </toolbarItem>
                 </allowedToolbarItems>
                 <defaultToolbarItems>
                     <toolbarItem reference="BNK-ej-ulO"/>
-                    <toolbarItem reference="n41-g2-H6M"/>
-                    <toolbarItem reference="8Kt-HR-05w"/>
+                    <toolbarItem reference="Mpc-Yu-Pry"/>
+                    <toolbarItem reference="qLS-Ck-rIo"/>
                 </defaultToolbarItems>
             </toolbar>
             <userDefinedRuntimeAttributes>
@@ -719,6 +747,5 @@
     </objects>
     <resources>
         <image name="NSActionTemplate" width="14" height="14"/>
-        <image name="NSAddTemplate" width="11" height="11"/>
     </resources>
 </document>
