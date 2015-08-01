@@ -12,19 +12,8 @@
 		C80F65D61ADE156C00277D77 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80F65D51ADE156C00277D77 /* AppDelegate.swift */; };
 		C80F65D81ADE156C00277D77 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C80F65D71ADE156C00277D77 /* Images.xcassets */; };
 		C80F65DB1ADE156C00277D77 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = C80F65D91ADE156C00277D77 /* MainMenu.xib */; };
-		C80F65E71ADE156C00277D77 /* PocketCastTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80F65E61ADE156C00277D77 /* PocketCastTests.swift */; };
 		C80F65F81ADE2BEE00277D77 /* MyApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80F65F71ADE2BEE00277D77 /* MyApplication.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		C80F65E11ADE156C00277D77 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C80F65C81ADE156C00277D77 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = C80F65CF1ADE156C00277D77;
-			remoteInfo = PocketCast;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		A441E39E1B4FEF9E008DBC37 /* PocketCast-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PocketCast-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -32,27 +21,17 @@
 		A441E3AD1B4FF0BE008DBC37 /* NSObject+SPInvocationGrabbing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SPInvocationGrabbing.m"; sourceTree = "<group>"; };
 		A441E3AE1B4FF0BE008DBC37 /* SPMediaKeyTap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPMediaKeyTap.h; sourceTree = "<group>"; };
 		A441E3AF1B4FF0BE008DBC37 /* SPMediaKeyTap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPMediaKeyTap.m; sourceTree = "<group>"; };
-		C80F65D01ADE156C00277D77 /* PocketCast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PocketCast.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C80F65D01ADE156C00277D77 /* Pocket Casts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pocket Casts.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C80F65D41ADE156C00277D77 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C80F65D51ADE156C00277D77 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C80F65D71ADE156C00277D77 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		C80F65DA1ADE156C00277D77 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		C80F65E01ADE156C00277D77 /* PocketCastTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PocketCastTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C80F65E51ADE156C00277D77 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C80F65E61ADE156C00277D77 /* PocketCastTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PocketCastTests.swift; sourceTree = "<group>"; };
 		C80F65F71ADE2BEE00277D77 /* MyApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyApplication.swift; path = PocketCast/MyApplication.swift; sourceTree = "<group>"; };
 		C80F65FA1ADE319300277D77 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		C80F65CD1ADE156C00277D77 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C80F65DD1ADE156C00277D77 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -89,7 +68,6 @@
 				C80F65F71ADE2BEE00277D77 /* MyApplication.swift */,
 				A441E3AA1B4FF0BE008DBC37 /* SPMediaKeyTap */,
 				C80F65D21ADE156C00277D77 /* PocketCast */,
-				C80F65E31ADE156C00277D77 /* PocketCastTests */,
 				C80F65D11ADE156C00277D77 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -97,8 +75,7 @@
 		C80F65D11ADE156C00277D77 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C80F65D01ADE156C00277D77 /* PocketCast.app */,
-				C80F65E01ADE156C00277D77 /* PocketCastTests.xctest */,
+				C80F65D01ADE156C00277D77 /* Pocket Casts.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -123,29 +100,12 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		C80F65E31ADE156C00277D77 /* PocketCastTests */ = {
-			isa = PBXGroup;
-			children = (
-				C80F65E61ADE156C00277D77 /* PocketCastTests.swift */,
-				C80F65E41ADE156C00277D77 /* Supporting Files */,
-			);
-			path = PocketCastTests;
-			sourceTree = "<group>";
-		};
-		C80F65E41ADE156C00277D77 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				C80F65E51ADE156C00277D77 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C80F65CF1ADE156C00277D77 /* PocketCast */ = {
+		C80F65CF1ADE156C00277D77 /* Pocket Casts */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C80F65EA1ADE156C00277D77 /* Build configuration list for PBXNativeTarget "PocketCast" */;
+			buildConfigurationList = C80F65EA1ADE156C00277D77 /* Build configuration list for PBXNativeTarget "Pocket Casts" */;
 			buildPhases = (
 				C80F65CC1ADE156C00277D77 /* Sources */,
 				C80F65CD1ADE156C00277D77 /* Frameworks */,
@@ -155,28 +115,10 @@
 			);
 			dependencies = (
 			);
-			name = PocketCast;
+			name = "Pocket Casts";
 			productName = PocketCast;
-			productReference = C80F65D01ADE156C00277D77 /* PocketCast.app */;
+			productReference = C80F65D01ADE156C00277D77 /* Pocket Casts.app */;
 			productType = "com.apple.product-type.application";
-		};
-		C80F65DF1ADE156C00277D77 /* PocketCastTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C80F65ED1ADE156C00277D77 /* Build configuration list for PBXNativeTarget "PocketCastTests" */;
-			buildPhases = (
-				C80F65DC1ADE156C00277D77 /* Sources */,
-				C80F65DD1ADE156C00277D77 /* Frameworks */,
-				C80F65DE1ADE156C00277D77 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				C80F65E21ADE156C00277D77 /* PBXTargetDependency */,
-			);
-			name = PocketCastTests;
-			productName = PocketCastTests;
-			productReference = C80F65E01ADE156C00277D77 /* PocketCastTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -191,13 +133,9 @@
 						CreatedOnToolsVersion = 6.3;
 						DevelopmentTeam = 968599HPC6;
 					};
-					C80F65DF1ADE156C00277D77 = {
-						CreatedOnToolsVersion = 6.3;
-						TestTargetID = C80F65CF1ADE156C00277D77;
-					};
 				};
 			};
-			buildConfigurationList = C80F65CB1ADE156C00277D77 /* Build configuration list for PBXProject "PocketCast" */;
+			buildConfigurationList = C80F65CB1ADE156C00277D77 /* Build configuration list for PBXProject "Pocket Casts" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -210,8 +148,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C80F65CF1ADE156C00277D77 /* PocketCast */,
-				C80F65DF1ADE156C00277D77 /* PocketCastTests */,
+				C80F65CF1ADE156C00277D77 /* Pocket Casts */,
 			);
 		};
 /* End PBXProject section */
@@ -223,13 +160,6 @@
 			files = (
 				C80F65D81ADE156C00277D77 /* Images.xcassets in Resources */,
 				C80F65DB1ADE156C00277D77 /* MainMenu.xib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C80F65DE1ADE156C00277D77 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -247,23 +177,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C80F65DC1ADE156C00277D77 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C80F65E71ADE156C00277D77 /* PocketCastTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		C80F65E21ADE156C00277D77 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = C80F65CF1ADE156C00277D77 /* PocketCast */;
-			targetProxy = C80F65E11ADE156C00277D77 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		C80F65D91ADE156C00277D77 /* MainMenu.xib */ = {
@@ -365,7 +279,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = PocketCast/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Pocket Casts";
 				SWIFT_OBJC_BRIDGING_HEADER = "PocketCast/PocketCast-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -379,51 +293,15 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = PocketCast/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Pocket Casts";
 				SWIFT_OBJC_BRIDGING_HEADER = "PocketCast/PocketCast-Bridging-Header.h";
-			};
-			name = Release;
-		};
-		C80F65EE1ADE156C00277D77 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = PocketCastTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PocketCast.app/Contents/MacOS/PocketCast";
-			};
-			name = Debug;
-		};
-		C80F65EF1ADE156C00277D77 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = PocketCastTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PocketCast.app/Contents/MacOS/PocketCast";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C80F65CB1ADE156C00277D77 /* Build configuration list for PBXProject "PocketCast" */ = {
+		C80F65CB1ADE156C00277D77 /* Build configuration list for PBXProject "Pocket Casts" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C80F65E81ADE156C00277D77 /* Debug */,
@@ -432,20 +310,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C80F65EA1ADE156C00277D77 /* Build configuration list for PBXNativeTarget "PocketCast" */ = {
+		C80F65EA1ADE156C00277D77 /* Build configuration list for PBXNativeTarget "Pocket Casts" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C80F65EB1ADE156C00277D77 /* Debug */,
 				C80F65EC1ADE156C00277D77 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		C80F65ED1ADE156C00277D77 /* Build configuration list for PBXNativeTarget "PocketCastTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C80F65EE1ADE156C00277D77 /* Debug */,
-				C80F65EF1ADE156C00277D77 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
