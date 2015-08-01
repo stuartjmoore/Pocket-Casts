@@ -41,3 +41,7 @@ xcuserdata
 # Carthage/Checkouts
 
 Carthage/Build
+
+*.xcuserstate
+
+Pocket Casts.xcodeproj/xcuserdata/mortenjust.xcuserdatad/xcschemes/PocketCast.xcscheme
