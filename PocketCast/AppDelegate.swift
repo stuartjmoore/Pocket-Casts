@@ -39,6 +39,16 @@ import WebKit
         }
     }
 
+    func applicationShouldHandleReopen(sender: NSApplication, hasVisibleWindows visibleWindows: Bool) -> Bool {
+        if visibleWindows {
+            window.orderFront(self)
+        } else {
+            window.makeKeyAndOrderFront(self)
+        }
+
+        return true
+    }
+
     func sendJSEventForHidingToolbar() {
         webView.stringByEvaluatingJavaScriptFromString("document.getElementById('header').style.top = '-70px';") /* header height */
         webView.stringByEvaluatingJavaScriptFromString("document.getElementById('main').style.paddingTop = 0;")
