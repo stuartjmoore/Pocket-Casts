@@ -49,6 +49,8 @@ import WebKit
         return true
     }
 
+    // MARK: - Javascript
+
     func sendJSEventForHidingToolbar() {
         webView.stringByEvaluatingJavaScriptFromString("document.getElementById('header').style.top = '-70px';") /* header height */
         webView.stringByEvaluatingJavaScriptFromString("document.getElementById('main').style.paddingTop = 0;")
@@ -63,6 +65,11 @@ import WebKit
 
     func sendJSEventForSettingsTap() {
         webView.stringByEvaluatingJavaScriptFromString("document.getElementsByClassName('dropdown-toggle')[0].firstChild.click();")
+    }
+
+    func sendJSEventForHidingPlayer() {
+        webView.stringByEvaluatingJavaScriptFromString("document.getElementById('main').style.paddingBottom = 0;")
+        webView.stringByEvaluatingJavaScriptFromString("document.getElementById('audio_player').style.display = 'none';")
     }
 
     func sendJSEventForAction(action: KeyAction) {
@@ -84,8 +91,26 @@ import WebKit
         }
     }
 
+    // MARK: - Actions
+
+    @IBAction func playPauseMenuItemTapped(sender: NSMenuItem) {
+        sendJSEventForAction(.PlayPause)
+    }
+
+    @IBAction func skipForwardMenuItemTapped(sender: NSMenuItem) {
+        sendJSEventForAction(.SkipForward)
+    }
+
+    @IBAction func skipBackMenuItemTapped(sender: NSMenuItem) {
+        sendJSEventForAction(.SkipBack)
+    }
+
     @IBAction func settingsTapped(sender: NSToolbarItem) {
         sendJSEventForSettingsTap()
+    }
+
+    @IBAction func togglePlayerTapped(sender: NSToolbarItem) {
+        sendJSEventForHidingPlayer()
     }
 
     override func mediaKeyTap(mediaKeyTap: SPMediaKeyTap?, receivedMediaKeyEvent event: NSEvent) {
@@ -110,6 +135,8 @@ import WebKit
             }
         }
     }
+
+    // MARK: - Exit
 
     func applicationWillTerminate(aNotification: NSNotification) {
         return

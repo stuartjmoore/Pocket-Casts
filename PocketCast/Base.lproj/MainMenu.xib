@@ -11,8 +11,12 @@
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
-        <customObject id="-3" userLabel="Application" customClass="MyApplication"/>
-        <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="PocketCast" customModuleProvider="target">
+        <customObject id="-3" userLabel="Application" customClass="MyApplication">
+            <connections>
+                <outlet property="dockMenu" destination="gbs-Jp-db3" id="pja-6n-8sI"/>
+            </connections>
+        </customObject>
+        <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Pocket_Casts" customModuleProvider="target">
             <connections>
                 <outlet property="webView" destination="6mA-qh-89b" id="flv-mh-EGv"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
@@ -673,11 +677,11 @@
             <windowCollectionBehavior key="collectionBehavior" fullScreenPrimary="YES"/>
             <rect key="contentRect" x="336" y="289" width="980" height="540"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1177"/>
-            <view key="contentView" id="EiT-Mj-1SZ">
+            <view key="contentView" focusRingType="none" id="EiT-Mj-1SZ">
                 <rect key="frame" x="0.0" y="0.0" width="980" height="540"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <webView translatesAutoresizingMaskIntoConstraints="NO" id="6mA-qh-89b">
+                    <webView focusRingType="none" translatesAutoresizingMaskIntoConstraints="NO" id="6mA-qh-89b">
                         <rect key="frame" x="0.0" y="0.0" width="980" height="540"/>
                         <webPreferences key="preferences" identifier="pockcastsWebView" defaultFontSize="12" defaultFixedFontSize="12" javaScriptCanOpenWindowsAutomatically="NO"/>
                         <userDefinedRuntimeAttributes>
@@ -731,8 +735,62 @@
                             <action selector="settingsTapped:" target="Voe-Tx-rLC" id="gEy-cb-rjr"/>
                         </connections>
                     </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="EBB222B9-7CC7-4249-B5A7-189C9AEF48DF" label="Remaining Time" paletteLabel="Remaining Time" id="NKp-JY-Rto">
+                        <nil key="toolTip"/>
+                        <size key="minSize" width="38" height="17"/>
+                        <size key="maxSize" width="60" height="17"/>
+                        <textField key="view" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="oEm-Yb-wR8">
+                            <rect key="frame" x="26" y="14" width="52" height="17"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="center" placeholderString="0:00:00" usesSingleLineMode="YES" id="OeC-vN-J2q">
+                                <font key="font" metaFont="smallSystem"/>
+                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                    </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="7CB76C11-D703-426E-AF50-BA04323262DC" label="Show Player" paletteLabel="Show Player" image="NSListViewTemplate" id="vn6-HM-OFC">
+                        <nil key="toolTip"/>
+                        <size key="minSize" width="44" height="32"/>
+                        <size key="maxSize" width="82" height="32"/>
+                        <button key="view" verticalHuggingPriority="750" id="rGE-2p-00k">
+                            <rect key="frame" x="4" y="14" width="44" height="32"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <buttonCell key="cell" type="push" bezelStyle="rounded" image="NSListViewTemplate" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="IAf-Na-yG0">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                        </button>
+                        <connections>
+                            <action selector="togglePlayerTapped:" target="Voe-Tx-rLC" id="o5b-mP-8G5"/>
+                        </connections>
+                    </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="9A0B51D8-1AD1-4989-B646-72F4A0D5CDD2" label="Skip" paletteLabel="Skip" id="IAw-6u-j1O">
+                        <nil key="toolTip"/>
+                        <size key="minSize" width="67" height="25"/>
+                        <size key="maxSize" width="100" height="28"/>
+                        <segmentedControl key="view" verticalHuggingPriority="750" id="eN1-nJ-Pvr">
+                            <rect key="frame" x="0.0" y="14" width="100" height="28"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <segmentedCell key="cell" borderStyle="border" alignment="left" style="texturedSquare" trackingMode="momentary" id="bli-qm-uxk">
+                                <font key="font" metaFont="system"/>
+                                <segments>
+                                    <segment image="NSLeftFacingTriangleTemplate" width="32">
+                                        <nil key="label"/>
+                                    </segment>
+                                    <segment label="•" width="32" tag="1"/>
+                                    <segment image="NSRightFacingTriangleTemplate" width="32">
+                                        <nil key="label"/>
+                                    </segment>
+                                </segments>
+                            </segmentedCell>
+                        </segmentedControl>
+                    </toolbarItem>
                 </allowedToolbarItems>
                 <defaultToolbarItems>
+                    <toolbarItem reference="IAw-6u-j1O"/>
+                    <toolbarItem reference="NKp-JY-Rto"/>
+                    <toolbarItem reference="vn6-HM-OFC"/>
                     <toolbarItem reference="BNK-ej-ulO"/>
                     <toolbarItem reference="Mpc-Yu-Pry"/>
                     <toolbarItem reference="qLS-Ck-rIo"/>
@@ -744,8 +802,44 @@
                 </userDefinedRuntimeAttribute>
             </userDefinedRuntimeAttributes>
         </window>
+        <menu id="gbs-Jp-db3" userLabel="Dock Menu">
+            <items>
+                <menuItem title="Show" id="bDg-bm-9hY">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem title="Episode" id="Pln-kW-Bal">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem title="Date" id="CG0-QJ-GWp">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="g4Q-18-ijZ"/>
+                <menuItem title="Pause" id="Cun-Fv-dxf">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="playPauseMenuItemTapped:" target="Voe-Tx-rLC" id="RoG-xP-ovI"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Skip Forward" id="XFr-IX-USk">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="skipForwardMenuItemTapped:" target="Voe-Tx-rLC" id="pfm-2P-CXU"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Skip Back" id="FDW-kK-4bd">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="skipBackMenuItemTapped:" target="Voe-Tx-rLC" id="dCE-vd-fFR"/>
+                    </connections>
+                </menuItem>
+            </items>
+            <point key="canvasLocation" x="352.5" y="343.5"/>
+        </menu>
     </objects>
     <resources>
         <image name="NSActionTemplate" width="14" height="14"/>
+        <image name="NSLeftFacingTriangleTemplate" width="9" height="12"/>
+        <image name="NSListViewTemplate" width="14" height="10"/>
+        <image name="NSRightFacingTriangleTemplate" width="9" height="12"/>
     </resources>
 </document>
