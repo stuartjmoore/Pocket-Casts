@@ -150,19 +150,19 @@ extension AppDelegate: WebFrameLoadDelegate {
 
 extension AppDelegate: WebPolicyDelegate {
 
-    func webView(webView: WebView!, decidePolicyForNavigationAction actionInformation: [NSObject : AnyObject]!, request: NSURLRequest!, frame: WebFrame!, decisionListener listener: WebPolicyDecisionListener!) {
-        print("decidePolicyForNavigationAction: \(actionInformation)")
-        print("decidePolicyForNavigationAction: \(request)")
-
-        if request.URL == NSURL(string: "https://play.pocketcasts.com/"), let signInURL = NSURL(string: "https://play.pocketcasts.com/users/sign_in") {
-            listener.ignore()
-
-            // TODO: Use sheet
-            let signInRequest = NSURLRequest(URL: signInURL)
-            webView.mainFrame.loadRequest(signInRequest)
-        } else {
-            listener.use()
-        }
-    }
+//    func webView(webView: WebView!, decidePolicyForNavigationAction actionInformation: [NSObject : AnyObject]!, request: NSURLRequest!, frame: WebFrame!, decisionListener listener: WebPolicyDecisionListener!) {
+//        print("decidePolicyForNavigationAction: \(actionInformation)")
+//        print("decidePolicyForNavigationAction: \(request)")
+//
+//        if request.URL == NSURL(string: "https://play.pocketcasts.com/"), let signInURL = NSURL(string: "https://play.pocketcasts.com/users/sign_in") {
+//            listener.ignore()
+//
+//            // TODO: Use sheet
+//            let signInRequest = NSURLRequest(URL: signInURL)
+//            webView.mainFrame.loadRequest(signInRequest)
+//        } else {
+//            listener.use()
+//        }
+//    }
 
 }
