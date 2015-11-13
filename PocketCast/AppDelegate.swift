@@ -75,15 +75,15 @@ import WebKit
     func sendJSEventForAction(action: KeyAction) {
         switch action {
         case .PlayPause:
-            println("playpause")
+            print("playpause")
             webView.stringByEvaluatingJavaScriptFromString("angular.element(document).injector().get('mediaPlayer').playPause()")
 
         case .SkipForward:
-            println("skipping forward")
+            print("skipping forward")
             webView.stringByEvaluatingJavaScriptFromString("angular.element(document).injector().get('mediaPlayer').jumpForward()")
 
         case .SkipBack:
-            println("skipping back")
+            print("skipping back")
             webView.stringByEvaluatingJavaScriptFromString("angular.element(document).injector().get('mediaPlayer').jumpBack()")
 
         default:
