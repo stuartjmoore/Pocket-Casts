@@ -85,9 +85,6 @@ import WebKit
         case .SkipBack:
             print("skipping back")
             webView.stringByEvaluatingJavaScriptFromString("angular.element(document).injector().get('mediaPlayer').jumpBack()")
-
-        default:
-            break
         }
     }
 
@@ -117,7 +114,6 @@ import WebKit
         let keyCode = Int((event.data1 & 0xFFFF0000) >> 16)
         let keyFlags = (event.data1 & 0x0000FFFF)
         let keyIsPressed = (((keyFlags & 0xFF00) >> 8)) == 0xA
-        let keyRepeat = (keyFlags & 0x1)
 
         if keyIsPressed {
             switch keyCode {
@@ -144,9 +140,9 @@ import WebKit
 
 }
 
-extension AppDelegate {
+extension AppDelegate: WebFrameLoadDelegate {
 
-    override func webView(webView: WebView!, didFinishLoadForFrame: WebFrame!) {
+    func webView(webView: WebView!, didFinishLoadForFrame: WebFrame!) {
         sendJSEventForHidingToolbar()
     }
 
