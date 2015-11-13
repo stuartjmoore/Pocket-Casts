@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7706" systemVersion="14F19a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7706"/>
-        <plugIn identifier="com.apple.WebKitIBPlugin" version="7706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9059"/>
+        <plugIn identifier="com.apple.WebKitIBPlugin" version="9059"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MyApplication">
@@ -683,6 +683,7 @@
                 <subviews>
                     <webView focusRingType="none" translatesAutoresizingMaskIntoConstraints="NO" id="6mA-qh-89b">
                         <rect key="frame" x="0.0" y="0.0" width="980" height="540"/>
+                        <animations/>
                         <webPreferences key="preferences" identifier="pockcastsWebView" defaultFontSize="12" defaultFixedFontSize="12" javaScriptCanOpenWindowsAutomatically="NO"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
@@ -691,6 +692,7 @@
                         </userDefinedRuntimeAttributes>
                         <connections>
                             <outlet property="frameLoadDelegate" destination="Voe-Tx-rLC" id="eJA-Kq-29G"/>
+                            <outlet property="policyDelegate" destination="Voe-Tx-rLC" id="pp2-2C-UjH"/>
                         </connections>
                     </webView>
                 </subviews>
@@ -700,6 +702,7 @@
                     <constraint firstItem="6mA-qh-89b" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" id="Sg0-uK-Smg"/>
                     <constraint firstAttribute="trailing" secondItem="6mA-qh-89b" secondAttribute="trailing" id="WSd-pH-YfU"/>
                 </constraints>
+                <animations/>
             </view>
             <toolbar key="toolbar" implicitIdentifier="38D95F60-63DC-4866-9269-8320DA8EC150" autosavesConfiguration="NO" displayMode="iconOnly" sizeMode="regular" id="ByJ-by-wpx">
                 <allowedToolbarItems>
@@ -710,8 +713,9 @@
                         <size key="minSize" width="96" height="22"/>
                         <size key="maxSize" width="96" height="22"/>
                         <searchField key="view" wantsLayer="YES" verticalHuggingPriority="750" id="yhS-MG-opa">
-                            <rect key="frame" x="0.0" y="0.0" width="96" height="22"/>
+                            <rect key="frame" x="0.0" y="14" width="96" height="22"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <animations/>
                             <searchFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" sendsSearchStringImmediately="YES" sendsWholeSearchString="YES" id="T1h-HT-sPI">
                                 <font key="font" metaFont="system"/>
                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -724,8 +728,9 @@
                         <size key="minSize" width="25" height="28"/>
                         <size key="maxSize" width="82" height="32"/>
                         <button key="view" verticalHuggingPriority="750" id="3XU-bW-Hrd">
-                            <rect key="frame" x="12" y="14" width="35" height="28"/>
+                            <rect key="frame" x="8" y="14" width="35" height="28"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <animations/>
                             <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="NSActionTemplate" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ab9-Ty-4rt">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="system"/>
@@ -740,8 +745,9 @@
                         <size key="minSize" width="38" height="17"/>
                         <size key="maxSize" width="60" height="17"/>
                         <textField key="view" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="oEm-Yb-wR8">
-                            <rect key="frame" x="26" y="14" width="52" height="17"/>
+                            <rect key="frame" x="20" y="14" width="52" height="17"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <animations/>
                             <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="center" placeholderString="0:00:00" usesSingleLineMode="YES" id="OeC-vN-J2q">
                                 <font key="font" metaFont="smallSystem"/>
                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -754,8 +760,9 @@
                         <size key="minSize" width="44" height="32"/>
                         <size key="maxSize" width="82" height="32"/>
                         <button key="view" verticalHuggingPriority="750" id="rGE-2p-00k">
-                            <rect key="frame" x="4" y="14" width="44" height="32"/>
+                            <rect key="frame" x="14" y="14" width="44" height="32"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <animations/>
                             <buttonCell key="cell" type="push" bezelStyle="rounded" image="NSListViewTemplate" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="IAf-Na-yG0">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="system"/>
@@ -772,6 +779,7 @@
                         <segmentedControl key="view" verticalHuggingPriority="750" id="eN1-nJ-Pvr">
                             <rect key="frame" x="0.0" y="14" width="100" height="28"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <animations/>
                             <segmentedCell key="cell" borderStyle="border" alignment="left" style="texturedSquare" trackingMode="momentary" id="bli-qm-uxk">
                                 <font key="font" metaFont="system"/>
                                 <segments>
