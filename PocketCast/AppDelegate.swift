@@ -76,6 +76,11 @@ import WebKit
         webView.stringByEvaluatingJavaScriptFromString("document.getElementById('audio_player').style.display = 'none';")
     }
 
+    func sendJSEventForShowingPlayer() {
+        webView.stringByEvaluatingJavaScriptFromString("document.getElementById('main').style.paddingBottom = '66px';")
+        webView.stringByEvaluatingJavaScriptFromString("document.getElementById('audio_player').style.display = 'block';")
+    }
+
     func sendJSEventForAction(action: KeyAction) {
         switch action {
         case .PlayPause:
@@ -111,7 +116,13 @@ import WebKit
     }
 
     @IBAction func togglePlayerTapped(sender: NSToolbarItem) {
-        sendJSEventForHidingPlayer()
+        if sender.tag == 0 {
+            sendJSEventForHidingPlayer()
+            sender.tag = 1
+        } else {
+            sendJSEventForShowingPlayer()
+            sender.tag = 0
+        }
     }
 
     override func mediaKeyTap(mediaKeyTap: SPMediaKeyTap?, receivedMediaKeyEvent event: NSEvent) {
