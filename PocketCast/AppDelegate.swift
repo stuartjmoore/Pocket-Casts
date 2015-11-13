@@ -56,6 +56,10 @@ import WebKit
         webView.stringByEvaluatingJavaScriptFromString("document.getElementById('main').style.paddingTop = 0;")
     }
 
+    func sendJSEventForChangingFont() {
+        webView.stringByEvaluatingJavaScriptFromString("document.body.style.fontFamily = '-apple-system';")
+    }
+
     func sendJSEventForSearchChange(text: String) {
         webView.stringByEvaluatingJavaScriptFromString("document.getElementById('search_input_value').value = '\(text)';")
         // angular.element("#search_input_value").scope().inputChangeHandler("alison")
@@ -144,6 +148,7 @@ extension AppDelegate: WebFrameLoadDelegate {
 
     func webView(webView: WebView!, didFinishLoadForFrame: WebFrame!) {
         sendJSEventForHidingToolbar()
+        sendJSEventForChangingFont()
     }
 
 }
