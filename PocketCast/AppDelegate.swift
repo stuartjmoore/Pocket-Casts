@@ -111,6 +111,26 @@ import WebKit
         sendJSEventForAction(.SkipBack)
     }
 
+    // MARK:
+
+    @IBAction func playerSegmentTapped(sender: NSSegmentedControl) {
+        if sender.selectedSegment == 0 {
+            sendJSEventForAction(.SkipBack)
+        } else if sender.selectedSegment == 1 {
+            sendJSEventForAction(.PlayPause)
+
+            let isPlayingString = webView.stringByEvaluatingJavaScriptFromString("angular.element(document).injector().get('mediaPlayer').playing")
+
+            if isPlayingString == "true" {
+                sender.setLabel("❙❙", forSegment: 1)
+            } else {
+                sender.setLabel("▶", forSegment: 1)
+            }
+        } else if sender.selectedSegment == 2 {
+            sendJSEventForAction(.SkipForward)
+        }
+    }
+
     @IBAction func settingsTapped(sender: NSToolbarItem) {
         sendJSEventForSettingsTap()
     }

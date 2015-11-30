@@ -758,13 +758,13 @@
                     </toolbarItem>
                     <toolbarItem implicitItemIdentifier="7CB76C11-D703-426E-AF50-BA04323262DC" label="Show Player" paletteLabel="Show Player" image="NSListViewTemplate" id="vn6-HM-OFC">
                         <nil key="toolTip"/>
-                        <size key="minSize" width="44" height="32"/>
+                        <size key="minSize" width="25" height="28"/>
                         <size key="maxSize" width="82" height="32"/>
                         <button key="view" verticalHuggingPriority="750" id="rGE-2p-00k">
-                            <rect key="frame" x="14" y="14" width="44" height="32"/>
+                            <rect key="frame" x="17" y="14" width="39" height="32"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <animations/>
-                            <buttonCell key="cell" type="push" bezelStyle="rounded" image="NSListViewTemplate" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="IAf-Na-yG0">
+                            <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="NSListViewTemplate" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="IAf-Na-yG0">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
@@ -773,7 +773,7 @@
                             <action selector="togglePlayerTapped:" target="Voe-Tx-rLC" id="o5b-mP-8G5"/>
                         </connections>
                     </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="9A0B51D8-1AD1-4989-B646-72F4A0D5CDD2" label="Skip" paletteLabel="Skip" id="IAw-6u-j1O">
+                    <toolbarItem implicitItemIdentifier="9A0B51D8-1AD1-4989-B646-72F4A0D5CDD2" label="Controls" paletteLabel="Controls" id="IAw-6u-j1O">
                         <nil key="toolTip"/>
                         <size key="minSize" width="67" height="25"/>
                         <size key="maxSize" width="100" height="28"/>
@@ -784,16 +784,15 @@
                             <segmentedCell key="cell" borderStyle="border" alignment="left" style="texturedSquare" trackingMode="momentary" id="bli-qm-uxk">
                                 <font key="font" metaFont="system"/>
                                 <segments>
-                                    <segment image="NSLeftFacingTriangleTemplate" width="32">
-                                        <nil key="label"/>
-                                    </segment>
-                                    <segment label="•" width="32" tag="1"/>
-                                    <segment image="NSRightFacingTriangleTemplate" width="32">
-                                        <nil key="label"/>
-                                    </segment>
+                                    <segment label="⤺" width="32"/>
+                                    <segment label="▶❙❙" width="32" tag="1"/>
+                                    <segment label="⤻" width="32"/>
                                 </segments>
                             </segmentedCell>
                         </segmentedControl>
+                        <connections>
+                            <action selector="playerSegmentTapped:" target="Voe-Tx-rLC" id="nxG-Sr-6ZI"/>
+                        </connections>
                     </toolbarItem>
                 </allowedToolbarItems>
                 <defaultToolbarItems>
@@ -847,8 +846,6 @@
     </objects>
     <resources>
         <image name="NSActionTemplate" width="14" height="14"/>
-        <image name="NSLeftFacingTriangleTemplate" width="9" height="12"/>
         <image name="NSListViewTemplate" width="14" height="10"/>
-        <image name="NSRightFacingTriangleTemplate" width="9" height="12"/>
     </resources>
 </document>
