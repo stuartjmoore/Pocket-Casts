@@ -59,7 +59,8 @@ import WebKit
     }
 
     func updateInterfaceTimerDidFire(timer: NSTimer) {
-        sendJSEventForRemainingTime()
+        sendJSEventForUpdatingTitle()
+        sendJSEventForUpdatingRemainingTime()
     }
 
     // MARK: - Javascript
@@ -71,7 +72,7 @@ import WebKit
             seekTo(x)
     */
 
-    func sendJSEventForRemainingTime() {
+    func sendJSEventForUpdatingTitle() {
         let episodeTitleJS = "angular.element(document).injector().get('mediaPlayer').episode.title"
         let episodeTitleString = webView.stringByEvaluatingJavaScriptFromString(episodeTitleJS)
         episodeTitleToolbarTextFieldCell.title = episodeTitleString
@@ -85,7 +86,9 @@ import WebKit
             episodeTitleToolbarItem.minSize.width = ceil(rect.size.width) + 16
             episodeTitleToolbarItem.maxSize.width = ceil(rect.size.width) + 16
         }
+    }
 
+    func sendJSEventForUpdatingRemainingTime() {
         let remainingTimeJS = "document.getElementById('audio_player').getElementsByClassName('remaining_time')[0].innerText"
         let remainingTimeString = webView.stringByEvaluatingJavaScriptFromString(remainingTimeJS)
         remainingTimeToolbarItem.title = remainingTimeString
