@@ -172,8 +172,6 @@ import WebKit
         } else if sender.selectedSegment == 2 {
             sendJSEventForAction(.SkipForward)
         }
-
-        sendJSEventForRemainingTime()
     }
 
     @IBAction func settingsTapped(sender: NSToolbarItem) {
