@@ -32,7 +32,9 @@ import WebKit
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         window.movableByWindowBackground = true
         window.titleVisibility = .Hidden
-        window.styleMask |= NSFullSizeContentViewWindowMask
+        window.backgroundColor = NSColor(red: 1, green: 0.373, blue: 0.31, alpha: 1) /* #ff5f4f */
+        window.appearance = NSAppearance(named: NSAppearanceNameAqua)
+        // window.styleMask |= NSFullSizeContentViewWindowMask
 
         webView.mainFrameURL = "https://play.pocketcasts.com/"
 
