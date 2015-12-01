@@ -18,7 +18,8 @@
         </customObject>
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Pocket_Casts" customModuleProvider="target">
             <connections>
-                <outlet property="episodeTitleToolbarItem" destination="0f5-hf-CNk" id="GXd-f2-XVH"/>
+                <outlet property="episodeTitleToolbarItem" destination="yQu-QO-JnB" id="MhK-rt-S2Z"/>
+                <outlet property="episodeTitleToolbarTextFieldCell" destination="0f5-hf-CNk" id="o2b-6n-b7S"/>
                 <outlet property="remainingTimeToolbarItem" destination="OeC-vN-J2q" id="oBc-dg-oTj"/>
                 <outlet property="webView" destination="6mA-qh-89b" id="flv-mh-EGv"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
@@ -752,7 +753,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <animations/>
                             <textFieldCell key="cell" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="center" placeholderString="-00:00" usesSingleLineMode="YES" id="OeC-vN-J2q">
-                                <font key="font" metaFont="system"/>
+                                <font key="font" metaFont="systemMedium" size="13"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
@@ -805,7 +806,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <animations/>
                             <textFieldCell key="cell" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="center" placeholderString="Episode Title" usesSingleLineMode="YES" id="0f5-hf-CNk">
-                                <font key="font" metaFont="system"/>
+                                <font key="font" metaFont="systemMedium" size="13"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>

@@ -18,7 +18,8 @@ import WebKit
     @IBOutlet weak var webView: WebView!
     @IBOutlet weak var window: NSWindow!
 
-    @IBOutlet weak var episodeTitleToolbarItem: NSTextFieldCell!
+    @IBOutlet weak var episodeTitleToolbarItem: NSToolbarItem!
+    @IBOutlet weak var episodeTitleToolbarTextFieldCell: NSTextFieldCell!
     @IBOutlet weak var remainingTimeToolbarItem: NSTextFieldCell!
 
     var mediaKeyTap: SPMediaKeyTap?
@@ -73,7 +74,17 @@ import WebKit
     func sendJSEventForRemainingTime() {
         let episodeTitleJS = "angular.element(document).injector().get('mediaPlayer').episode.title"
         let episodeTitleString = webView.stringByEvaluatingJavaScriptFromString(episodeTitleJS)
-        episodeTitleToolbarItem.title = episodeTitleString
+        episodeTitleToolbarTextFieldCell.title = episodeTitleString
+
+        if episodeTitleToolbarTextFieldCell.attributedStringValue.length > 0 {
+            let rect = episodeTitleToolbarTextFieldCell.attributedStringValue.boundingRectWithSize(
+                NSSize(width: CGFloat.max, height: CGFloat.max),
+                options: [.UsesLineFragmentOrigin, .UsesFontLeading]
+            )
+
+            episodeTitleToolbarItem.minSize.width = ceil(rect.size.width) + 16
+            episodeTitleToolbarItem.maxSize.width = ceil(rect.size.width) + 16
+        }
 
         let remainingTimeJS = "document.getElementById('audio_player').getElementsByClassName('remaining_time')[0].innerText"
         let remainingTimeString = webView.stringByEvaluatingJavaScriptFromString(remainingTimeJS)
