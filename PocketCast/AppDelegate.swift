@@ -17,8 +17,10 @@ import WebKit
 
     @IBOutlet weak var webView: WebView!
     @IBOutlet weak var window: NSWindow!
+    @IBOutlet weak var remainingTimeToolbarItem: NSTextFieldCell!
 
     var mediaKeyTap: SPMediaKeyTap?
+    var updateInterfaceTimer: NSTimer!
 
     override init() {
         let whitelist = [kMediaKeyUsingBundleIdentifiersDefaultsKey: SPMediaKeyTap.defaultMediaKeyUserBundleIdentifiers()]
@@ -37,6 +39,8 @@ import WebKit
         if SPMediaKeyTap.usesGlobalMediaKeyTap() {
             mediaKeyTap!.startWatchingMediaKeys()
         }
+
+        updateInterfaceTimer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "updateInterfaceTimerDidFire:", userInfo: nil, repeats: true)
     }
 
     func applicationShouldHandleReopen(sender: NSApplication, hasVisibleWindows visibleWindows: Bool) -> Bool {
@@ -49,7 +53,25 @@ import WebKit
         return true
     }
 
+    func updateInterfaceTimerDidFire(timer: NSTimer) {
+        sendJSEventForRemainingTime()
+    }
+
     // MARK: - Javascript
+
+    /*
+        angular.element(document).injector().get('mediaPlayer')…
+            closePlayer() (stops playback?)
+            episode.title
+            loaded
+            seekTo(x)
+    */
+
+    func sendJSEventForRemainingTime() {
+        let x = "document.getElementById('audio_player').getElementsByClassName('remaining_time')[0].innerText"
+        let remainingTimeString = webView.stringByEvaluatingJavaScriptFromString(x)
+        remainingTimeToolbarItem.title = remainingTimeString
+    }
 
     func sendJSEventForHidingToolbar() {
         webView.stringByEvaluatingJavaScriptFromString("document.getElementById('header').style.top = '-70px';") /* header height */
@@ -97,7 +119,7 @@ import WebKit
         }
     }
 
-    // MARK: - Actions
+    // MARK: - Menu Bar
 
     @IBAction func playPauseMenuItemTapped(sender: NSMenuItem) {
         sendJSEventForAction(.PlayPause)
@@ -111,7 +133,7 @@ import WebKit
         sendJSEventForAction(.SkipBack)
     }
 
-    // MARK:
+    // MARK: Toolbar
 
     @IBAction func playerSegmentTapped(sender: NSSegmentedControl) {
         if sender.selectedSegment == 0 {
@@ -129,6 +151,8 @@ import WebKit
         } else if sender.selectedSegment == 2 {
             sendJSEventForAction(.SkipForward)
         }
+
+        sendJSEventForRemainingTime()
     }
 
     @IBAction func settingsTapped(sender: NSToolbarItem) {
@@ -144,6 +168,8 @@ import WebKit
             sender.tag = 0
         }
     }
+
+    // MARK: Media Keys
 
     override func mediaKeyTap(mediaKeyTap: SPMediaKeyTap?, receivedMediaKeyEvent event: NSEvent) {
         let keyCode = Int((event.data1 & 0xFFFF0000) >> 16)

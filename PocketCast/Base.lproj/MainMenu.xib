@@ -18,6 +18,7 @@
         </customObject>
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Pocket_Casts" customModuleProvider="target">
             <connections>
+                <outlet property="remainingTimeToolbarItem" destination="OeC-vN-J2q" id="oBc-dg-oTj"/>
                 <outlet property="webView" destination="6mA-qh-89b" id="flv-mh-EGv"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
             </connections>
@@ -749,8 +750,8 @@
                             <rect key="frame" x="20" y="14" width="52" height="17"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <animations/>
-                            <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="center" placeholderString="0:00:00" usesSingleLineMode="YES" id="OeC-vN-J2q">
-                                <font key="font" metaFont="smallSystem"/>
+                            <textFieldCell key="cell" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="center" placeholderString="0:00:00" usesSingleLineMode="YES" id="OeC-vN-J2q">
+                                <font key="font" metaFont="system"/>
                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
