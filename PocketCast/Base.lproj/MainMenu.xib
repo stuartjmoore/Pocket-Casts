@@ -18,6 +18,7 @@
         </customObject>
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Pocket_Casts" customModuleProvider="target">
             <connections>
+                <outlet property="episodeTitleToolbarItem" destination="0f5-hf-CNk" id="GXd-f2-XVH"/>
                 <outlet property="remainingTimeToolbarItem" destination="OeC-vN-J2q" id="oBc-dg-oTj"/>
                 <outlet property="webView" destination="6mA-qh-89b" id="flv-mh-EGv"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
@@ -795,11 +796,28 @@
                             <action selector="playerSegmentTapped:" target="Voe-Tx-rLC" id="nxG-Sr-6ZI"/>
                         </connections>
                     </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="753FD03E-EFDB-42F8-AFD1-854B55B71DD6" label="Title" paletteLabel="Title" id="yQu-QO-JnB">
+                        <nil key="toolTip"/>
+                        <size key="minSize" width="38" height="17"/>
+                        <size key="maxSize" width="125" height="17"/>
+                        <textField key="view" horizontalHuggingPriority="750" verticalHuggingPriority="750" id="SL8-qA-Ao6">
+                            <rect key="frame" x="0.0" y="14" width="92" height="17"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <animations/>
+                            <textFieldCell key="cell" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="center" placeholderString="Episode Title" usesSingleLineMode="YES" id="0f5-hf-CNk">
+                                <font key="font" metaFont="system"/>
+                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                    </toolbarItem>
                 </allowedToolbarItems>
                 <defaultToolbarItems>
-                    <toolbarItem reference="IAw-6u-j1O"/>
-                    <toolbarItem reference="NKp-JY-Rto"/>
                     <toolbarItem reference="vn6-HM-OFC"/>
+                    <toolbarItem reference="BNK-ej-ulO"/>
+                    <toolbarItem reference="NKp-JY-Rto"/>
+                    <toolbarItem reference="IAw-6u-j1O"/>
+                    <toolbarItem reference="yQu-QO-JnB"/>
                     <toolbarItem reference="BNK-ej-ulO"/>
                     <toolbarItem reference="Mpc-Yu-Pry"/>
                     <toolbarItem reference="qLS-Ck-rIo"/>
