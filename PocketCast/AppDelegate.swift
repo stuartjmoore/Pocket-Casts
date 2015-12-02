@@ -70,6 +70,9 @@ import WebKit
             closePlayer() (stops playback?)
             loaded
             seekTo(x)
+            
+        TODO: update play/pause state (toolbar button state)
+        TODO: update player visiblity (disable toolbar button)
     */
 
     func sendJSEventForUpdatingTitle() {
