@@ -18,6 +18,9 @@ import WebKit
     @IBOutlet weak var webView: WebView!
     @IBOutlet weak var window: NSWindow!
 
+    @IBOutlet weak var playerSegmentedControl: NSSegmentedControl!
+    @IBOutlet weak var playerCloseButton: NSButton!
+
     @IBOutlet weak var episodeTitleToolbarItem: NSToolbarItem!
     @IBOutlet weak var episodeTitleToolbarTextFieldCell: NSTextFieldCell!
     @IBOutlet weak var remainingTimeToolbarItem: NSTextFieldCell!
@@ -61,6 +64,7 @@ import WebKit
     func updateInterfaceTimerDidFire(timer: NSTimer) {
         sendJSEventForUpdatingTitle()
         sendJSEventForUpdatingRemainingTime()
+        sendJSEventForUpdatingPlayState()
     }
 
     // MARK: - Javascript
@@ -95,6 +99,28 @@ import WebKit
         let remainingTimeJS = "document.getElementById('audio_player').getElementsByClassName('remaining_time')[0].innerText"
         let remainingTimeString = webView.stringByEvaluatingJavaScriptFromString(remainingTimeJS)
         remainingTimeToolbarItem.title = remainingTimeString
+    }
+
+    func sendJSEventForUpdatingPlayState() {
+        let isPlayingJS = "angular.element(document).injector().get('mediaPlayer').playing"
+        let isPlayingString = webView.stringByEvaluatingJavaScriptFromString(isPlayingJS)
+
+        if isPlayingString == "true" {
+            playerSegmentedControl.setLabel("❙❙", forSegment: 1)
+        } else {
+            playerSegmentedControl.setLabel("▶", forSegment: 1)
+        }
+
+        let playerIsOpenJS = "angular.element(document).injector().get('mediaPlayer').episode.title"
+        let playerIsOpenString = webView.stringByEvaluatingJavaScriptFromString(playerIsOpenJS)
+
+        if playerIsOpenString == "" {
+            playerSegmentedControl.enabled = false
+            playerCloseButton.enabled = false
+        } else {
+            playerSegmentedControl.enabled = true
+            playerCloseButton.enabled = true
+        }
     }
 
     func sendJSEventForHidingToolbar() {
