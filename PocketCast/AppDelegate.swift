@@ -11,10 +11,6 @@ import WebKit
 
 @NSApplicationMain class AppDelegate: NSObject, NSApplicationDelegate {
 
-    enum KeyAction {
-        case PlayPause, SkipForward, SkipBack
-    }
-
     @IBOutlet weak var webView: WebView!
     @IBOutlet weak var window: NSWindow!
 
@@ -23,7 +19,7 @@ import WebKit
 
     @IBOutlet weak var episodeTitleToolbarItem: NSToolbarItem!
     @IBOutlet weak var episodeTitleToolbarTextFieldCell: NSTextFieldCell!
-    @IBOutlet weak var remainingTimeToolbarItem: NSTextFieldCell!
+    @IBOutlet weak var remainingTimeToolbarTextFieldCell: NSTextFieldCell!
 
     var mediaKeyTap: SPMediaKeyTap?
     var updateInterfaceTimer: NSTimer!
@@ -94,7 +90,7 @@ import WebKit
     }
 
     func sendJSEventForUpdatingRemainingTime() {
-        remainingTimeToolbarItem.title = Javascript(webView: webView).remainingTime
+        remainingTimeToolbarTextFieldCell.title = Javascript(webView: webView).remainingTime
     }
 
     func sendJSEventForUpdatingPlayState() {

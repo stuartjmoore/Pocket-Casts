@@ -22,7 +22,7 @@
                 <outlet property="episodeTitleToolbarTextFieldCell" destination="0f5-hf-CNk" id="o2b-6n-b7S"/>
                 <outlet property="playerCloseButton" destination="rGE-2p-00k" id="UdB-BG-gs7"/>
                 <outlet property="playerSegmentedControl" destination="eN1-nJ-Pvr" id="vyZ-60-waj"/>
-                <outlet property="remainingTimeToolbarItem" destination="OeC-vN-J2q" id="oBc-dg-oTj"/>
+                <outlet property="remainingTimeToolbarTextFieldCell" destination="OeC-vN-J2q" id="kVT-KP-aHY"/>
                 <outlet property="webView" destination="6mA-qh-89b" id="flv-mh-EGv"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
             </connections>
