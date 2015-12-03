@@ -57,23 +57,13 @@ import WebKit
         return true
     }
 
+    // MARK: - Timers
+
     func updateInterfaceTimerDidFire(timer: NSTimer) {
         sendJSEventForUpdatingTitle()
         sendJSEventForUpdatingRemainingTime()
         sendJSEventForUpdatingPlayState()
     }
-
-    // MARK: - Javascript
-
-    /*
-        angular.element(document).injector().get('mediaPlayer')…
-            closePlayer() (stops playback?)
-            loaded
-            seekTo(x)
-            
-        TODO: update play/pause state (toolbar button state)
-        TODO: update player visiblity (disable toolbar button)
-    */
 
     func sendJSEventForUpdatingTitle() {
         episodeTitleToolbarTextFieldCell.title = Javascript(webView: webView).episodeTitle
@@ -125,6 +115,11 @@ import WebKit
     }
 
     // MARK: Toolbar
+
+    /*
+        angular.element(document).injector().get('mediaPlayer')…
+            seekTo(x)
+     */
 
     @IBAction func playerSegmentTapped(sender: NSSegmentedControl) {
         if sender.selectedSegment == 0 {
