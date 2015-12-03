@@ -80,9 +80,7 @@ import WebKit
     */
 
     func sendJSEventForUpdatingTitle() {
-        let episodeTitleJS = "angular.element(document).injector().get('mediaPlayer').episode.title"
-        let episodeTitleString = webView.stringByEvaluatingJavaScriptFromString(episodeTitleJS)
-        episodeTitleToolbarTextFieldCell.title = episodeTitleString
+        episodeTitleToolbarTextFieldCell.title = Javascript(webView: webView).episodeTitle
 
         if episodeTitleToolbarTextFieldCell.attributedStringValue.length > 0 {
             let rect = episodeTitleToolbarTextFieldCell.attributedStringValue.boundingRectWithSize(
@@ -96,100 +94,46 @@ import WebKit
     }
 
     func sendJSEventForUpdatingRemainingTime() {
-        let remainingTimeJS = "document.getElementById('audio_player').getElementsByClassName('remaining_time')[0].innerText"
-        let remainingTimeString = webView.stringByEvaluatingJavaScriptFromString(remainingTimeJS)
-        remainingTimeToolbarItem.title = remainingTimeString
+        remainingTimeToolbarItem.title = Javascript(webView: webView).remainingTime
     }
 
     func sendJSEventForUpdatingPlayState() {
-        let isPlayingJS = "angular.element(document).injector().get('mediaPlayer').playing"
-        let isPlayingString = webView.stringByEvaluatingJavaScriptFromString(isPlayingJS)
-
-        if isPlayingString == "true" {
+        if Javascript(webView: webView).isPlaying {
             playerSegmentedControl.setLabel("❙❙", forSegment: 1)
         } else {
             playerSegmentedControl.setLabel("▶", forSegment: 1)
         }
 
-        let playerIsOpenJS = "angular.element(document).injector().get('mediaPlayer').episode.title"
-        let playerIsOpenString = webView.stringByEvaluatingJavaScriptFromString(playerIsOpenJS)
-
-        if playerIsOpenString == "" {
-            playerSegmentedControl.enabled = false
-            playerCloseButton.enabled = false
-        } else {
+        if Javascript(webView: webView).isPlayerOpen {
             playerSegmentedControl.enabled = true
             playerCloseButton.enabled = true
-        }
-    }
-
-    func sendJSEventForHidingToolbar() {
-        webView.stringByEvaluatingJavaScriptFromString("document.getElementById('header').style.top = '-70px';") /* header height */
-        webView.stringByEvaluatingJavaScriptFromString("document.getElementById('main').style.paddingTop = 0;")
-    }
-
-    func sendJSEventForChangingFont() {
-        webView.stringByEvaluatingJavaScriptFromString("document.body.style.fontFamily = '-apple-system';")
-    }
-
-    func sendJSEventForSearchChange(text: String) {
-        webView.stringByEvaluatingJavaScriptFromString("document.getElementById('search_input_value').value = '\(text)';")
-        // angular.element("#search_input_value").scope().inputChangeHandler("alison")
-        //
-        // TODO: fire onChange()
-    }
-
-    func sendJSEventForSettingsTap() {
-        webView.stringByEvaluatingJavaScriptFromString("document.getElementsByClassName('dropdown-toggle')[0].firstChild.click();")
-    }
-
-    func sendJSEventForHidingPlayer() {
-        webView.stringByEvaluatingJavaScriptFromString("document.getElementById('main').style.paddingBottom = 0;")
-        webView.stringByEvaluatingJavaScriptFromString("document.getElementById('audio_player').style.display = 'none';")
-    }
-
-    func sendJSEventForShowingPlayer() {
-        webView.stringByEvaluatingJavaScriptFromString("document.getElementById('main').style.paddingBottom = '66px';")
-        webView.stringByEvaluatingJavaScriptFromString("document.getElementById('audio_player').style.display = 'block';")
-    }
-
-    func sendJSEventForAction(action: KeyAction) {
-        switch action {
-        case .PlayPause:
-            print("playpause")
-            webView.stringByEvaluatingJavaScriptFromString("angular.element(document).injector().get('mediaPlayer').playPause()")
-
-        case .SkipForward:
-            print("skipping forward")
-            webView.stringByEvaluatingJavaScriptFromString("angular.element(document).injector().get('mediaPlayer').jumpForward()")
-
-        case .SkipBack:
-            print("skipping back")
-            webView.stringByEvaluatingJavaScriptFromString("angular.element(document).injector().get('mediaPlayer').jumpBack()")
+        } else {
+            playerSegmentedControl.enabled = false
+            playerCloseButton.enabled = false
         }
     }
 
     // MARK: - Menu Bar
 
     @IBAction func playPauseMenuItemTapped(sender: NSMenuItem) {
-        sendJSEventForAction(.PlayPause)
+        Javascript(webView: webView).playPause()
     }
 
     @IBAction func skipForwardMenuItemTapped(sender: NSMenuItem) {
-        sendJSEventForAction(.SkipForward)
+        Javascript(webView: webView).jumpForward()
     }
 
     @IBAction func skipBackMenuItemTapped(sender: NSMenuItem) {
-        sendJSEventForAction(.SkipBack)
+        Javascript(webView: webView).jumpBack()
     }
 
     // MARK: Toolbar
 
     @IBAction func playerSegmentTapped(sender: NSSegmentedControl) {
         if sender.selectedSegment == 0 {
-            sendJSEventForAction(.SkipBack)
+            Javascript(webView: webView).jumpBack()
         } else if sender.selectedSegment == 1 {
-            sendJSEventForAction(.PlayPause)
+            Javascript(webView: webView).playPause()
 
             let isPlayingString = webView.stringByEvaluatingJavaScriptFromString("angular.element(document).injector().get('mediaPlayer').playing")
 
@@ -199,20 +143,20 @@ import WebKit
                 sender.setLabel("▶", forSegment: 1)
             }
         } else if sender.selectedSegment == 2 {
-            sendJSEventForAction(.SkipForward)
+            Javascript(webView: webView).jumpForward()
         }
     }
 
     @IBAction func settingsTapped(sender: NSToolbarItem) {
-        sendJSEventForSettingsTap()
+        Javascript(webView: webView).clickSettingsButton()
     }
 
     @IBAction func togglePlayerTapped(sender: NSToolbarItem) {
         if sender.tag == 0 {
-            sendJSEventForHidingPlayer()
+            Javascript(webView: webView).hidePlayer()
             sender.tag = 1
         } else {
-            sendJSEventForShowingPlayer()
+            Javascript(webView: webView).showPlayer()
             sender.tag = 0
         }
     }
@@ -227,13 +171,13 @@ import WebKit
         if keyIsPressed {
             switch keyCode {
             case Int(NX_KEYTYPE_PLAY):
-                sendJSEventForAction(.PlayPause)
+                Javascript(webView: webView).playPause()
 
             case Int(NX_KEYTYPE_FAST):
-                sendJSEventForAction(.SkipForward)
+                Javascript(webView: webView).jumpForward()
 
             case Int(NX_KEYTYPE_REWIND):
-                sendJSEventForAction(.SkipBack)
+                Javascript(webView: webView).jumpBack()
 
             default:
                 break
@@ -252,8 +196,8 @@ import WebKit
 extension AppDelegate: WebFrameLoadDelegate {
 
     func webView(webView: WebView!, didFinishLoadForFrame: WebFrame!) {
-        sendJSEventForHidingToolbar()
-        sendJSEventForChangingFont()
+        Javascript(webView: webView).hideToolbar()
+        Javascript(webView: webView).changeFont()
     }
 
 }
