@@ -94,18 +94,19 @@ import WebKit
     }
 
     func sendJSEventForUpdatingPlayState() {
-        if Javascript(webView: webView).isPlaying {
-            playerSegmentedControl.setLabel("❙❙", forSegment: 1)
-        } else {
-            playerSegmentedControl.setLabel("▶", forSegment: 1)
-        }
-
         if Javascript(webView: webView).isPlayerOpen {
             playerSegmentedControl.enabled = true
             playerCloseButton.enabled = true
+
+            if Javascript(webView: webView).isPlaying {
+                playerSegmentedControl.setLabel("❙❙", forSegment: 1)
+            } else {
+                playerSegmentedControl.setLabel("▶", forSegment: 1)
+            }
         } else {
             playerSegmentedControl.enabled = false
             playerCloseButton.enabled = false
+            playerSegmentedControl.setLabel("▶❙❙", forSegment: 1)
         }
     }
 
