@@ -139,11 +139,11 @@ import WebKit
         }
     }
 
-    @IBAction func settingsTapped(sender: NSToolbarItem) {
+    @IBAction func settingsTapped(sender: NSButton) {
         Javascript(webView: webView).clickSettingsButton()
     }
 
-    @IBAction func togglePlayerTapped(sender: NSToolbarItem) {
+    @IBAction func togglePlayerTapped(sender: NSButton) {
         if sender.tag == 0 {
             Javascript(webView: webView).hidePlayer()
             sender.tag = 1

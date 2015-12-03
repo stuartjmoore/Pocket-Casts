@@ -479,10 +479,10 @@
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
+                            <connections>
+                                <action selector="settingsTapped:" target="Voe-Tx-rLC" id="oVY-bV-zvN"/>
+                            </connections>
                         </button>
-                        <connections>
-                            <action selector="settingsTapped:" target="Voe-Tx-rLC" id="gEy-cb-rjr"/>
-                        </connections>
                     </toolbarItem>
                     <toolbarItem implicitItemIdentifier="EBB222B9-7CC7-4249-B5A7-189C9AEF48DF" label="Remaining Time" paletteLabel="Remaining Time" id="NKp-JY-Rto">
                         <nil key="toolTip"/>
@@ -511,10 +511,10 @@
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
+                            <connections>
+                                <action selector="togglePlayerTapped:" target="Voe-Tx-rLC" id="JNj-3b-vAQ"/>
+                            </connections>
                         </button>
-                        <connections>
-                            <action selector="togglePlayerTapped:" target="Voe-Tx-rLC" id="o5b-mP-8G5"/>
-                        </connections>
                     </toolbarItem>
                     <toolbarItem implicitItemIdentifier="9A0B51D8-1AD1-4989-B646-72F4A0D5CDD2" label="Controls" paletteLabel="Controls" id="IAw-6u-j1O">
                         <nil key="toolTip"/>
