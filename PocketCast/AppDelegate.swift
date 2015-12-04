@@ -30,11 +30,25 @@ import WebKit
     }
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
-        window.movableByWindowBackground = true
-        window.titleVisibility = .Hidden
-        window.backgroundColor = NSColor(red: 1, green: 0.373, blue: 0.31, alpha: 1) /* #ff5f4f */
-        window.appearance = NSAppearance(named: NSAppearanceNameAqua)
+        // TODO: Figure out how to get the webView’s scrollViews underneath
+        // window.appearance = NSAppearance(named: NSAppearanceNameVibrantLight)
         // window.styleMask |= NSFullSizeContentViewWindowMask
+        window.movableByWindowBackground = true
+        // TODO: Set red gradient view underneath
+        // window.titlebarAppearsTransparent = true
+        window.titleVisibility = .Hidden
+
+        let topEdgeConstraint = NSLayoutConstraint(
+            item: webView,
+            attribute: .Top,
+            relatedBy: .Equal,
+            toItem: window.contentLayoutGuide,
+            attribute: .Top,
+            multiplier: 1,
+            constant: 0 //(window.frame.height + window.contentLayoutRect.maxY)
+        )
+
+        topEdgeConstraint.active = true
 
         webView.mainFrameURL = "https://play.pocketcasts.com/"
 

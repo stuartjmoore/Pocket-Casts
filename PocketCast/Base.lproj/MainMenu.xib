@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9059"/>
-        <plugIn identifier="com.apple.WebKitIBPlugin" version="9059"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9060"/>
+        <plugIn identifier="com.apple.WebKitIBPlugin" version="9060"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MyApplication">
@@ -428,12 +428,7 @@
                     <webView focusRingType="none" translatesAutoresizingMaskIntoConstraints="NO" id="6mA-qh-89b">
                         <rect key="frame" x="0.0" y="0.0" width="980" height="540"/>
                         <animations/>
-                        <webPreferences key="preferences" identifier="pockcastsWebView" defaultFontSize="12" defaultFixedFontSize="12" javaScriptCanOpenWindowsAutomatically="NO"/>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
-                                <color key="value" red="0.96522635221481323" green="0.42303839325904846" blue="0.36406642198562622" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </userDefinedRuntimeAttribute>
-                        </userDefinedRuntimeAttributes>
+                        <webPreferences key="preferences" identifier="pockcastsWebView" defaultFontSize="12" defaultFixedFontSize="12" javaEnabled="NO" javaScriptCanOpenWindowsAutomatically="NO"/>
                         <connections>
                             <outlet property="frameLoadDelegate" destination="Voe-Tx-rLC" id="eJA-Kq-29G"/>
                             <outlet property="policyDelegate" destination="Voe-Tx-rLC" id="pp2-2C-UjH"/>
@@ -441,7 +436,7 @@
                     </webView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="6mA-qh-89b" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" id="CAe-cX-jYI"/>
+                    <constraint firstItem="6mA-qh-89b" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" placeholder="YES" id="CAe-cX-jYI"/>
                     <constraint firstAttribute="bottom" secondItem="6mA-qh-89b" secondAttribute="bottom" id="G08-ul-oQB"/>
                     <constraint firstItem="6mA-qh-89b" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" id="Sg0-uK-Smg"/>
                     <constraint firstAttribute="trailing" secondItem="6mA-qh-89b" secondAttribute="trailing" id="WSd-pH-YfU"/>
@@ -565,11 +560,6 @@
                     <toolbarItem reference="qLS-Ck-rIo"/>
                 </defaultToolbarItems>
             </toolbar>
-            <userDefinedRuntimeAttributes>
-                <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
-                    <color key="value" red="0.96522635221481323" green="0.42303839325904846" blue="0.36406642198562622" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                </userDefinedRuntimeAttribute>
-            </userDefinedRuntimeAttributes>
         </window>
         <menu id="gbs-Jp-db3" userLabel="Dock Menu">
             <items>
