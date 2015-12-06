@@ -34,9 +34,10 @@ class Javascript {
     }
 
     func hideToolbar() {
-        // TODO: Hide shadow
-        webView.evaluateJavaScript("document.getElementById('header').style.top = '-70px';") { _ in } /* header height */
-        webView.evaluateJavaScript("document.getElementById('main').style.paddingTop = 0;") { _ in }
+        webView.evaluateJavaScript("document.getElementById('header').style.boxShadow = '0 0 0 0 white';", completionHandler:  nil)
+        webView.evaluateJavaScript("document.getElementById('header').style.webkitBoxShadow = '0 0 0 0 white';", completionHandler:  nil)
+        webView.evaluateJavaScript("document.getElementById('header').style.top = '-70px';", completionHandler:  nil)
+        webView.evaluateJavaScript("document.getElementById('main').style.paddingTop = 0;", completionHandler:  nil)
     }
 
     func changeFont() {
