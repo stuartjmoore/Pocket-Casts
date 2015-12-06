@@ -18,54 +18,15 @@ class Javascript {
     }
 
     var episodeTitle: String {
-        var episodeTitle: String? = nil
-        let javascript = "angular.element(document).injector().get('mediaPlayer').episode.title"
-
-        webView.evaluateJavaScript(javascript) { (data, error) in
-            episodeTitle = (data as? String) ?? ""
-//            print("episodeTitle: \(data as? String)")
-//            print("error: \(error)")
-        }
-
-        while episodeTitle == nil {
-            NSRunLoop.currentRunLoop().runMode(NSDefaultRunLoopMode, beforeDate: NSDate.distantFuture())
-        }
-
-        return episodeTitle!
+        return valueFor("angular.element(document).injector().get('mediaPlayer').episode.title") as? String ?? ""
     }
 
     var remainingTime: String {
-        var remainingTime: String? = nil
-        let javascript = "document.getElementById('audio_player').getElementsByClassName('remaining_time')[0].innerText"
-
-        webView.evaluateJavaScript(javascript) { (data, error) in
-            remainingTime = (data as? String) ?? ""
-//            print("remainingTime: \(data as? String)")
-//            print("error: \(error)")
-        }
-
-        while remainingTime == nil {
-            NSRunLoop.currentRunLoop().runMode(NSDefaultRunLoopMode, beforeDate: NSDate.distantFuture())
-        }
-
-        return remainingTime!
+        return valueFor("document.getElementById('audio_player').getElementsByClassName('remaining_time')[0].innerText") as? String ?? ""
     }
 
     var isPlaying: Bool {
-        var value: Bool? = nil
-        let javascript = "angular.element(document).injector().get('mediaPlayer').playing"
-
-        webView.evaluateJavaScript(javascript) { (data, error) in
-            value = (data as? Bool) ?? false
-//            print("isPlaying: \(data as? Bool)")
-//            print("error: \(error)")
-        }
-
-        while value == nil {
-            NSRunLoop.currentRunLoop().runMode(NSDefaultRunLoopMode, beforeDate: NSDate.distantFuture())
-        }
-
-        return value!
+        return valueFor("angular.element(document).injector().get('mediaPlayer').playing") as? Bool ?? false
     }
 
     var isPlayerOpen: Bool {
@@ -113,6 +74,24 @@ class Javascript {
 
     func jumpBack() {
         webView.evaluateJavaScript("angular.element(document).injector().get('mediaPlayer').jumpBack()") { _ in }
+    }
+
+    // MARK: -
+
+    private func valueFor(javascript: String) -> Any? {
+        var value: Any?
+        var finished = false
+
+        webView.evaluateJavaScript(javascript) { (data, _) in
+            value = data
+            finished = true
+        }
+
+        while !finished {
+            NSRunLoop.currentRunLoop().runMode(NSDefaultRunLoopMode, beforeDate: NSDate.distantFuture())
+        }
+
+        return value
     }
 
 }
