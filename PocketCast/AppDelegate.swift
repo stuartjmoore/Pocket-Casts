@@ -44,21 +44,11 @@ import WebKit
         webView.translatesAutoresizingMaskIntoConstraints = false
         window.contentView?.addSubview(webView)
 
+        /* window.frame.height + window.contentLayoutRect.maxY */
+        window.contentLayoutGuide?.topAnchor.constraintEqualToAnchor(webView.topAnchor).active = true
         window.contentView?.leadingAnchor.constraintEqualToAnchor(webView.leadingAnchor).active = true
         window.contentView?.bottomAnchor.constraintEqualToAnchor(webView.bottomAnchor).active = true
         window.contentView?.trailingAnchor.constraintEqualToAnchor(webView.trailingAnchor).active = true
-
-        let topEdgeConstraint = NSLayoutConstraint(
-            item: webView,
-            attribute: .Top,
-            relatedBy: .Equal,
-            toItem: window.contentLayoutGuide,
-            attribute: .Top,
-            multiplier: 1,
-            constant: 0 //(window.frame.height + window.contentLayoutRect.maxY)
-        )
-
-        topEdgeConstraint.active = true
 
         if let pocketCastsURL = NSURL(string: "https://play.pocketcasts.com/") {
             let pocketCastsRequest = NSURLRequest(URL: pocketCastsURL)
