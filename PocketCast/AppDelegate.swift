@@ -31,21 +31,34 @@ import WebKit
     }
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
-        window.movableByWindowBackground = true
-        window.titleVisibility = .Hidden
-        window.backgroundColor = NSColor(red: 1, green: 0.373, blue: 0.31, alpha: 1) /* #ff5f4f */
-        window.appearance = NSAppearance(named: NSAppearanceNameAqua)
+        // TODO: Figure out how to get the webView’s scrollViews underneath
+        // window.appearance = NSAppearance(named: NSAppearanceNameVibrantLight)
         // window.styleMask |= NSFullSizeContentViewWindowMask
+        window.movableByWindowBackground = true
+        // TODO: Set red gradient view underneath
+        // window.titlebarAppearsTransparent = true
+        window.titleVisibility = .Hidden
 
         webView = WKWebView(frame: window.contentView?.bounds ?? .zero)
         webView.navigationDelegate = self
         webView.translatesAutoresizingMaskIntoConstraints = false
         window.contentView?.addSubview(webView)
 
-        window.contentView?.topAnchor.constraintEqualToAnchor(webView.topAnchor).active = true
         window.contentView?.leadingAnchor.constraintEqualToAnchor(webView.leadingAnchor).active = true
         window.contentView?.bottomAnchor.constraintEqualToAnchor(webView.bottomAnchor).active = true
         window.contentView?.trailingAnchor.constraintEqualToAnchor(webView.trailingAnchor).active = true
+
+        let topEdgeConstraint = NSLayoutConstraint(
+            item: webView,
+            attribute: .Top,
+            relatedBy: .Equal,
+            toItem: window.contentLayoutGuide,
+            attribute: .Top,
+            multiplier: 1,
+            constant: 0 //(window.frame.height + window.contentLayoutRect.maxY)
+        )
+
+        topEdgeConstraint.active = true
 
         if let pocketCastsURL = NSURL(string: "https://play.pocketcasts.com/") {
             let pocketCastsRequest = NSURLRequest(URL: pocketCastsURL)

@@ -73,6 +73,7 @@ class Javascript {
     }
 
     func hideToolbar() {
+        // TODO: Hide shadow
         webView.evaluateJavaScript("document.getElementById('header').style.top = '-70px';") { _ in } /* header height */
         webView.evaluateJavaScript("document.getElementById('main').style.paddingTop = 0;") { _ in }
     }

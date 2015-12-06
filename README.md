@@ -6,6 +6,3 @@ An unofficial native wrapper for Pocket Casts
 * Use Skip (F7) goes back 10 seconds, Skip forward (F9) goes forward 30 seconds
 
 ![alt tag](https://raw.githubusercontent.com/stuartjmoore/PocketCastsOSX/master/Files/screenshot.png)
-
-### Where can I get it? 
-https://github.com/stuartjmoore/Pocket-Casts/releases
