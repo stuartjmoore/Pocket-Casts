@@ -11,7 +11,6 @@ import WebKit
 
 @NSApplicationMain class AppDelegate: NSObject, NSApplicationDelegate {
 
-    @IBOutlet weak var webView: WebView!
     @IBOutlet weak var window: NSWindow!
 
     @IBOutlet weak var playerSegmentedControl: NSSegmentedControl!
@@ -20,6 +19,8 @@ import WebKit
     @IBOutlet weak var episodeTitleToolbarItem: NSToolbarItem!
     @IBOutlet weak var episodeTitleToolbarTextFieldCell: NSTextFieldCell!
     @IBOutlet weak var remainingTimeToolbarTextFieldCell: NSTextFieldCell!
+
+    var webView: WKWebView!
 
     var mediaKeyTap: SPMediaKeyTap?
     var updateInterfaceTimer: NSTimer!
@@ -36,7 +37,22 @@ import WebKit
         window.appearance = NSAppearance(named: NSAppearanceNameAqua)
         // window.styleMask |= NSFullSizeContentViewWindowMask
 
-        webView.mainFrameURL = "https://play.pocketcasts.com/"
+        webView = WKWebView(frame: window.contentView?.bounds ?? .zero)
+        webView.navigationDelegate = self
+        webView.translatesAutoresizingMaskIntoConstraints = false
+        window.contentView?.addSubview(webView)
+
+        window.contentView?.topAnchor.constraintEqualToAnchor(webView.topAnchor).active = true
+        window.contentView?.leadingAnchor.constraintEqualToAnchor(webView.leadingAnchor).active = true
+        window.contentView?.bottomAnchor.constraintEqualToAnchor(webView.bottomAnchor).active = true
+        window.contentView?.trailingAnchor.constraintEqualToAnchor(webView.trailingAnchor).active = true
+
+        if let pocketCastsURL = NSURL(string: "https://play.pocketcasts.com/") {
+            let pocketCastsRequest = NSURLRequest(URL: pocketCastsURL)
+            webView.loadRequest(pocketCastsRequest)
+        } else {
+            fatalError("Unable to create Pocket Casts URL.")
+        }
 
         mediaKeyTap = SPMediaKeyTap(delegate: self)
 
@@ -44,7 +60,7 @@ import WebKit
             mediaKeyTap!.startWatchingMediaKeys()
         }
 
-        updateInterfaceTimer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "updateInterfaceTimerDidFire:", userInfo: nil, repeats: true)
+        updateInterfaceTimer = NSTimer.scheduledTimerWithTimeInterval(0.75, target: self, selector: "updateInterfaceTimerDidFire:", userInfo: nil, repeats: true)
     }
 
     func applicationShouldHandleReopen(sender: NSApplication, hasVisibleWindows visibleWindows: Bool) -> Bool {
@@ -127,9 +143,7 @@ import WebKit
         } else if sender.selectedSegment == 1 {
             Javascript(webView: webView).playPause()
 
-            let isPlayingString = webView.stringByEvaluatingJavaScriptFromString("angular.element(document).injector().get('mediaPlayer').playing")
-
-            if isPlayingString == "true" {
+            if Javascript(webView: webView).isPlaying {
                 sender.setLabel("❙❙", forSegment: 1)
             } else {
                 sender.setLabel("▶", forSegment: 1)
@@ -185,30 +199,31 @@ import WebKit
 
 }
 
-extension AppDelegate: WebFrameLoadDelegate {
+extension AppDelegate: WKNavigationDelegate {
 
-    func webView(webView: WebView!, didFinishLoadForFrame: WebFrame!) {
+    func webView(webView: WKWebView, didFinishNavigation: WKNavigation!) {
         Javascript(webView: webView).hideToolbar()
         Javascript(webView: webView).changeFont()
     }
 
 }
-
+/*
 extension AppDelegate: WebPolicyDelegate {
 
-//    func webView(webView: WebView!, decidePolicyForNavigationAction actionInformation: [NSObject : AnyObject]!, request: NSURLRequest!, frame: WebFrame!, decisionListener listener: WebPolicyDecisionListener!) {
-//        print("decidePolicyForNavigationAction: \(actionInformation)")
-//        print("decidePolicyForNavigationAction: \(request)")
-//
-//        if request.URL == NSURL(string: "https://play.pocketcasts.com/"), let signInURL = NSURL(string: "https://play.pocketcasts.com/users/sign_in") {
-//            listener.ignore()
-//
-//            // TODO: Use sheet
-//            let signInRequest = NSURLRequest(URL: signInURL)
-//            webView.mainFrame.loadRequest(signInRequest)
-//        } else {
-//            listener.use()
-//        }
-//    }
+    func webView(webView: WebView!, decidePolicyForNavigationAction actionInformation: [NSObject : AnyObject]!, request: NSURLRequest!, frame: WebFrame!, decisionListener listener: WebPolicyDecisionListener!) {
+        print("decidePolicyForNavigationAction: \(actionInformation)")
+        print("decidePolicyForNavigationAction: \(request)")
+
+        if request.URL == NSURL(string: "https://play.pocketcasts.com/"), let signInURL = NSURL(string: "https://play.pocketcasts.com/users/sign_in") {
+            listener.ignore()
+
+            // TODO: Use sheet
+            let signInRequest = NSURLRequest(URL: signInURL)
+            webView.mainFrame.loadRequest(signInRequest)
+        } else {
+            listener.use()
+        }
+    }
 
 }
+*/
