@@ -21,6 +21,7 @@ import WebKit
     @IBOutlet weak var remainingTimeToolbarTextFieldCell: NSTextFieldCell!
 
     var webView: WKWebView!
+    var loginSheet: NSPanel!
 
     var mediaKeyTap: SPMediaKeyTap?
     var updateInterfaceTimer: NSTimer!
@@ -50,7 +51,7 @@ import WebKit
         window.contentView?.bottomAnchor.constraintEqualToAnchor(webView.bottomAnchor).active = true
         window.contentView?.trailingAnchor.constraintEqualToAnchor(webView.trailingAnchor).active = true
 
-        if let pocketCastsURL = NSURL(string: "https://play.pocketcasts.com/") {
+        if let pocketCastsURL = NSURL(string: "https://play.pocketcasts.com/web") {
             let pocketCastsRequest = NSURLRequest(URL: pocketCastsURL)
             webView.loadRequest(pocketCastsRequest)
         } else {
@@ -209,24 +210,34 @@ extension AppDelegate: WKNavigationDelegate {
         Javascript(webView: webView).changeFont()
     }
 
-}
-/*
-extension AppDelegate: WebPolicyDelegate {
+    func webView(webView: WKWebView, decidePolicyForNavigationAction navigationAction: WKNavigationAction, decisionHandler: (WKNavigationActionPolicy) -> Void) {
+        if webView === self.webView && navigationAction.request.URL?.path == "/users/sign_in" {
+            loginSheet = NSPanel()
 
-    func webView(webView: WebView!, decidePolicyForNavigationAction actionInformation: [NSObject : AnyObject]!, request: NSURLRequest!, frame: WebFrame!, decisionListener listener: WebPolicyDecisionListener!) {
-        print("decidePolicyForNavigationAction: \(actionInformation)")
-        print("decidePolicyForNavigationAction: \(request)")
+            if let rect = window.contentView?.bounds {
+                loginSheet.setContentSize(rect.insetBy(dx: 44, dy: 22).size)
+            }
 
-        if request.URL == NSURL(string: "https://play.pocketcasts.com/"), let signInURL = NSURL(string: "https://play.pocketcasts.com/users/sign_in") {
-            listener.ignore()
+            let loginWebView = WKWebView(frame: loginSheet.contentView?.bounds ?? .zero)
+            loginWebView.navigationDelegate = self
+            loginWebView.translatesAutoresizingMaskIntoConstraints = false
+            loginSheet.contentView?.addSubview(loginWebView)
 
-            // TODO: Use sheet
-            let signInRequest = NSURLRequest(URL: signInURL)
-            webView.mainFrame.loadRequest(signInRequest)
+            loginSheet.contentView?.topAnchor.constraintEqualToAnchor(loginWebView.topAnchor).active = true
+            loginSheet.contentView?.leadingAnchor.constraintEqualToAnchor(loginWebView.leadingAnchor).active = true
+            loginSheet.contentView?.bottomAnchor.constraintEqualToAnchor(loginWebView.bottomAnchor).active = true
+            loginSheet.contentView?.trailingAnchor.constraintEqualToAnchor(loginWebView.trailingAnchor).active = true
+
+            loginWebView.loadRequest(navigationAction.request)
+            window.beginSheet(loginSheet, completionHandler: nil)
+            decisionHandler(.Cancel)
+        } else if webView !== self.webView && navigationAction.request.URL?.path == "/web" {
+            self.webView.loadRequest(navigationAction.request)
+            window.endSheet(loginSheet)
+            decisionHandler(.Cancel)
         } else {
-            listener.use()
+            decisionHandler(.Allow)
         }
     }
 
 }
-*/
