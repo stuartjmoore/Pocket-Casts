@@ -13,6 +13,9 @@ import WebKit
 
     @IBOutlet weak var window: NSWindow!
 
+    @IBOutlet weak var progressView: NSView!
+    @IBOutlet weak var progressLayoutConstraint: NSLayoutConstraint!
+
     @IBOutlet weak var playerSegmentedControl: NSSegmentedControl!
     @IBOutlet weak var playerCloseButton: NSButton!
 
@@ -43,7 +46,7 @@ import WebKit
         webView = WKWebView(frame: window.contentView?.bounds ?? .zero)
         webView.navigationDelegate = self
         webView.translatesAutoresizingMaskIntoConstraints = false
-        window.contentView?.addSubview(webView)
+        window.contentView?.addSubview(webView, positioned: .Below, relativeTo: nil)
 
         /* window.frame.height + window.contentLayoutRect.maxY */
         window.contentLayoutGuide?.topAnchor.constraintEqualToAnchor(webView.topAnchor).active = true
@@ -83,9 +86,10 @@ import WebKit
         sendJSEventForUpdatingTitle()
         sendJSEventForUpdatingRemainingTime()
         sendJSEventForUpdatingPlayState()
+        sendJSEventForUpdatingProgressBar()
     }
 
-    func sendJSEventForUpdatingTitle() {
+    private func sendJSEventForUpdatingTitle() {
         episodeTitleToolbarTextFieldCell.title = Javascript(webView: webView).episodeTitle
 
         if episodeTitleToolbarTextFieldCell.attributedStringValue.length > 0 {
@@ -99,11 +103,11 @@ import WebKit
         }
     }
 
-    func sendJSEventForUpdatingRemainingTime() {
+    private func sendJSEventForUpdatingRemainingTime() {
         remainingTimeToolbarTextFieldCell.title = Javascript(webView: webView).remainingTime
     }
 
-    func sendJSEventForUpdatingPlayState() {
+    private func sendJSEventForUpdatingPlayState() {
         if Javascript(webView: webView).isPlayerOpen {
             playerSegmentedControl.enabled = true
             playerCloseButton.enabled = true
@@ -118,6 +122,11 @@ import WebKit
             playerCloseButton.enabled = false
             playerSegmentedControl.setLabel("▶❙❙", forSegment: 1)
         }
+    }
+
+    private func sendJSEventForUpdatingProgressBar() {
+        let percentage: CGFloat = 0.25 // TODO: get player percentage
+        progressLayoutConstraint.constant = window.contentLayoutRect.width * percentage
     }
 
     // MARK: - Menu Bar
@@ -206,6 +215,9 @@ import WebKit
 extension AppDelegate: WKNavigationDelegate {
 
     func webView(webView: WKWebView, didFinishNavigation: WKNavigation!) {
+        // TODO: Move to window or view controller
+        progressView.layer?.backgroundColor = NSColor(red: 1, green: 0.373, blue: 0.31, alpha: 1).CGColor
+
         Javascript(webView: webView).hideToolbar()
         Javascript(webView: webView).changeFont()
     }

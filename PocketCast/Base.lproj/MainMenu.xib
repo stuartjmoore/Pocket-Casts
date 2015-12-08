@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9059"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9060"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MyApplication">
@@ -22,6 +22,8 @@
                 <outlet property="episodeTitleToolbarTextFieldCell" destination="0f5-hf-CNk" id="o2b-6n-b7S"/>
                 <outlet property="playerCloseButton" destination="rGE-2p-00k" id="UdB-BG-gs7"/>
                 <outlet property="playerSegmentedControl" destination="eN1-nJ-Pvr" id="vyZ-60-waj"/>
+                <outlet property="progressLayoutConstraint" destination="6Fy-HR-iRh" id="6wE-yS-mxK"/>
+                <outlet property="progressView" destination="gKb-EQ-tOB" id="7Cg-z2-2Za"/>
                 <outlet property="remainingTimeToolbarTextFieldCell" destination="OeC-vN-J2q" id="kVT-KP-aHY"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
             </connections>
@@ -423,6 +425,42 @@
             <view key="contentView" focusRingType="none" id="EiT-Mj-1SZ">
                 <rect key="frame" x="0.0" y="0.0" width="980" height="540"/>
                 <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="c8s-2I-KCb">
+                        <rect key="frame" x="0.0" y="538" width="980" height="2"/>
+                        <subviews>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="gKb-EQ-tOB">
+                                <rect key="frame" x="0.0" y="0.0" width="200" height="2"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="6Fy-HR-iRh"/>
+                                </constraints>
+                                <animations/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                        <color key="value" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </customView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="2" id="2eN-Y3-O8n"/>
+                            <constraint firstAttribute="bottom" secondItem="gKb-EQ-tOB" secondAttribute="bottom" id="PE8-Hr-HIJ"/>
+                            <constraint firstItem="gKb-EQ-tOB" firstAttribute="top" secondItem="c8s-2I-KCb" secondAttribute="top" id="Qu8-fx-jVH"/>
+                            <constraint firstItem="gKb-EQ-tOB" firstAttribute="leading" secondItem="c8s-2I-KCb" secondAttribute="leading" id="S2h-ST-xxO"/>
+                        </constraints>
+                        <animations/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                <color key="value" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </customView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="c8s-2I-KCb" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" id="ZDf-Hb-6kx"/>
+                    <constraint firstAttribute="trailing" secondItem="c8s-2I-KCb" secondAttribute="trailing" id="php-En-1jk"/>
+                    <constraint firstItem="c8s-2I-KCb" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" id="qsI-FH-UVb"/>
+                </constraints>
                 <animations/>
             </view>
             <toolbar key="toolbar" implicitIdentifier="38D95F60-63DC-4866-9269-8320DA8EC150" autosavesConfiguration="NO" displayMode="iconOnly" sizeMode="regular" id="ByJ-by-wpx">
@@ -542,6 +580,7 @@
                     <toolbarItem reference="qLS-Ck-rIo"/>
                 </defaultToolbarItems>
             </toolbar>
+            <point key="canvasLocation" x="0.0" y="-355"/>
         </window>
         <menu id="gbs-Jp-db3" userLabel="Dock Menu">
             <items>
