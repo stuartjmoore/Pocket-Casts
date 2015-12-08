@@ -125,8 +125,8 @@ import WebKit
     }
 
     private func sendJSEventForUpdatingProgressBar() {
-        let percentage: CGFloat = 0.25 // TODO: get player percentage
-        progressLayoutConstraint.constant = window.contentLayoutRect.width * percentage
+        let percentage = Javascript(webView: webView).currentPercentage
+        progressLayoutConstraint.constant = window.contentLayoutRect.width * CGFloat(percentage)
     }
 
     // MARK: - Menu Bar

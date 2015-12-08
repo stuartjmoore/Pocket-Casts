@@ -25,6 +25,26 @@ class Javascript {
         return valueFor("document.getElementById('audio_player').getElementsByClassName('remaining_time')[0].innerText") as? String ?? ""
     }
 
+    var currentTimeInterval: NSTimeInterval {
+        return valueFor("angular.element(document).injector().get('mediaPlayer').currentTime") as? NSTimeInterval ?? 0
+    }
+
+    var remainingTimeInterval: NSTimeInterval {
+        return valueFor("angular.element(document).injector().get('mediaPlayer').remainingTime") as? NSTimeInterval ?? 0
+    }
+
+    var currentPercentage: Float {
+        let currentTimeInterval = self.currentTimeInterval
+        let remainingTimeInterval = self.remainingTimeInterval
+        let percentage = Float(currentTimeInterval / (currentTimeInterval + remainingTimeInterval))
+
+        guard percentage.isFinite else {
+            return 0
+        }
+
+        return max(0, min(percentage, 1))
+    }
+
     var isPlaying: Bool {
         return valueFor("angular.element(document).injector().get('mediaPlayer').playing") as? Bool ?? false
     }
