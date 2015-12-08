@@ -502,12 +502,12 @@
                     <toolbarItem implicitItemIdentifier="EBB222B9-7CC7-4249-B5A7-189C9AEF48DF" label="Remaining Time" paletteLabel="Remaining Time" id="NKp-JY-Rto">
                         <nil key="toolTip"/>
                         <size key="minSize" width="38" height="17"/>
-                        <size key="maxSize" width="60" height="17"/>
+                        <size key="maxSize" width="68" height="17"/>
                         <textField key="view" horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" id="oEm-Yb-wR8">
-                            <rect key="frame" x="20" y="14" width="52" height="17"/>
+                            <rect key="frame" x="26" y="14" width="39" height="17"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <animations/>
-                            <textFieldCell key="cell" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="center" placeholderString="-00:00" usesSingleLineMode="YES" id="OeC-vN-J2q">
+                            <textFieldCell key="cell" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="center" placeholderString="" usesSingleLineMode="YES" id="OeC-vN-J2q">
                                 <font key="font" metaFont="system"/>
                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -560,7 +560,7 @@
                             <rect key="frame" x="0.0" y="14" width="92" height="17"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             <animations/>
-                            <textFieldCell key="cell" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="center" placeholderString="Episode Title" usesSingleLineMode="YES" id="0f5-hf-CNk">
+                            <textFieldCell key="cell" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="center" placeholderString="Pocket Casts" usesSingleLineMode="YES" id="0f5-hf-CNk">
                                 <font key="font" metaFont="systemBold"/>
                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>

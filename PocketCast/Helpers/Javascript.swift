@@ -22,7 +22,13 @@ class Javascript {
     }
 
     var remainingTime: String {
-        return valueFor("document.getElementById('audio_player').getElementsByClassName('remaining_time')[0].innerText") as? String ?? ""
+        let javascriptString = "document.getElementById('audio_player').getElementsByClassName('remaining_time')[0].innerText"
+
+        guard let remainingTime = valueFor(javascriptString) as? String where remainingTime != "-00:00" else {
+            return ""
+        }
+
+        return remainingTime
     }
 
     var currentTimeInterval: NSTimeInterval {
