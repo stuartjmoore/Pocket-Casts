@@ -33,6 +33,14 @@ class Javascript {
         return valueFor("angular.element(document).injector().get('mediaPlayer').remainingTime") as? NSTimeInterval ?? 0
     }
 
+    var bufferStartTimeInterval: NSTimeInterval {
+        return valueFor("angular.element(document).injector().get('mediaPlayer').bufferStart") as? NSTimeInterval ?? 0
+    }
+
+    var bufferEndTimeInterval: NSTimeInterval {
+        return valueFor("angular.element(document).injector().get('mediaPlayer').bufferEnd") as? NSTimeInterval ?? 0
+    }
+
     var currentPercentage: Float {
         let currentTimeInterval = self.currentTimeInterval
         let remainingTimeInterval = self.remainingTimeInterval
