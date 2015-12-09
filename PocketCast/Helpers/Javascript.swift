@@ -68,7 +68,7 @@ class Javascript {
     }
 
     var isPlayerOpen: Bool {
-        return (episodeTitle != "")
+        return (episodeTitle != nil)
     }
 
     func hideToolbar() {

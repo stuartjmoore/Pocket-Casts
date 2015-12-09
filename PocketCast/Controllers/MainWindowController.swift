@@ -132,14 +132,14 @@ class MainWindowController: NSWindowController {
     }
 
     @IBAction func togglePlayerTapped(sender: NSButton) {
-        if playerCloseButton.state == NSOffState {
+        if sender.state == NSOffState {
             Javascript(webView: webView).hidePlayer()
         } else {
             Javascript(webView: webView).showPlayer()
         }
 
-        playerCloseButton.state = (playerCloseButton.state == NSOnState) ? NSOffState : NSOnState
-        playerCloseButton.setNextState()
+        sender.state = (sender.state == NSOnState) ? NSOffState : NSOnState
+        sender.setNextState()
     }
 
     // MARK: Media Keys
