@@ -14,6 +14,8 @@ class MainViewController: NSViewController {
     @IBOutlet weak var progressView: NSView!
     @IBOutlet weak var progressLayoutConstraint: NSLayoutConstraint!
 
+    var javascript: Javascript!
+
     var loginSheet: NSPanel!
     var webView: WKWebView!
 
@@ -39,6 +41,8 @@ class MainViewController: NSViewController {
         } else {
             fatalError("Unable to create Pocket Casts URL.")
         }
+
+        javascript = Javascript(webView: webView)
     }
 
     override func awakeFromNib() {
@@ -52,53 +56,53 @@ class MainViewController: NSViewController {
     // MARK: -
 
     var showTitle: String? {
-        return Javascript(webView: webView).showTitle
+        return javascript.showTitle
     }
 
     var episodeTitle: String? {
-        return Javascript(webView: webView).episodeTitle
+        return javascript.episodeTitle
     }
 
     var remainingTime: String? {
-        return Javascript(webView: webView).remainingTime
+        return javascript.remainingTime
     }
 
     var isPlayerOpen: Bool {
-        return Javascript(webView: webView).isPlayerOpen
+        return javascript.isPlayerOpen
     }
 
     var isPlaying: Bool {
-        return Javascript(webView: webView).isPlaying
+        return javascript.isPlaying
     }
 
     var currentPercentage: Float {
-        return Javascript(webView: webView).currentPercentage
+        return javascript.currentPercentage
     }
 
     // MARK: -
 
     func jumpBack() {
-        Javascript(webView: webView).jumpBack()
+        javascript.jumpBack()
     }
 
     func playPause() {
-        Javascript(webView: webView).playPause()
+        javascript.playPause()
     }
 
     func jumpForward() {
-        Javascript(webView: webView).jumpForward()
+        javascript.jumpForward()
     }
 
     func clickSettingsButton() {
-        Javascript(webView: webView).clickSettingsButton()
+        javascript.clickSettingsButton()
     }
 
     func hidePlayer() {
-        Javascript(webView: webView).hidePlayer()
+        javascript.hidePlayer()
     }
 
     func showPlayer() {
-        Javascript(webView: webView).showPlayer()
+        javascript.showPlayer()
     }
 
 }
@@ -106,8 +110,8 @@ class MainViewController: NSViewController {
 extension MainViewController: WKNavigationDelegate {
 
     func webView(webView: WKWebView, didFinishNavigation: WKNavigation!) {
-        Javascript(webView: webView).hideToolbar()
-        Javascript(webView: webView).changeFont()
+        javascript.hideToolbar()
+        javascript.changeFont()
     }
 /*
     func webView(webView: WKWebView, decidePolicyForNavigationAction navigationAction: WKNavigationAction, decisionHandler: (WKNavigationActionPolicy) -> Void) {
