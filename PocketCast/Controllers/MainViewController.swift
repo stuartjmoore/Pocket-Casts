@@ -48,6 +48,59 @@ class MainViewController: NSViewController {
     func updateProgressBarView(percentage: Float) {
         progressLayoutConstraint.constant = view.frame.width * CGFloat(percentage)
     }
+
+    // MARK: -
+
+    var showTitle: String? {
+        return Javascript(webView: webView).showTitle
+    }
+
+    var episodeTitle: String? {
+        return Javascript(webView: webView).episodeTitle
+    }
+
+    var remainingTime: String? {
+        return Javascript(webView: webView).remainingTime
+    }
+
+    var isPlayerOpen: Bool {
+        return Javascript(webView: webView).isPlayerOpen
+    }
+
+    var isPlaying: Bool {
+        return Javascript(webView: webView).isPlaying
+    }
+
+    var currentPercentage: Float {
+        return Javascript(webView: webView).currentPercentage
+    }
+
+    // MARK: -
+
+    func jumpBack() {
+        Javascript(webView: webView).jumpBack()
+    }
+
+    func playPause() {
+        Javascript(webView: webView).playPause()
+    }
+
+    func jumpForward() {
+        Javascript(webView: webView).jumpForward()
+    }
+
+    func clickSettingsButton() {
+        Javascript(webView: webView).clickSettingsButton()
+    }
+
+    func hidePlayer() {
+        Javascript(webView: webView).hidePlayer()
+    }
+
+    func showPlayer() {
+        Javascript(webView: webView).showPlayer()
+    }
+
 }
 
 extension MainViewController: WKNavigationDelegate {

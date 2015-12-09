@@ -25,10 +25,6 @@ class MainWindowController: NSWindowController {
         return window?.contentViewController as? MainViewController
     }
 
-    var webView: WKWebView! {
-        return mainViewController.webView
-    }
-
     override func windowDidLoad() {
         shouldCascadeWindows = false
         window?.setFrameAutosaveName("MainWindow")
@@ -61,8 +57,8 @@ class MainWindowController: NSWindowController {
     }
 
     private func sendJSEventForUpdatingTitle() {
-        guard let showTitle = Javascript(webView: webView).showTitle,
-              let episodeTitle = Javascript(webView: webView).episodeTitle else {
+        guard let showTitle = mainViewController.showTitle,
+              let episodeTitle = mainViewController.episodeTitle else {
             return episodeTitleToolbarTextFieldCell.title = ""
         }
 
@@ -80,7 +76,7 @@ class MainWindowController: NSWindowController {
     }
 
     private func sendJSEventForUpdatingRemainingTime() {
-        guard let remainingTime = Javascript(webView: webView).remainingTime else {
+        guard let remainingTime = mainViewController.remainingTime else {
             return remainingTimeToolbarTextFieldCell.title = ""
         }
 
@@ -88,11 +84,11 @@ class MainWindowController: NSWindowController {
     }
 
     private func sendJSEventForUpdatingPlayState() {
-        if Javascript(webView: webView).isPlayerOpen {
+        if mainViewController.isPlayerOpen {
             playerSegmentedControl.enabled = true
             playerCloseButton.enabled = true
 
-            if Javascript(webView: webView).isPlaying {
+            if mainViewController.isPlaying {
                 playerSegmentedControl.setLabel("❙❙", forSegment: 1)
             } else {
                 playerSegmentedControl.setLabel("▶", forSegment: 1)
@@ -105,7 +101,7 @@ class MainWindowController: NSWindowController {
     }
 
     private func sendJSEventForUpdatingProgressBar() {
-        let percentage = Javascript(webView: webView).currentPercentage
+        let percentage = mainViewController.currentPercentage
         mainViewController.updateProgressBarView(percentage)
     }
 
@@ -113,29 +109,29 @@ class MainWindowController: NSWindowController {
 
     @IBAction func playerSegmentTapped(sender: NSSegmentedControl) {
         if sender.selectedSegment == 0 {
-            Javascript(webView: webView).jumpBack()
+            mainViewController.jumpBack()
         } else if sender.selectedSegment == 1 {
-            Javascript(webView: webView).playPause()
+            mainViewController.playPause()
 
-            if Javascript(webView: webView).isPlaying {
+            if mainViewController.isPlaying {
                 sender.setLabel("❙❙", forSegment: 1)
             } else {
                 sender.setLabel("▶", forSegment: 1)
             }
         } else if sender.selectedSegment == 2 {
-            Javascript(webView: webView).jumpForward()
+            mainViewController.jumpForward()
         }
     }
 
     @IBAction func settingsTapped(sender: NSButton) {
-        Javascript(webView: webView).clickSettingsButton()
+        mainViewController.clickSettingsButton()
     }
 
     @IBAction func togglePlayerTapped(sender: NSButton) {
         if sender.state == NSOffState {
-            Javascript(webView: webView).hidePlayer()
+            mainViewController.hidePlayer()
         } else {
-            Javascript(webView: webView).showPlayer()
+            mainViewController.showPlayer()
         }
 
         sender.state = (sender.state == NSOnState) ? NSOffState : NSOnState
@@ -152,13 +148,13 @@ class MainWindowController: NSWindowController {
         if keyIsPressed {
             switch keyCode {
             case Int(NX_KEYTYPE_PLAY):
-                Javascript(webView: webView).playPause()
+                mainViewController.playPause()
 
             case Int(NX_KEYTYPE_FAST):
-                Javascript(webView: webView).jumpForward()
+                mainViewController.jumpForward()
 
             case Int(NX_KEYTYPE_REWIND):
-                Javascript(webView: webView).jumpBack()
+                mainViewController.jumpBack()
 
             default:
                 break
