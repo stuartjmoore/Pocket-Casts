@@ -63,10 +63,24 @@ class MainWindowController: NSWindowController {
             return episodeTitleToolbarTextFieldCell.title = ""
         }
 
-        episodeTitleToolbarTextFieldCell.title = showTitle + " – " + episodeTitle
+        let attributedTitle = NSMutableAttributedString()
 
-        if episodeTitleToolbarTextFieldCell.attributedStringValue.length > 0 {
-            let rect = episodeTitleToolbarTextFieldCell.attributedStringValue.boundingRectWithSize(
+        attributedTitle.appendAttributedString(NSAttributedString(string: showTitle, attributes: [
+            NSFontAttributeName: NSFont.systemFontOfSize(13)
+        ]))
+
+        attributedTitle.appendAttributedString(NSAttributedString(string: " ", attributes: [
+            NSFontAttributeName: NSFont.systemFontOfSize(13)
+        ]))
+
+        attributedTitle.appendAttributedString(NSAttributedString(string: episodeTitle, attributes: [
+            NSFontAttributeName: NSFont.boldSystemFontOfSize(13)
+        ]))
+
+        episodeTitleToolbarTextFieldCell.attributedStringValue = attributedTitle
+
+        if attributedTitle.length > 0 {
+            let rect = attributedTitle.boundingRectWithSize(
                 NSSize(width: CGFloat.max, height: CGFloat.max),
                 options: [.UsesLineFragmentOrigin, .UsesFontLeading]
             )
