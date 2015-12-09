@@ -17,8 +17,12 @@ class Javascript {
         self.webView = webView
     }
 
-    var episodeTitle: String {
-        return valueFor("angular.element(document).injector().get('mediaPlayer').episode.title") as? String ?? ""
+    var showTitle: String? {
+        return valueFor("angular.element(document).injector().get('mediaPlayer').episode.podcast.title") as? String
+    }
+
+    var episodeTitle: String? {
+        return valueFor("angular.element(document).injector().get('mediaPlayer').episode.title") as? String
     }
 
     var remainingTime: String {

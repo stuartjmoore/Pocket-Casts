@@ -61,7 +61,12 @@ class MainWindowController: NSWindowController {
     }
 
     private func sendJSEventForUpdatingTitle() {
-        episodeTitleToolbarTextFieldCell.title = Javascript(webView: webView).episodeTitle
+        guard let showTitle = Javascript(webView: webView).showTitle,
+              let episodeTitle = Javascript(webView: webView).episodeTitle else {
+            return episodeTitleToolbarTextFieldCell.title = ""
+        }
+
+        episodeTitleToolbarTextFieldCell.title = showTitle + " – " + episodeTitle
 
         if episodeTitleToolbarTextFieldCell.attributedStringValue.length > 0 {
             let rect = episodeTitleToolbarTextFieldCell.attributedStringValue.boundingRectWithSize(
