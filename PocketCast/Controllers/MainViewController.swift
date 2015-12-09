@@ -67,11 +67,11 @@ class MainViewController: NSViewController {
     }
 
     var isPlayerOpen: Bool {
-        return javascript.isPlayerOpen
+        return javascript.isPlayerOpen ?? false
     }
 
     var isPlaying: Bool {
-        return javascript.isPlaying
+        return javascript.isPlaying ?? false
     }
 
     var currentPercentage: Float {
@@ -147,8 +147,94 @@ extension MainViewController: WKNavigationDelegate {
 
 extension MainViewController: JavascriptDelegate {
 
+    func javascriptShowTitleDidChange(title: String?) {
+        fullTitleDidChange(title, episodeTitle: javascript.episodeTitle)
+    }
+
+    func javascriptEpisodeTitleDidChange(title: String?) {
+        fullTitleDidChange(javascript.showTitle, episodeTitle: title)
+    }
+
+    private func fullTitleDidChange(showTitle: String?, episodeTitle: String?) {
+        guard let windowController = view.window?.windowController as? MainWindowController else {
+            return
+        }
+
+        guard let showTitle = showTitle, episodeTitle = episodeTitle else {
+            return windowController.episodeTitleToolbarTextFieldCell.title = ""
+        }
+
+        let attributedTitle = NSMutableAttributedString()
+
+        attributedTitle.appendAttributedString(NSAttributedString(string: showTitle, attributes: [
+            NSFontAttributeName: NSFont.systemFontOfSize(13)
+        ]))
+
+        attributedTitle.appendAttributedString(NSAttributedString(string: " ", attributes: [
+            NSFontAttributeName: NSFont.systemFontOfSize(13)
+        ]))
+
+        attributedTitle.appendAttributedString(NSAttributedString(string: episodeTitle, attributes: [
+            NSFontAttributeName: NSFont.boldSystemFontOfSize(13)
+        ]))
+
+        windowController.episodeTitleToolbarTextFieldCell.attributedStringValue = attributedTitle
+
+        if attributedTitle.length > 0 {
+            let rect = attributedTitle.boundingRectWithSize(
+                NSSize(width: CGFloat.max, height: CGFloat.max),
+                options: [.UsesLineFragmentOrigin, .UsesFontLeading]
+            )
+
+            windowController.episodeTitleToolbarItem.minSize.width = ceil(rect.size.width) + 16
+            windowController.episodeTitleToolbarItem.maxSize.width = ceil(rect.size.width) + 16
+        }
+    }
+
+    func javascriptRemainingTimeDidChange(remainingTime: String?) {
+        guard let windowController = view.window?.windowController as? MainWindowController else {
+            return
+        }
+
+        guard let remainingTime = remainingTime else {
+            return windowController.remainingTimeToolbarTextFieldCell.title = ""
+        }
+
+        windowController.remainingTimeToolbarTextFieldCell.title = remainingTime
+    }
+
     func javascriptCurrentPercentageDidChange(currentPercentage: Float) {
         updateProgressBarView(currentPercentage)
+    }
+
+    func javascriptIsPlayingDidChange(isPlaying: Bool) {
+        guard let windowController = view.window?.windowController as? MainWindowController else {
+            return
+        }
+
+        if let isPlayerOpen = javascript.isPlayerOpen where !isPlayerOpen {
+            windowController.playerSegmentedControl.setLabel("▶❙❙", forSegment: 1)
+        } else if isPlaying {
+            windowController.playerSegmentedControl.setLabel("❙❙", forSegment: 1)
+        } else {
+            windowController.playerSegmentedControl.setLabel("▶", forSegment: 1)
+        }
+    }
+
+    func javascriptIsPlayerOpenDidChange(isPlayerOpen: Bool) {
+        guard let windowController = view.window?.windowController as? MainWindowController else {
+            return
+        }
+
+        if isPlayerOpen {
+            windowController.playerSegmentedControl.enabled = true
+            windowController.playerCloseButton.enabled = true
+            javascriptIsPlayingDidChange(javascript.isPlaying ?? false)
+        } else {
+            windowController.playerSegmentedControl.enabled = false
+            windowController.playerCloseButton.enabled = false
+            windowController.playerSegmentedControl.setLabel("▶❙❙", forSegment: 1)
+        }
     }
 
 }

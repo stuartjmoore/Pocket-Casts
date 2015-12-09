@@ -19,7 +19,6 @@ class MainWindowController: NSWindowController {
     @IBOutlet weak var remainingTimeToolbarTextFieldCell: NSTextFieldCell!
 
     private var mediaKeyTap: SPMediaKeyTap?
-    private var updateInterfaceTimer: NSTimer!
 
     var mainViewController: MainViewController! {
         return window?.contentViewController as? MainViewController
@@ -37,80 +36,6 @@ class MainWindowController: NSWindowController {
 
         if SPMediaKeyTap.usesGlobalMediaKeyTap() {
             mediaKeyTap!.startWatchingMediaKeys()
-        }
-
-        // TODO: Convert to JavascriptDelegate (via MainViewController)
-        updateInterfaceTimer = NSTimer.scheduledTimerWithTimeInterval(0.75,
-            target: self,
-            selector: "updateInterfaceTimerDidFire:",
-            userInfo: nil,
-            repeats: true
-        )
-    }
-
-    // MARK: - Timers
-
-    func updateInterfaceTimerDidFire(timer: NSTimer) {
-        sendJSEventForUpdatingTitle()
-        sendJSEventForUpdatingRemainingTime()
-        sendJSEventForUpdatingPlayState()
-    }
-
-    private func sendJSEventForUpdatingTitle() {
-        guard let showTitle = mainViewController.showTitle,
-              let episodeTitle = mainViewController.episodeTitle else {
-            return episodeTitleToolbarTextFieldCell.title = ""
-        }
-
-        let attributedTitle = NSMutableAttributedString()
-
-        attributedTitle.appendAttributedString(NSAttributedString(string: showTitle, attributes: [
-            NSFontAttributeName: NSFont.systemFontOfSize(13)
-        ]))
-
-        attributedTitle.appendAttributedString(NSAttributedString(string: " ", attributes: [
-            NSFontAttributeName: NSFont.systemFontOfSize(13)
-        ]))
-
-        attributedTitle.appendAttributedString(NSAttributedString(string: episodeTitle, attributes: [
-            NSFontAttributeName: NSFont.boldSystemFontOfSize(13)
-        ]))
-
-        episodeTitleToolbarTextFieldCell.attributedStringValue = attributedTitle
-
-        if attributedTitle.length > 0 {
-            let rect = attributedTitle.boundingRectWithSize(
-                NSSize(width: CGFloat.max, height: CGFloat.max),
-                options: [.UsesLineFragmentOrigin, .UsesFontLeading]
-            )
-
-            episodeTitleToolbarItem.minSize.width = ceil(rect.size.width) + 16
-            episodeTitleToolbarItem.maxSize.width = ceil(rect.size.width) + 16
-        }
-    }
-
-    private func sendJSEventForUpdatingRemainingTime() {
-        guard let remainingTime = mainViewController.remainingTime else {
-            return remainingTimeToolbarTextFieldCell.title = ""
-        }
-
-        remainingTimeToolbarTextFieldCell.title = remainingTime
-    }
-
-    private func sendJSEventForUpdatingPlayState() {
-        if mainViewController.isPlayerOpen {
-            playerSegmentedControl.enabled = true
-            playerCloseButton.enabled = true
-
-            if mainViewController.isPlaying {
-                playerSegmentedControl.setLabel("❙❙", forSegment: 1)
-            } else {
-                playerSegmentedControl.setLabel("▶", forSegment: 1)
-            }
-        } else {
-            playerSegmentedControl.enabled = false
-            playerCloseButton.enabled = false
-            playerSegmentedControl.setLabel("▶❙❙", forSegment: 1)
         }
     }
 

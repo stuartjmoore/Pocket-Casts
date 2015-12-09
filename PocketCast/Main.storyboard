@@ -156,9 +156,9 @@
                                 <rect key="frame" x="0.0" y="408" width="698" height="2"/>
                                 <subviews>
                                     <customView focusRingType="none" translatesAutoresizingMaskIntoConstraints="NO" id="c53-oZ-3AY">
-                                        <rect key="frame" x="0.0" y="0.0" width="200" height="2"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="2"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="200" id="vzn-Kb-8Mu"/>
+                                            <constraint firstAttribute="width" id="vzn-Kb-8Mu"/>
                                         </constraints>
                                         <animations/>
                                         <userDefinedRuntimeAttributes>

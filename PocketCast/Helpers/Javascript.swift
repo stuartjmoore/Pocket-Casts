@@ -44,8 +44,21 @@ class Javascript {
         }
     }
 
-    var isPlaying: Bool = false { didSet(oldValue) { if oldValue != isPlaying { delegate?.javascriptIsPlayingDidChange(isPlaying) } } }
-    var isPlayerOpen: Bool = false { didSet(oldValue) { if oldValue != isPlayerOpen { delegate?.javascriptIsPlayerOpenDidChange(isPlayerOpen) } } }
+    var isPlaying: Bool? {
+        didSet(oldValue) {
+            if let isPlaying = isPlaying where oldValue != isPlaying {
+                delegate?.javascriptIsPlayingDidChange(isPlaying)
+            }
+        }
+    }
+
+    var isPlayerOpen: Bool? {
+        didSet(oldValue) {
+            if let isPlayerOpen = isPlayerOpen where oldValue != isPlayerOpen {
+                delegate?.javascriptIsPlayerOpenDidChange(isPlayerOpen)
+            }
+        }
+    }
 
     init(webView: WKWebView) {
         self.webView = webView
