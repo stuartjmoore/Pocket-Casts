@@ -9,67 +9,77 @@
 import Foundation
 import WebKit
 
+protocol JavascriptDelegate: class {
+    func javascriptShowTitleDidChange(title: String?)
+    func javascriptEpisodeTitleDidChange(title: String?)
+    func javascriptRemainingTimeDidChange(remainingTime: String?)
+
+    func javascriptCurrentPercentageDidChange(currentPercentage: Float)
+
+    func javascriptIsPlayingDidChange(isPlaying: Bool)
+    func javascriptIsPlayerOpenDidChange(isPlayerOpen: Bool)
+}
+
 class Javascript {
 
-    let webView: WKWebView
+    private let webView: WKWebView
+    private var updatePropertiesTimer: NSTimer!
+
+    weak var delegate: JavascriptDelegate?
+
+    var showTitle: String? { didSet(oldValue) { if oldValue != showTitle { delegate?.javascriptShowTitleDidChange(showTitle) } } }
+    var episodeTitle: String? { didSet(oldValue) { if oldValue != episodeTitle { delegate?.javascriptEpisodeTitleDidChange(episodeTitle) } } }
+    var remainingTime: String? { didSet(oldValue) { if oldValue != remainingTime { delegate?.javascriptRemainingTimeDidChange(remainingTime) } } }
+
+    var currentTimeInterval: NSTimeInterval = 0
+    var remainingTimeInterval: NSTimeInterval = 0
+    var bufferStartTimeInterval: NSTimeInterval = 0
+    var bufferEndTimeInterval: NSTimeInterval = 0
+
+    var currentPercentage: Float = 0 {
+        didSet(oldValue) {
+            if oldValue != currentPercentage {
+                delegate?.javascriptCurrentPercentageDidChange(currentPercentage)
+            }
+        }
+    }
+
+    var isPlaying: Bool = false { didSet(oldValue) { if oldValue != isPlaying { delegate?.javascriptIsPlayingDidChange(isPlaying) } } }
+    var isPlayerOpen: Bool = false { didSet(oldValue) { if oldValue != isPlayerOpen { delegate?.javascriptIsPlayerOpenDidChange(isPlayerOpen) } } }
 
     init(webView: WKWebView) {
         self.webView = webView
+
+        updatePropertiesTimer = NSTimer.scheduledTimerWithTimeInterval(0.5,
+            target: self,
+            selector: "updatePropertiesTimerDidFire:",
+            userInfo: nil,
+            repeats: true
+        )
     }
 
-    var showTitle: String? {
-        return valueFor("angular.element(document).injector().get('mediaPlayer').episode.podcast.title") as? String
-    }
+    // MARK: - Timers
 
-    var episodeTitle: String? {
-        return valueFor("angular.element(document).injector().get('mediaPlayer').episode.title") as? String
-    }
+    @objc private func updatePropertiesTimerDidFire(timer: NSTimer) {
+        showTitle = valueFor("angular.element(document).injector().get('mediaPlayer').episode.podcast.title") as? String
+        episodeTitle = valueFor("angular.element(document).injector().get('mediaPlayer').episode.title") as? String
 
-    var remainingTime: String? {
-        let javascriptString = "document.getElementById('audio_player').getElementsByClassName('remaining_time')[0].innerText"
+        let remainingTimeDisplay = valueFor("document.getElementById('audio_player').getElementsByClassName('remaining_time')[0].innerText") as? String
+        remainingTime = remainingTimeDisplay != "-00:00" ? remainingTimeDisplay : nil
 
-        guard let remainingTime = valueFor(javascriptString) as? String where remainingTime != "-00:00" else {
-            return nil
-        }
+        currentTimeInterval = valueFor("angular.element(document).injector().get('mediaPlayer').currentTime") as? NSTimeInterval ?? 0
+        remainingTimeInterval = valueFor("angular.element(document).injector().get('mediaPlayer').remainingTime") as? NSTimeInterval ?? 0
+        bufferStartTimeInterval = valueFor("angular.element(document).injector().get('mediaPlayer').bufferStart") as? NSTimeInterval ?? 0
+        bufferEndTimeInterval = valueFor("angular.element(document).injector().get('mediaPlayer').bufferEnd") as? NSTimeInterval ?? 0
 
-        return remainingTime
-    }
-
-    var currentTimeInterval: NSTimeInterval {
-        return valueFor("angular.element(document).injector().get('mediaPlayer').currentTime") as? NSTimeInterval ?? 0
-    }
-
-    var remainingTimeInterval: NSTimeInterval {
-        return valueFor("angular.element(document).injector().get('mediaPlayer').remainingTime") as? NSTimeInterval ?? 0
-    }
-
-    var bufferStartTimeInterval: NSTimeInterval {
-        return valueFor("angular.element(document).injector().get('mediaPlayer').bufferStart") as? NSTimeInterval ?? 0
-    }
-
-    var bufferEndTimeInterval: NSTimeInterval {
-        return valueFor("angular.element(document).injector().get('mediaPlayer').bufferEnd") as? NSTimeInterval ?? 0
-    }
-
-    var currentPercentage: Float {
-        let currentTimeInterval = self.currentTimeInterval
-        let remainingTimeInterval = self.remainingTimeInterval
         let percentage = Float(currentTimeInterval / (currentTimeInterval + remainingTimeInterval))
+        currentPercentage = percentage.isFinite ? max(0, min(percentage, 1)) : 0
 
-        guard percentage.isFinite else {
-            return 0
-        }
-
-        return max(0, min(percentage, 1))
+        isPlaying = valueFor("angular.element(document).injector().get('mediaPlayer').playing") as? Bool ?? false
+        isPlayerOpen = (episodeTitle != nil)
     }
 
-    var isPlaying: Bool {
-        return valueFor("angular.element(document).injector().get('mediaPlayer').playing") as? Bool ?? false
-    }
-
-    var isPlayerOpen: Bool {
-        return (episodeTitle != nil)
-    }
+    // MARK: -
 
     func hideToolbar() {
         webView.evaluateJavaScript("document.getElementById('header').style.boxShadow = '0 0 0 0 white';" +

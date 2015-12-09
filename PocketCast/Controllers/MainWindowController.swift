@@ -39,6 +39,7 @@ class MainWindowController: NSWindowController {
             mediaKeyTap!.startWatchingMediaKeys()
         }
 
+        // TODO: Convert to JavascriptDelegate (via MainViewController)
         updateInterfaceTimer = NSTimer.scheduledTimerWithTimeInterval(0.75,
             target: self,
             selector: "updateInterfaceTimerDidFire:",
@@ -100,6 +101,7 @@ class MainWindowController: NSWindowController {
         }
     }
 
+    // TODO: Move 100% to MainViewController
     private func sendJSEventForUpdatingProgressBar() {
         let percentage = mainViewController.currentPercentage
         mainViewController.updateProgressBarView(percentage)

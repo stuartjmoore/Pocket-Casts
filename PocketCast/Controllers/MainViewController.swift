@@ -14,10 +14,9 @@ class MainViewController: NSViewController {
     @IBOutlet weak var progressView: NSView!
     @IBOutlet weak var progressLayoutConstraint: NSLayoutConstraint!
 
-    var javascript: Javascript!
-
-    var loginSheet: NSPanel!
-    var webView: WKWebView!
+    private var javascript: Javascript!
+    private var loginSheet: NSPanel!
+    private var webView: WKWebView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +28,6 @@ class MainViewController: NSViewController {
         webView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(webView, positioned: .Below, relativeTo: progressView)
 
-        /* window.frame.height + window.contentLayoutRect.maxY */
         view.topAnchor.constraintEqualToAnchor(webView.topAnchor).active = true
         view.leadingAnchor.constraintEqualToAnchor(webView.leadingAnchor).active = true
         view.bottomAnchor.constraintEqualToAnchor(webView.bottomAnchor).active = true
