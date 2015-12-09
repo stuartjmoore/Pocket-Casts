@@ -20,8 +20,8 @@ class MainWindowController: NSWindowController {
 
     private var mediaKeyTap: SPMediaKeyTap?
 
-    var mainViewController: MainViewController! {
-        return window?.contentViewController as? MainViewController
+    var webViewController: WebViewController! {
+        return window?.contentViewController as? WebViewController
     }
 
     override func windowDidLoad() {
@@ -43,29 +43,29 @@ class MainWindowController: NSWindowController {
 
     @IBAction func playerSegmentTapped(sender: NSSegmentedControl) {
         if sender.selectedSegment == 0 {
-            mainViewController.jumpBack()
+            webViewController.jumpBack()
         } else if sender.selectedSegment == 1 {
-            mainViewController.playPause()
+            webViewController.playPause()
 
-            if mainViewController.isPlaying {
+            if webViewController.isPlaying {
                 sender.setLabel("❙❙", forSegment: 1)
             } else {
                 sender.setLabel("▶", forSegment: 1)
             }
         } else if sender.selectedSegment == 2 {
-            mainViewController.jumpForward()
+            webViewController.jumpForward()
         }
     }
 
     @IBAction func settingsTapped(sender: NSButton) {
-        mainViewController.clickSettingsButton()
+        webViewController.clickSettingsButton()
     }
 
     @IBAction func togglePlayerTapped(sender: NSButton) {
         if sender.state == NSOffState {
-            mainViewController.hidePlayer()
+            webViewController.hidePlayer()
         } else {
-            mainViewController.showPlayer()
+            webViewController.showPlayer()
         }
 
         sender.state = (sender.state == NSOnState) ? NSOffState : NSOnState
@@ -82,13 +82,13 @@ class MainWindowController: NSWindowController {
         if keyIsPressed {
             switch keyCode {
             case Int(NX_KEYTYPE_PLAY):
-                mainViewController.playPause()
+                webViewController.playPause()
 
             case Int(NX_KEYTYPE_FAST):
-                mainViewController.jumpForward()
+                webViewController.jumpForward()
 
             case Int(NX_KEYTYPE_REWIND):
-                mainViewController.jumpBack()
+                webViewController.jumpBack()
 
             default:
                 break

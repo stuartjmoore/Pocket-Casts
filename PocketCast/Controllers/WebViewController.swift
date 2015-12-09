@@ -1,5 +1,5 @@
 //
-//  MainViewController.swift
+//  WebViewController.swift
 //  Pocket Casts
 //
 //  Created by Stuart Moore on 12/8/15.
@@ -9,7 +9,7 @@
 import Cocoa
 import WebKit
 
-class MainViewController: NSViewController {
+class WebViewController: NSViewController {
 
     @IBOutlet weak var progressView: NSView!
     @IBOutlet weak var progressLayoutConstraint: NSLayoutConstraint!
@@ -88,7 +88,7 @@ class MainViewController: NSViewController {
 
 // MARK: - WKNavigationDelegate
 
-extension MainViewController: WKNavigationDelegate {
+extension WebViewController: WKNavigationDelegate {
 
     func webView(webView: WKWebView, didFinishNavigation: WKNavigation!) {
         javascript.hideToolbar()
@@ -129,7 +129,7 @@ extension MainViewController: WKNavigationDelegate {
 
 // MARK: - JavascriptDelegate
 
-extension MainViewController: JavascriptDelegate {
+extension WebViewController: JavascriptDelegate {
 
     func javascriptShowTitleDidChange(title: String?) {
         fullTitleDidChange(title, episodeTitle: javascript.episodeTitle)
