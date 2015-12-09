@@ -41,6 +41,7 @@ class MainViewController: NSViewController {
         }
 
         javascript = Javascript(webView: webView)
+        javascript.delegate = self
     }
 
     override func awakeFromNib() {
@@ -142,4 +143,12 @@ extension MainViewController: WKNavigationDelegate {
         }
     }
 */
+}
+
+extension MainViewController: JavascriptDelegate {
+
+    func javascriptCurrentPercentageDidChange(currentPercentage: Float) {
+        updateProgressBarView(currentPercentage)
+    }
+
 }

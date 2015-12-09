@@ -54,7 +54,6 @@ class MainWindowController: NSWindowController {
         sendJSEventForUpdatingTitle()
         sendJSEventForUpdatingRemainingTime()
         sendJSEventForUpdatingPlayState()
-        sendJSEventForUpdatingProgressBar()
     }
 
     private func sendJSEventForUpdatingTitle() {
@@ -113,12 +112,6 @@ class MainWindowController: NSWindowController {
             playerCloseButton.enabled = false
             playerSegmentedControl.setLabel("▶❙❙", forSegment: 1)
         }
-    }
-
-    // TODO: Move 100% to MainViewController
-    private func sendJSEventForUpdatingProgressBar() {
-        let percentage = mainViewController.currentPercentage
-        mainViewController.updateProgressBarView(percentage)
     }
 
     // MARK: Toolbar

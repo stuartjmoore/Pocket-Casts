@@ -144,3 +144,31 @@ class Javascript {
     }
 
 }
+
+extension JavascriptDelegate {
+
+    func javascriptShowTitleDidChange(title: String?) {
+        return
+    }
+
+    func javascriptEpisodeTitleDidChange(title: String?) {
+        return
+    }
+
+    func javascriptRemainingTimeDidChange(remainingTime: String?) {
+        return
+    }
+
+    func javascriptCurrentPercentageDidChange(currentPercentage: Float) {
+        return
+    }
+
+    func javascriptIsPlayingDidChange(isPlaying: Bool) {
+        return
+    }
+
+    func javascriptIsPlayerOpenDidChange(isPlayerOpen: Bool) {
+        return
+    }
+    
+}
