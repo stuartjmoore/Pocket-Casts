@@ -18,10 +18,12 @@ class MainWindowController: NSWindowController {
     @IBOutlet weak var episodeTitleToolbarTextFieldCell: NSTextFieldCell!
     @IBOutlet weak var remainingTimeToolbarTextFieldCell: NSTextFieldCell!
 
-    weak var mainViewController: MainViewController!
-
     private var mediaKeyTap: SPMediaKeyTap?
     private var updateInterfaceTimer: NSTimer!
+
+    var mainViewController: MainViewController! {
+        return window?.contentViewController as? MainViewController
+    }
 
     var webView: WKWebView! {
         return mainViewController.webView
@@ -34,7 +36,6 @@ class MainWindowController: NSWindowController {
         super.windowDidLoad()
 
         (NSApplication.sharedApplication().delegate as? AppDelegate)?.window = window
-        mainViewController = window?.contentViewController as? MainViewController
 
         mediaKeyTap = SPMediaKeyTap(delegate: self)
 
@@ -122,13 +123,14 @@ class MainWindowController: NSWindowController {
     }
 
     @IBAction func togglePlayerTapped(sender: NSButton) {
-        if sender.tag == 0 {
+        if playerCloseButton.state == NSOffState {
             Javascript(webView: webView).hidePlayer()
-            sender.tag = 1
         } else {
             Javascript(webView: webView).showPlayer()
-            sender.tag = 0
         }
+
+        playerCloseButton.state = (playerCloseButton.state == NSOnState) ? NSOffState : NSOnState
+        playerCloseButton.setNextState()
     }
 
     // MARK: Media Keys
