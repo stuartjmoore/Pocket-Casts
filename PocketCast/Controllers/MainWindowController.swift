@@ -99,20 +99,6 @@ class MainWindowController: NSWindowController {
         mainViewController.updateProgressBarView(percentage)
     }
 
-    // MARK: - Menu Bar
-
-    @IBAction func playPauseMenuItemTapped(sender: NSMenuItem) {
-        Javascript(webView: webView).playPause()
-    }
-
-    @IBAction func skipForwardMenuItemTapped(sender: NSMenuItem) {
-        Javascript(webView: webView).jumpForward()
-    }
-
-    @IBAction func skipBackMenuItemTapped(sender: NSMenuItem) {
-        Javascript(webView: webView).jumpBack()
-    }
-
     // MARK: Toolbar
 
     @IBAction func playerSegmentTapped(sender: NSSegmentedControl) {
