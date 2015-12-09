@@ -27,12 +27,12 @@ class MainWindowController: NSWindowController {
         return mainViewController.webView
     }
 
-    override func windowWillLoad() {
-        super.windowWillLoad()
-    }
-
     override func windowDidLoad() {
+        shouldCascadeWindows = false
+        window?.setFrameAutosaveName("MainWindow")
+
         super.windowDidLoad()
+
         (NSApplication.sharedApplication().delegate as? AppDelegate)?.window = window
         mainViewController = window?.contentViewController as? MainViewController
 
