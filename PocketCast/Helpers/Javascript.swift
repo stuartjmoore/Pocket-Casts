@@ -72,47 +72,47 @@ class Javascript {
     }
 
     func hideToolbar() {
-        webView.evaluateJavaScript("document.getElementById('header').style.boxShadow = '0 0 0 0 white';", completionHandler:  nil)
-        webView.evaluateJavaScript("document.getElementById('header').style.webkitBoxShadow = '0 0 0 0 white';", completionHandler:  nil)
-        webView.evaluateJavaScript("document.getElementById('header').style.top = '-70px';", completionHandler:  nil)
-        webView.evaluateJavaScript("document.getElementById('main').style.paddingTop = 0;", completionHandler:  nil)
+        webView.evaluateJavaScript("document.getElementById('header').style.boxShadow = '0 0 0 0 white';" +
+                                   "document.getElementById('header').style.webkitBoxShadow = '0 0 0 0 white';" +
+                                   "document.getElementById('header').style.top = '-70px';" +
+                                   "document.getElementById('main').style.paddingTop = 0;", completionHandler:  nil)
     }
 
     func changeFont() {
-        webView.evaluateJavaScript("document.body.style.fontFamily = '-apple-system';") { _ in }
+        webView.evaluateJavaScript("document.body.style.fontFamily = '-apple-system';", completionHandler:  nil)
     }
 
     func searchText(text: String) {
-        webView.evaluateJavaScript("document.getElementById('search_input_value').value = '\(text)';") { _ in }
+        webView.evaluateJavaScript("document.getElementById('search_input_value').value = '\(text)';", completionHandler:  nil)
         // angular.element("#search_input_value").scope().inputChangeHandler("alison")
         //
         // TODO: fire onChange()
     }
 
     func clickSettingsButton() {
-        webView.evaluateJavaScript("document.getElementsByClassName('dropdown-toggle')[0].firstChild.click();") { _ in }
+        webView.evaluateJavaScript("document.getElementsByClassName('dropdown-toggle')[0].firstChild.click();", completionHandler:  nil)
     }
 
     func hidePlayer() {
-        webView.evaluateJavaScript("document.getElementById('main').style.paddingBottom = 0;") { _ in }
-        webView.evaluateJavaScript("document.getElementById('audio_player').style.display = 'none';") { _ in }
+        webView.evaluateJavaScript("document.getElementById('main').style.paddingBottom = 0;" +
+                                   "document.getElementById('audio_player').style.display = 'none';", completionHandler:  nil)
     }
 
     func showPlayer() {
-        webView.evaluateJavaScript("document.getElementById('main').style.paddingBottom = '66px';") { _ in }
-        webView.evaluateJavaScript("document.getElementById('audio_player').style.display = 'block';") { _ in }
+        webView.evaluateJavaScript("document.getElementById('main').style.paddingBottom = '66px';" +
+                                   "document.getElementById('audio_player').style.display = 'block';", completionHandler:  nil)
     }
 
     func playPause() {
-        webView.evaluateJavaScript("angular.element(document).injector().get('mediaPlayer').playPause()") { _ in }
+        webView.evaluateJavaScript("angular.element(document).injector().get('mediaPlayer').playPause()", completionHandler:  nil)
     }
 
     func jumpForward() {
-        webView.evaluateJavaScript("angular.element(document).injector().get('mediaPlayer').jumpForward()") { _ in }
+        webView.evaluateJavaScript("angular.element(document).injector().get('mediaPlayer').jumpForward()", completionHandler:  nil)
     }
 
     func jumpBack() {
-        webView.evaluateJavaScript("angular.element(document).injector().get('mediaPlayer').jumpBack()") { _ in }
+        webView.evaluateJavaScript("angular.element(document).injector().get('mediaPlayer').jumpBack()", completionHandler:  nil)
     }
 
     // MARK: -
