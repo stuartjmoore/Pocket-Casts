@@ -52,33 +52,13 @@ class MainViewController: NSViewController {
         progressLayoutConstraint.constant = view.frame.width * CGFloat(percentage)
     }
 
-    // MARK: -
-
-    var showTitle: String? {
-        return javascript.showTitle
-    }
-
-    var episodeTitle: String? {
-        return javascript.episodeTitle
-    }
-
-    var remainingTime: String? {
-        return javascript.remainingTime
-    }
-
-    var isPlayerOpen: Bool {
-        return javascript.isPlayerOpen ?? false
-    }
+    // MARK: - Javascript
 
     var isPlaying: Bool {
         return javascript.isPlaying ?? false
     }
 
-    var currentPercentage: Float {
-        return javascript.currentPercentage
-    }
-
-    // MARK: -
+    // MARK: Actions
 
     func jumpBack() {
         javascript.jumpBack()
@@ -105,6 +85,8 @@ class MainViewController: NSViewController {
     }
 
 }
+
+// MARK: - WKNavigationDelegate
 
 extension MainViewController: WKNavigationDelegate {
 
@@ -144,6 +126,8 @@ extension MainViewController: WKNavigationDelegate {
     }
 */
 }
+
+// MARK: - JavascriptDelegate
 
 extension MainViewController: JavascriptDelegate {
 
