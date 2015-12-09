@@ -7,16 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1716B8B01C17982200BE83D0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1716B8AF1C17982200BE83D0 /* Main.storyboard */; };
+		1716B8B21C179B0D00BE83D0 /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1716B8B11C179B0D00BE83D0 /* MainWindowController.swift */; };
+		1716B8B41C179B2400BE83D0 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1716B8B31C179B2400BE83D0 /* MainViewController.swift */; };
+		1716B8B71C179B3400BE83D0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1716B8B51C179B3400BE83D0 /* LoginViewController.swift */; };
 		17AF115B1C0FCF1900620A32 /* Javascript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AF115A1C0FCF1900620A32 /* Javascript.swift */; };
 		A441E3B01B4FF0BE008DBC37 /* NSObject+SPInvocationGrabbing.m in Sources */ = {isa = PBXBuildFile; fileRef = A441E3AD1B4FF0BE008DBC37 /* NSObject+SPInvocationGrabbing.m */; };
 		A441E3B11B4FF0BE008DBC37 /* SPMediaKeyTap.m in Sources */ = {isa = PBXBuildFile; fileRef = A441E3AF1B4FF0BE008DBC37 /* SPMediaKeyTap.m */; };
 		C80F65D61ADE156C00277D77 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80F65D51ADE156C00277D77 /* AppDelegate.swift */; };
 		C80F65D81ADE156C00277D77 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C80F65D71ADE156C00277D77 /* Images.xcassets */; };
-		C80F65DB1ADE156C00277D77 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = C80F65D91ADE156C00277D77 /* MainMenu.xib */; };
 		C80F65F81ADE2BEE00277D77 /* MyApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80F65F71ADE2BEE00277D77 /* MyApplication.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1716B8AF1C17982200BE83D0 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = PocketCast/Main.storyboard; sourceTree = "<group>"; };
+		1716B8B11C179B0D00BE83D0 /* MainWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainWindowController.swift; path = Controllers/MainWindowController.swift; sourceTree = "<group>"; };
+		1716B8B31C179B2400BE83D0 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainViewController.swift; path = Controllers/MainViewController.swift; sourceTree = "<group>"; };
+		1716B8B51C179B3400BE83D0 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = Controllers/LoginViewController.swift; sourceTree = "<group>"; };
 		17AF115A1C0FCF1900620A32 /* Javascript.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Javascript.swift; path = PocketCast/Helpers/Javascript.swift; sourceTree = "<group>"; };
 		A441E39E1B4FEF9E008DBC37 /* PocketCast-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "PocketCast-Bridging-Header.h"; path = "PocketCast/PocketCast-Bridging-Header.h"; sourceTree = "<group>"; };
 		A441E3AC1B4FF0BE008DBC37 /* NSObject+SPInvocationGrabbing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SPInvocationGrabbing.h"; sourceTree = "<group>"; };
@@ -27,7 +34,6 @@
 		C80F65D41ADE156C00277D77 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = PocketCast/Info.plist; sourceTree = "<group>"; };
 		C80F65D51ADE156C00277D77 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C80F65D71ADE156C00277D77 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = PocketCast/Images.xcassets; sourceTree = "<group>"; };
-		C80F65DA1ADE156C00277D77 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		C80F65F71ADE2BEE00277D77 /* MyApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyApplication.swift; path = PocketCast/MyApplication.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -47,7 +53,7 @@
 			children = (
 				A441E39E1B4FEF9E008DBC37 /* PocketCast-Bridging-Header.h */,
 				C80F65F71ADE2BEE00277D77 /* MyApplication.swift */,
-				C80F65D91ADE156C00277D77 /* MainMenu.xib */,
+				1716B8AF1C17982200BE83D0 /* Main.storyboard */,
 				C80F65D71ADE156C00277D77 /* Images.xcassets */,
 				C80F65D41ADE156C00277D77 /* Info.plist */,
 			);
@@ -113,6 +119,9 @@
 			isa = PBXGroup;
 			children = (
 				C80F65D51ADE156C00277D77 /* AppDelegate.swift */,
+				1716B8B11C179B0D00BE83D0 /* MainWindowController.swift */,
+				1716B8B31C179B2400BE83D0 /* MainViewController.swift */,
+				1716B8B51C179B3400BE83D0 /* LoginViewController.swift */,
 			);
 			name = Controllers;
 			path = PocketCast;
@@ -178,8 +187,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1716B8B01C17982200BE83D0 /* Main.storyboard in Resources */,
 				C80F65D81ADE156C00277D77 /* Images.xcassets in Resources */,
-				C80F65DB1ADE156C00277D77 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -190,8 +199,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1716B8B41C179B2400BE83D0 /* MainViewController.swift in Sources */,
 				A441E3B01B4FF0BE008DBC37 /* NSObject+SPInvocationGrabbing.m in Sources */,
 				C80F65F81ADE2BEE00277D77 /* MyApplication.swift in Sources */,
+				1716B8B21C179B0D00BE83D0 /* MainWindowController.swift in Sources */,
+				1716B8B71C179B3400BE83D0 /* LoginViewController.swift in Sources */,
 				C80F65D61ADE156C00277D77 /* AppDelegate.swift in Sources */,
 				A441E3B11B4FF0BE008DBC37 /* SPMediaKeyTap.m in Sources */,
 				17AF115B1C0FCF1900620A32 /* Javascript.swift in Sources */,
@@ -199,18 +211,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		C80F65D91ADE156C00277D77 /* MainMenu.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C80F65DA1ADE156C00277D77 /* Base */,
-			);
-			name = MainMenu.xib;
-			path = PocketCast;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		C80F65E81ADE156C00277D77 /* Debug */ = {

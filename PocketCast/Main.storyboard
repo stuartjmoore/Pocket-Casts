@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="9PK-L3-Vl5">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9059"/>
+    </dependencies>
+    <scenes>
+        <!--Window Controller-->
+        <scene sceneID="bIx-LD-aZe">
+            <objects>
+                <windowController id="9PK-L3-Vl5" customClass="MainWindowController" customModule="Pocket_Casts" customModuleProvider="target" sceneMemberID="viewController">
+                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="PocketCastsWindow" animationBehavior="default" id="YZT-mR-ptF">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" unifiedTitleAndToolbar="YES"/>
+                        <rect key="contentRect" x="-378" y="362" width="1152" height="612"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1177"/>
+                        <toolbar key="toolbar" implicitIdentifier="7E99F0F6-83BB-4AEC-887A-C58C08440504" autosavesConfiguration="NO" displayMode="iconOnly" sizeMode="regular" id="Z6S-hV-99m">
+                            <allowedToolbarItems>
+                                <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="k8u-jp-sHf"/>
+                                <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="Yms-xo-OpC"/>
+                                <toolbarItem implicitItemIdentifier="8F628D90-C167-49EB-891F-91186B370436" label="Search" paletteLabel="Search" id="KD1-5m-60l">
+                                    <nil key="toolTip"/>
+                                    <size key="minSize" width="96" height="22"/>
+                                    <size key="maxSize" width="96" height="22"/>
+                                    <searchField key="view" wantsLayer="YES" verticalHuggingPriority="750" id="MFk-U3-JjR">
+                                        <rect key="frame" x="0.0" y="14" width="96" height="22"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <animations/>
+                                        <searchFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" sendsSearchStringImmediately="YES" sendsWholeSearchString="YES" id="SSW-4m-nhq">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </searchFieldCell>
+                                    </searchField>
+                                </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="20D10335-6144-4059-9BDF-91E3B5DD014C" label="Settings" paletteLabel="Settings" image="NSActionTemplate" id="UKm-1Z-B1F">
+                                    <nil key="toolTip"/>
+                                    <size key="minSize" width="25" height="25"/>
+                                    <size key="maxSize" width="32" height="32"/>
+                                    <button key="view" verticalHuggingPriority="750" id="W6t-2M-28K">
+                                        <rect key="frame" x="10" y="14" width="32" height="28"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <animations/>
+                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="NSActionTemplate" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="XzT-72-TkU">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="settingsTapped:" target="9PK-L3-Vl5" id="noN-pi-nxF"/>
+                                        </connections>
+                                    </button>
+                                </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="EBB222B9-7CC7-4249-B5A7-189C9AEF48DF" label="Remaining Time" paletteLabel="Remaining Time" id="a70-QI-wtv">
+                                    <nil key="toolTip"/>
+                                    <size key="minSize" width="38" height="17"/>
+                                    <size key="maxSize" width="68" height="17"/>
+                                    <textField key="view" horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" id="XJK-et-Dre">
+                                        <rect key="frame" x="26" y="14" width="39" height="17"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <animations/>
+                                        <textFieldCell key="cell" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="center" placeholderString="" usesSingleLineMode="YES" id="lL4-nq-h9d">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="7CB76C11-D703-426E-AF50-BA04323262DC" label="Show Player" paletteLabel="Show Player" image="NSListViewTemplate" id="zeb-HU-EW3">
+                                    <nil key="toolTip"/>
+                                    <size key="minSize" width="25" height="25"/>
+                                    <size key="maxSize" width="32" height="32"/>
+                                    <button key="view" verticalHuggingPriority="750" id="RIl-fM-tIb">
+                                        <rect key="frame" x="20" y="14" width="32" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <animations/>
+                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="NSListViewTemplate" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="AYW-EQ-pxv">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="togglePlayerTapped:" target="9PK-L3-Vl5" id="Xop-gA-4AF"/>
+                                        </connections>
+                                    </button>
+                                </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="9A0B51D8-1AD1-4989-B646-72F4A0D5CDD2" label="Controls" paletteLabel="Controls" id="Kkd-or-ju7">
+                                    <nil key="toolTip"/>
+                                    <size key="minSize" width="96" height="25"/>
+                                    <size key="maxSize" width="116" height="32"/>
+                                    <segmentedControl key="view" verticalHuggingPriority="750" id="f0s-oS-caz">
+                                        <rect key="frame" x="0.0" y="14" width="116" height="25"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <animations/>
+                                        <segmentedCell key="cell" borderStyle="border" alignment="left" style="texturedSquare" trackingMode="momentary" id="QNS-Ip-wjx">
+                                            <font key="font" metaFont="system"/>
+                                            <segments>
+                                                <segment label="⤺" width="36"/>
+                                                <segment label="▶❙❙" width="36" tag="1"/>
+                                                <segment label="⤻" width="36"/>
+                                            </segments>
+                                        </segmentedCell>
+                                        <connections>
+                                            <action selector="playerSegmentTapped:" target="9PK-L3-Vl5" id="Tlg-ZI-j9J"/>
+                                        </connections>
+                                    </segmentedControl>
+                                </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="753FD03E-EFDB-42F8-AFD1-854B55B71DD6" label="Title" paletteLabel="Title" id="oOK-cl-9AG">
+                                    <nil key="toolTip"/>
+                                    <size key="minSize" width="38" height="17"/>
+                                    <size key="maxSize" width="125" height="17"/>
+                                    <textField key="view" horizontalHuggingPriority="750" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" id="Pxq-BP-T1w">
+                                        <rect key="frame" x="0.0" y="14" width="93" height="17"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <animations/>
+                                        <textFieldCell key="cell" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="center" placeholderString="Pocket Casts" usesSingleLineMode="YES" id="fvZ-AB-yIz">
+                                            <font key="font" metaFont="systemBold"/>
+                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                </toolbarItem>
+                            </allowedToolbarItems>
+                            <defaultToolbarItems>
+                                <toolbarItem reference="zeb-HU-EW3"/>
+                                <toolbarItem reference="Kkd-or-ju7"/>
+                                <toolbarItem reference="Yms-xo-OpC"/>
+                                <toolbarItem reference="k8u-jp-sHf"/>
+                                <toolbarItem reference="oOK-cl-9AG"/>
+                                <toolbarItem reference="a70-QI-wtv"/>
+                                <toolbarItem reference="Yms-xo-OpC"/>
+                                <toolbarItem reference="KD1-5m-60l"/>
+                                <toolbarItem reference="UKm-1Z-B1F"/>
+                            </defaultToolbarItems>
+                        </toolbar>
+                    </window>
+                    <connections>
+                        <outlet property="episodeTitleToolbarItem" destination="oOK-cl-9AG" id="bRQ-5e-s7W"/>
+                        <outlet property="episodeTitleToolbarTextFieldCell" destination="fvZ-AB-yIz" id="6cf-DK-MzL"/>
+                        <outlet property="playerCloseButton" destination="RIl-fM-tIb" id="X8S-YL-T8B"/>
+                        <outlet property="playerSegmentedControl" destination="f0s-oS-caz" id="NE4-55-yJT"/>
+                        <outlet property="remainingTimeToolbarTextFieldCell" destination="lL4-nq-h9d" id="MWT-Bt-knW"/>
+                        <segue destination="yRR-xE-ySh" kind="relationship" relationship="window.shadowedContentViewController" id="qCN-Rc-7Qx"/>
+                    </connections>
+                </windowController>
+                <customObject id="TGU-pa-pTr" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="995" y="117"/>
+        </scene>
+        <!--Main View Controller-->
+        <scene sceneID="nxn-yH-2p2">
+            <objects>
+                <viewController id="yRR-xE-ySh" customClass="MainViewController" customModule="Pocket_Casts" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" focusRingType="none" id="LDY-2F-JJN">
+                        <rect key="frame" x="0.0" y="0.0" width="698" height="410"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <customView focusRingType="none" translatesAutoresizingMaskIntoConstraints="NO" id="DBJ-rJ-iSU">
+                                <rect key="frame" x="0.0" y="408" width="698" height="2"/>
+                                <subviews>
+                                    <customView focusRingType="none" translatesAutoresizingMaskIntoConstraints="NO" id="c53-oZ-3AY">
+                                        <rect key="frame" x="0.0" y="0.0" width="200" height="2"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="200" id="vzn-Kb-8Mu"/>
+                                        </constraints>
+                                        <animations/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                                <color key="value" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </customView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="c53-oZ-3AY" firstAttribute="top" secondItem="DBJ-rJ-iSU" secondAttribute="top" id="C3R-mO-8af"/>
+                                    <constraint firstItem="c53-oZ-3AY" firstAttribute="leading" secondItem="DBJ-rJ-iSU" secondAttribute="leading" id="ekG-GY-8DV"/>
+                                    <constraint firstAttribute="height" constant="2" id="jCA-XZ-hGU"/>
+                                    <constraint firstAttribute="bottom" secondItem="c53-oZ-3AY" secondAttribute="bottom" id="lTd-le-dPW"/>
+                                </constraints>
+                                <animations/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="color">
+                                        <color key="value" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </customView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="DBJ-rJ-iSU" secondAttribute="trailing" id="4Nl-UM-oBP"/>
+                            <constraint firstItem="DBJ-rJ-iSU" firstAttribute="leading" secondItem="LDY-2F-JJN" secondAttribute="leading" id="kVg-X1-haC"/>
+                            <constraint firstItem="DBJ-rJ-iSU" firstAttribute="top" secondItem="LDY-2F-JJN" secondAttribute="top" id="sc5-4c-wwD"/>
+                        </constraints>
+                        <animations/>
+                    </view>
+                    <connections>
+                        <outlet property="progressLayoutConstraint" destination="vzn-Kb-8Mu" id="N0g-IL-O7g"/>
+                        <outlet property="progressView" destination="c53-oZ-3AY" id="8pn-oK-PiA"/>
+                        <segue destination="1yl-7M-Mrb" kind="sheet" identifier="LoginSheetIdentifier" id="Ntn-zz-zNe"/>
+                    </connections>
+                </viewController>
+                <customObject id="G8Y-t6-rdI" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="995" y="721"/>
+        </scene>
+        <!--Login View Controller-->
+        <scene sceneID="DE9-X9-cQF">
+            <objects>
+                <viewController id="1yl-7M-Mrb" customClass="LoginViewController" customModule="Pocket_Casts" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="ghf-3Q-yV4">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </view>
+                </viewController>
+                <customObject id="fzm-ax-92t" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="995" y="1166"/>
+        </scene>
+        <!--Application-->
+        <scene sceneID="OfO-o1-kk0">
+            <objects>
+                <application id="z4a-gU-2Uz" sceneMemberID="viewController">
+                    <menu key="mainMenu" title="Main Menu" systemMenu="main" id="gKN-cP-FR9">
+                        <items>
+                            <menuItem title="Pocket Casts" id="2zo-wC-GyR">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Pocket Casts" systemMenu="apple" id="lJe-K9-PT1">
+                                    <items>
+                                        <menuItem title="About Pocket Casts" id="8kZ-0a-8Gd">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="orderFrontStandardAboutPanel:" target="ZJj-ER-QSy" id="tQ6-tG-ucU"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="SdK-bO-LWK"/>
+                                        <menuItem title="Preferences…" keyEquivalent="," id="hgE-80-Aus"/>
+                                        <menuItem isSeparatorItem="YES" id="xfS-nX-faf"/>
+                                        <menuItem title="Services" id="K18-aH-zas">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <menu key="submenu" title="Services" systemMenu="services" id="V3w-ZE-QEc"/>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="2kO-eM-3Fp"/>
+                                        <menuItem title="Hide Pocket Casts" keyEquivalent="h" id="Zej-ed-imb">
+                                            <connections>
+                                                <action selector="hide:" target="ZJj-ER-QSy" id="cfF-TJ-VLj"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Hide Others" keyEquivalent="h" id="b1p-UB-CsV">
+                                            <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="hideOtherApplications:" target="ZJj-ER-QSy" id="g2E-8R-bFR"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Show All" id="8K7-ke-4tT">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="unhideAllApplications:" target="ZJj-ER-QSy" id="8Vj-ut-jrt"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="PtQ-bC-Dex"/>
+                                        <menuItem title="Quit Pocket Casts" keyEquivalent="q" id="YtY-Qi-nWr">
+                                            <connections>
+                                                <action selector="terminate:" target="ZJj-ER-QSy" id="Eeb-N4-ryA"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
+                            <menuItem title="File" id="OGG-EK-fYY">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="File" id="MsG-tH-Qop">
+                                    <items>
+                                        <menuItem title="New List" id="OjX-C2-Uel">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="EoW-9T-7EZ"/>
+                                        <menuItem title="Sync" keyEquivalent="s" id="GuO-AC-OBr"/>
+                                        <menuItem title="Refresh Podcasts" keyEquivalent="r" id="8bb-9X-afP"/>
+                                        <menuItem isSeparatorItem="YES" id="Pae-SI-1OL"/>
+                                        <menuItem title="Import Subscriptions…" id="Mcq-vd-GzA">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
+                            <menuItem title="Edit" id="N83-YI-Y3K">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Edit" id="cZZ-KJ-jPt">
+                                    <items>
+                                        <menuItem title="Undo" keyEquivalent="z" id="glC-ck-aL6">
+                                            <connections>
+                                                <action selector="undo:" target="ZJj-ER-QSy" id="knO-CU-Eke"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Redo" keyEquivalent="Z" id="aFC-MI-g8z"/>
+                                        <menuItem isSeparatorItem="YES" id="alU-eH-Otu"/>
+                                        <menuItem title="Cut" keyEquivalent="x" id="CIj-hu-Mgg">
+                                            <connections>
+                                                <action selector="cut:" target="ZJj-ER-QSy" id="bAA-Qf-Um6"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Copy" keyEquivalent="c" id="tlZ-jm-mSh">
+                                            <connections>
+                                                <action selector="copy:" target="ZJj-ER-QSy" id="Bwm-xF-vDt"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Paste" keyEquivalent="v" id="rdj-uA-LpI">
+                                            <connections>
+                                                <action selector="paste:" target="ZJj-ER-QSy" id="N0a-zy-gs3"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Paste and Match Style" keyEquivalent="V" id="kNG-IQ-ni6">
+                                            <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="pasteAsPlainText:" target="ZJj-ER-QSy" id="gCa-H2-mEx"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Delete" id="bZO-sp-vd1">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="delete:" target="ZJj-ER-QSy" id="x4d-Y0-AbK"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Select All" keyEquivalent="a" id="9mF-5f-NSW">
+                                            <connections>
+                                                <action selector="selectAll:" target="ZJj-ER-QSy" id="LKq-Kf-t4X"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="RPM-Y2-YgJ"/>
+                                        <menuItem title="Find" id="Hbz-8E-GrD">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <menu key="submenu" title="Find" id="jYH-IX-ytM">
+                                                <items>
+                                                    <menuItem title="Find…" tag="1" keyEquivalent="f" id="dcM-Rg-ezm">
+                                                        <connections>
+                                                            <action selector="performFindPanelAction:" target="ZJj-ER-QSy" id="4GM-fO-nM4"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Find and Replace…" tag="12" keyEquivalent="f" id="7Sx-rS-yzg">
+                                                        <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                                        <connections>
+                                                            <action selector="performFindPanelAction:" target="ZJj-ER-QSy" id="Vfa-FW-xhI"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Find Next" tag="2" keyEquivalent="g" id="epb-cb-Yw9">
+                                                        <connections>
+                                                            <action selector="performFindPanelAction:" target="ZJj-ER-QSy" id="Ztn-Tq-gJX"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Find Previous" tag="3" keyEquivalent="G" id="CxL-it-Z7j">
+                                                        <connections>
+                                                            <action selector="performFindPanelAction:" target="ZJj-ER-QSy" id="WQC-F0-Hse"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Use Selection for Find" tag="7" keyEquivalent="e" id="ag4-o2-Dxk">
+                                                        <connections>
+                                                            <action selector="performFindPanelAction:" target="ZJj-ER-QSy" id="bbc-aJ-id5"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Jump to Selection" keyEquivalent="j" id="dN7-7m-jw7"/>
+                                                </items>
+                                            </menu>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
+                            <menuItem title="View" id="soP-Oi-ZxN">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="View" id="Upm-0M-N5e">
+                                    <items>
+                                        <menuItem title="Show Toolbar" keyEquivalent="t" id="AES-hG-ujy">
+                                            <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="toggleToolbarShown:" target="ZJj-ER-QSy" id="eOe-1l-BWf"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Customize Toolbar…" id="d7W-zx-ZhT">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="runToolbarCustomizationPalette:" target="ZJj-ER-QSy" id="hiV-MI-AHl"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
+                            <menuItem title="Window" id="yx5-RF-22h">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Window" systemMenu="window" id="9nQ-MZ-7Yc">
+                                    <items>
+                                        <menuItem title="Minimize" keyEquivalent="m" id="f4u-Sp-onU">
+                                            <connections>
+                                                <action selector="performMiniaturize:" target="ZJj-ER-QSy" id="Lto-vP-Hdx"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Zoom" id="AZK-r8-YlS">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="performZoom:" target="ZJj-ER-QSy" id="8pt-L3-vRJ"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="cs0-RV-de2"/>
+                                        <menuItem title="Bring All to Front" id="yX8-hd-CYr">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="arrangeInFront:" target="ZJj-ER-QSy" id="U4b-mO-8xB"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
+                            <menuItem title="Help" id="0Q4-VL-Qy5">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Help" systemMenu="help" id="QZ4-7q-2pc">
+                                    <items>
+                                        <menuItem title="Pocket Casts Help" keyEquivalent="?" id="vom-in-OiK">
+                                            <connections>
+                                                <action selector="showHelp:" target="ZJj-ER-QSy" id="a1d-fK-gvp"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
+                        </items>
+                    </menu>
+                    <connections>
+                        <outlet property="delegate" destination="TL1-K3-qlM" id="LSh-OQ-qpr"/>
+                    </connections>
+                </application>
+                <customObject id="ZJj-ER-QSy" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <customObject id="TL1-K3-qlM" customClass="AppDelegate" customModule="Pocket_Casts" customModuleProvider="target"/>
+            </objects>
+            <point key="canvasLocation" x="995.5" y="-324"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="NSActionTemplate" width="14" height="14"/>
+        <image name="NSListViewTemplate" width="14" height="10"/>
+    </resources>
+</document>
