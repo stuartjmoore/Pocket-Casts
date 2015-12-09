@@ -25,11 +25,11 @@ class Javascript {
         return valueFor("angular.element(document).injector().get('mediaPlayer').episode.title") as? String
     }
 
-    var remainingTime: String {
+    var remainingTime: String? {
         let javascriptString = "document.getElementById('audio_player').getElementsByClassName('remaining_time')[0].innerText"
 
         guard let remainingTime = valueFor(javascriptString) as? String where remainingTime != "-00:00" else {
-            return ""
+            return nil
         }
 
         return remainingTime

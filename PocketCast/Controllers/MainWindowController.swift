@@ -80,7 +80,11 @@ class MainWindowController: NSWindowController {
     }
 
     private func sendJSEventForUpdatingRemainingTime() {
-        remainingTimeToolbarTextFieldCell.title = Javascript(webView: webView).remainingTime
+        guard let remainingTime = Javascript(webView: webView).remainingTime else {
+            return remainingTimeToolbarTextFieldCell.title = ""
+        }
+
+        remainingTimeToolbarTextFieldCell.title = remainingTime
     }
 
     private func sendJSEventForUpdatingPlayState() {
