@@ -26,7 +26,8 @@ class MainWindowController: NSWindowController {
 
     override func windowDidLoad() {
         shouldCascadeWindows = false
-        window?.setFrameAutosaveName("MainWindow")
+        window?.setFrameAutosaveName("Main Window")
+        windowFrameAutosaveName = "Main Window"
 
         super.windowDidLoad()
 
