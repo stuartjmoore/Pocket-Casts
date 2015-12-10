@@ -91,6 +91,7 @@ class WebViewController: NSViewController {
 
     func clickSettingsButton() {
         javascript.clickSettingsButton()
+        javascript.settingsMenuItems()
     }
 
     func hidePlayer() {

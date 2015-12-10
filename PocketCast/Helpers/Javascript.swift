@@ -126,6 +126,21 @@ class Javascript {
         return (paddingBottom != 0)
     }
 
+    func settingsMenuItems() {
+        webView.evaluateJavaScript("Array.prototype.slice.call(document.getElementById('header').getElementsByClassName('dropdown-menu')[0].getElementsByTagName('li')).map(function(node) { return node.innerText })") { (object, _) in
+//        webView.evaluateJavaScript("Array.prototype.slice.call(document.getElementById('header').getElementsByClassName('dropdown-menu')[0].getElementsByTagName('li')).map(function(node) { return node.firstChild ? (node.firstChild.href ? node.firstChild.href : (node.firstChild.attributes.getNamedItem('ng-click') ? node.firstChild.attributes.getNamedItem('ng-click').value : '')) : '' })") { (object, _) in
+            print("object: \(object)")
+
+            guard let items = object as? [String] else {
+                return
+            }
+
+            let titles: [String?] = items.map({ $0 == "" ? nil : $0.stringByTrimmingCharactersInSet(.whitespaceAndNewlineCharacterSet()) })
+
+            print("titles: \(titles)")
+        }
+    }
+
     func searchText(text: String) {
         webView.evaluateJavaScript("document.getElementById('search_input_value').value = '\(text)';", completionHandler:  nil)
         // angular.element("#search_input_value").scope().inputChangeHandler("alison")
