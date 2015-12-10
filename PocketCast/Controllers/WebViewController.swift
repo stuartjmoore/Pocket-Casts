@@ -91,7 +91,7 @@ class WebViewController: NSViewController {
 
     func clickSettingsButton() {
         javascript.clickSettingsButton()
-
+        /*
         let menu = NSMenu(title: "Settings")
 
         for item in javascript.settingsMenuItems {
@@ -106,13 +106,12 @@ class WebViewController: NSViewController {
         }
 
         menu.popUpMenuPositioningItem(nil, atLocation: NSEvent.mouseLocation(), inView: nil)
+        */
     }
 
     func settingMenuDidSelect(menuItem: NSMenuItem) {
         if let index = menuItem.menu?.indexOfItem(menuItem) {
             let item = javascript.settingsMenuItems[index]
-            print("sender: \(item)")
-
             switch item {
             case .Link(_, let url):
                 // TODO: sign out doesn't work

@@ -145,7 +145,7 @@ class Javascript {
         let actions: [String?] = actionStrings.map({ $0 == "" ? nil : $0 })
 
         let items: [MenuItem] = zip(titles, actions).map({ (title, action) in
-            if let title = title, action = action, url = NSURL(string: action) {
+            if let title = title, action = action, url = NSURL(string: action) /* TODO: where hasPrefix("http") */ {
                 return .Link(title, url)
             } else if let title = title, action = action {
                 return .Action(title, action)
