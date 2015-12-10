@@ -54,6 +54,21 @@ class Javascript {
         }
     }
 
+    // MARK: -
+
+    class var hideToolbarSource: String {
+        return "document.getElementById('header').style.boxShadow = '0 0 0 0 white';" +
+               "document.getElementById('header').style.webkitBoxShadow = '0 0 0 0 white';" +
+               "document.getElementById('header').style.top = '-70px';" +
+               "document.getElementById('main').style.paddingTop = 0;"
+    }
+
+    class var changeFontSource: String {
+        return "document.body.style.fontFamily = '-apple-system';"
+    }
+
+    // MARK: -
+
     init(webView: WKWebView) {
         self.webView = webView
 
