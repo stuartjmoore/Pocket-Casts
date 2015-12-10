@@ -46,12 +46,6 @@ class MainWindowController: NSWindowController {
             webViewController.jumpBack()
         } else if sender.selectedSegment == 1 {
             webViewController.playPause()
-
-            if webViewController.isPlaying {
-                sender.setLabel("❙❙", forSegment: 1)
-            } else {
-                sender.setLabel("▶", forSegment: 1)
-            }
         } else if sender.selectedSegment == 2 {
             webViewController.jumpForward()
         }
