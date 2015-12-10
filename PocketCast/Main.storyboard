@@ -161,11 +161,6 @@
                                             <constraint firstAttribute="width" id="vzn-Kb-8Mu"/>
                                         </constraints>
                                         <animations/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="color">
-                                                <color key="value" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
                                     </customView>
                                 </subviews>
                                 <constraints>
@@ -175,11 +170,6 @@
                                     <constraint firstAttribute="bottom" secondItem="c53-oZ-3AY" secondAttribute="bottom" id="lTd-le-dPW"/>
                                 </constraints>
                                 <animations/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="color">
-                                        <color key="value" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                             </customView>
                         </subviews>
                         <constraints>
