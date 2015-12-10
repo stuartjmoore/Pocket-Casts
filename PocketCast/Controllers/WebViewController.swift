@@ -24,7 +24,7 @@ class WebViewController: NSViewController {
         progressView.wantsLayer = true
 
         let source = Javascript.hideToolbarSource + Javascript.changeFontSource
-        let userScript = WKUserScript(source: source, injectionTime: .AtDocumentStart, forMainFrameOnly: true)
+        let userScript = WKUserScript(source: source, injectionTime: .AtDocumentEnd, forMainFrameOnly: true)
 
         let userContentController = WKUserContentController()
         userContentController.addUserScript(userScript)
@@ -106,11 +106,6 @@ class WebViewController: NSViewController {
 // MARK: - WKNavigationDelegate
 
 extension WebViewController: WKNavigationDelegate {
-
-    func webView(webView: WKWebView, didFinishNavigation: WKNavigation!) {
-        javascript.hideToolbar()
-        javascript.changeFont()
-    }
 
     func webView(webView: WKWebView, decidePolicyForNavigationAction navigationAction: WKNavigationAction, decisionHandler: (WKNavigationActionPolicy) -> Void) {
         if navigationAction.request.URL?.path == "/account", let url = navigationAction.request.URL {

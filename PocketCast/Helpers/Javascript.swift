@@ -126,17 +126,6 @@ class Javascript {
         return (paddingBottom != 0)
     }
 
-    func hideToolbar() {
-        webView.evaluateJavaScript("document.getElementById('header').style.boxShadow = '0 0 0 0 white';" +
-                                   "document.getElementById('header').style.webkitBoxShadow = '0 0 0 0 white';" +
-                                   "document.getElementById('header').style.top = '-70px';" +
-                                   "document.getElementById('main').style.paddingTop = 0;", completionHandler:  nil)
-    }
-
-    func changeFont() {
-        webView.evaluateJavaScript("document.body.style.fontFamily = '-apple-system';", completionHandler:  nil)
-    }
-
     func searchText(text: String) {
         webView.evaluateJavaScript("document.getElementById('search_input_value').value = '\(text)';", completionHandler:  nil)
         // angular.element("#search_input_value").scope().inputChangeHandler("alison")
