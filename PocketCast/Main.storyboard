@@ -11,7 +11,7 @@
                 <windowController id="9PK-L3-Vl5" customClass="MainWindowController" customModule="Pocket_Casts" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="MainWindow" animationBehavior="default" id="YZT-mR-ptF">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" unifiedTitleAndToolbar="YES"/>
-                        <rect key="contentRect" x="-378" y="363" width="1150" height="610"/>
+                        <rect key="contentRect" x="-378" y="363" width="600" height="600"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1177"/>
                         <toolbar key="toolbar" implicitIdentifier="7E99F0F6-83BB-4AEC-887A-C58C08440504" autosavesConfiguration="NO" displayMode="iconOnly" sizeMode="regular" id="Z6S-hV-99m">
                             <allowedToolbarItems>
@@ -122,7 +122,6 @@
                                 <toolbarItem reference="zeb-HU-EW3"/>
                                 <toolbarItem reference="Kkd-or-ju7"/>
                                 <toolbarItem reference="Yms-xo-OpC"/>
-                                <toolbarItem reference="k8u-jp-sHf"/>
                                 <toolbarItem reference="oOK-cl-9AG"/>
                                 <toolbarItem reference="a70-QI-wtv"/>
                                 <toolbarItem reference="Yms-xo-OpC"/>
@@ -149,11 +148,11 @@
             <objects>
                 <viewController id="yRR-xE-ySh" customClass="WebViewController" customModule="Pocket_Casts" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" focusRingType="none" id="LDY-2F-JJN">
-                        <rect key="frame" x="0.0" y="0.0" width="698" height="410"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <customView focusRingType="none" translatesAutoresizingMaskIntoConstraints="NO" id="DBJ-rJ-iSU">
-                                <rect key="frame" x="0.0" y="408" width="698" height="2"/>
+                                <rect key="frame" x="0.0" y="598" width="600" height="2"/>
                                 <subviews>
                                     <customView focusRingType="none" translatesAutoresizingMaskIntoConstraints="NO" id="c53-oZ-3AY">
                                         <rect key="frame" x="0.0" y="0.0" width="0.0" height="2"/>
@@ -187,21 +186,21 @@
                 </viewController>
                 <customObject id="G8Y-t6-rdI" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="995" y="721"/>
+            <point key="canvasLocation" x="995" y="860"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="DE9-X9-cQF">
             <objects>
                 <viewController id="1yl-7M-Mrb" customClass="LoginViewController" customModule="Pocket_Casts" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="ghf-3Q-yV4">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="500" height="500"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <animations/>
                     </view>
                 </viewController>
                 <customObject id="fzm-ax-92t" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="995" y="1166"/>
+            <point key="canvasLocation" x="995" y="1519"/>
         </scene>
         <!--Application-->
         <scene sceneID="OfO-o1-kk0">
