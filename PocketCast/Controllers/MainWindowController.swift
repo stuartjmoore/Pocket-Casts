@@ -56,13 +56,14 @@ class MainWindowController: NSWindowController {
     }
 
     @IBAction func togglePlayerTapped(sender: NSButton) {
-        if sender.state == NSOffState {
+        if webViewController.playerVisible {
             webViewController.hidePlayer()
+            sender.state = NSOnState
         } else {
             webViewController.showPlayer()
+            sender.state = NSOffState
         }
 
-        sender.state = (sender.state == NSOnState) ? NSOffState : NSOnState
         sender.setNextState()
     }
 

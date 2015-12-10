@@ -95,6 +95,22 @@ class Javascript {
 
     // MARK: -
 
+    var playerVisible: Bool {
+        guard let paddingBottomString = valueFor("document.getElementById('main').style.paddingBottom") as? String else {
+            return false
+        }
+
+        if paddingBottomString == "" {
+            return true // HACK: First pass doesn’t return values
+        }
+
+        guard let paddingBottom = Int(paddingBottomString.stringByTrimmingCharactersInSet(.letterCharacterSet())) else {
+            return false
+        }
+
+        return (paddingBottom != 0)
+    }
+
     func hideToolbar() {
         webView.evaluateJavaScript("document.getElementById('header').style.boxShadow = '0 0 0 0 white';" +
                                    "document.getElementById('header').style.webkitBoxShadow = '0 0 0 0 white';" +

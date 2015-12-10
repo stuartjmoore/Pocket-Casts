@@ -62,6 +62,10 @@ class WebViewController: NSViewController {
         return javascript.playerState == .Playing
     }
 
+    var playerVisible: Bool {
+        return javascript.playerVisible
+    }
+
     // MARK: Actions
 
     func jumpBack() {
@@ -194,19 +198,22 @@ extension WebViewController: JavascriptDelegate {
             windowController.playerSegmentedControl.setLabel("▶❙❙", forSegment: 1)
             windowController.playerSegmentedControl.enabled = false
             windowController.playerCloseButton.enabled = false
-            // TODO: turn playerCloseButton off
+            windowController.playerCloseButton.state = NSOnState
+            windowController.playerCloseButton.setNextState()
 
         case .Playing:
             windowController.playerSegmentedControl.setLabel("❙❙", forSegment: 1)
             windowController.playerSegmentedControl.enabled = true
             windowController.playerCloseButton.enabled = true
-            // TODO: turn playerCloseButton on if player visible
+            windowController.playerCloseButton.state = javascript.playerVisible ? NSOffState : NSOnState
+            windowController.playerCloseButton.setNextState()
 
         case .Paused:
             windowController.playerSegmentedControl.setLabel("▶", forSegment: 1)
             windowController.playerSegmentedControl.enabled = true
             windowController.playerCloseButton.enabled = true
-            // TODO: turn playerCloseButton on if player visible
+            windowController.playerCloseButton.state = javascript.playerVisible ? NSOffState : NSOnState
+            windowController.playerCloseButton.setNextState()
         }
     }
 
