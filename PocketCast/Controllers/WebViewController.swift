@@ -115,6 +115,9 @@ extension WebViewController: WKNavigationDelegate {
         } else if navigationAction.request.URL?.path == "/users/sign_in" {
             performSegueWithIdentifier("LoginSheetIdentifier", sender: navigationAction.request)
             decisionHandler(.Cancel)
+        } else if navigationAction.navigationType == .LinkActivated, let url = navigationAction.request.URL {
+            NSWorkspace.sharedWorkspace().openURL(url)
+            decisionHandler(.Cancel)
         } else {
             decisionHandler(.Allow)
         }
