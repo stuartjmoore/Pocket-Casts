@@ -23,7 +23,19 @@ class WebViewController: NSViewController {
 
         progressView.wantsLayer = true
 
-        webView = WKWebView(frame: view.bounds)
+        /*
+            get JS for javascript.hideToolbar() & javascript.changeFont()
+         */
+        let source = "document.body.style.background = \"#777\";"
+        let userScript = WKUserScript(source: source, injectionTime: .AtDocumentStart, forMainFrameOnly: true)
+
+        let userContentController = WKUserContentController()
+        userContentController.addUserScript(userScript)
+
+        let configuration = WKWebViewConfiguration()
+        configuration.userContentController = userContentController
+
+        webView = WKWebView(frame: view.bounds, configuration: configuration)
         webView.navigationDelegate = self
         webView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(webView, positioned: .Below, relativeTo: progressView)
