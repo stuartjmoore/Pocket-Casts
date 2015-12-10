@@ -52,6 +52,10 @@ class WebViewController: NSViewController {
         progressLayoutConstraint.constant = view.frame.width * CGFloat(percentage)
     }
 
+    func loadRequest(request: NSURLRequest) {
+        webView.loadRequest(request)
+    }
+
     // MARK: - Javascript
 
     var isPlaying: Bool {
@@ -94,37 +98,25 @@ extension WebViewController: WKNavigationDelegate {
         javascript.hideToolbar()
         javascript.changeFont()
     }
-/*
+
     func webView(webView: WKWebView, decidePolicyForNavigationAction navigationAction: WKNavigationAction, decisionHandler: (WKNavigationActionPolicy) -> Void) {
+        print("path: \(navigationAction.request.URL?.path)")
+
         if webView === self.webView && navigationAction.request.URL?.path == "/users/sign_in" {
-            loginSheet = NSPanel()
-
-            if let rect = window.contentView?.bounds {
-                loginSheet.setContentSize(rect.insetBy(dx: 44, dy: 22).size)
-            }
-
-            let loginWebView = WKWebView(frame: loginSheet.contentView?.bounds ?? .zero)
-            loginWebView.navigationDelegate = self
-            loginWebView.translatesAutoresizingMaskIntoConstraints = false
-            loginSheet.contentView?.addSubview(loginWebView)
-
-            loginSheet.contentView?.topAnchor.constraintEqualToAnchor(loginWebView.topAnchor).active = true
-            loginSheet.contentView?.leadingAnchor.constraintEqualToAnchor(loginWebView.leadingAnchor).active = true
-            loginSheet.contentView?.bottomAnchor.constraintEqualToAnchor(loginWebView.bottomAnchor).active = true
-            loginSheet.contentView?.trailingAnchor.constraintEqualToAnchor(loginWebView.trailingAnchor).active = true
-
-            loginWebView.loadRequest(navigationAction.request)
-            window.beginSheet(loginSheet, completionHandler: nil)
-            decisionHandler(.Cancel)
-        } else if webView !== self.webView && navigationAction.request.URL?.path == "/web" {
-            self.webView.loadRequest(navigationAction.request)
-            window.endSheet(loginSheet)
+            performSegueWithIdentifier("LoginSheetIdentifier", sender: navigationAction.request)
             decisionHandler(.Cancel)
         } else {
             decisionHandler(.Allow)
         }
     }
-*/
+
+    override func prepareForSegue(segue: NSStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "LoginSheetIdentifier",
+        let loginViewController = segue.destinationController as? LoginViewController, request = sender as? NSURLRequest {
+            loginViewController.request = request
+        }
+    }
+
 }
 
 // MARK: - JavascriptDelegate
