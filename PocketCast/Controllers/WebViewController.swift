@@ -59,7 +59,7 @@ class WebViewController: NSViewController {
     // MARK: - Javascript
 
     var isPlaying: Bool {
-        return javascript.isPlaying ?? false
+        return javascript.playerState == .Playing
     }
 
     // MARK: Actions
@@ -184,33 +184,29 @@ extension WebViewController: JavascriptDelegate {
         updateProgressBarView(currentPercentage)
     }
 
-    func javascriptIsPlayingDidChange(isPlaying: Bool) {
+    func javascriptPlayerStateDidChange(playerState: PlayerState) {
         guard let windowController = view.window?.windowController as? MainWindowController else {
             return
         }
 
-        if let isPlayerOpen = javascript.isPlayerOpen where !isPlayerOpen {
+        switch playerState {
+        case .Stopped, .Buffering:
             windowController.playerSegmentedControl.setLabel("▶❙❙", forSegment: 1)
-        } else if isPlaying {
-            windowController.playerSegmentedControl.setLabel("❙❙", forSegment: 1)
-        } else {
-            windowController.playerSegmentedControl.setLabel("▶", forSegment: 1)
-        }
-    }
-
-    func javascriptIsPlayerOpenDidChange(isPlayerOpen: Bool) {
-        guard let windowController = view.window?.windowController as? MainWindowController else {
-            return
-        }
-
-        if isPlayerOpen {
-            windowController.playerSegmentedControl.enabled = true
-            windowController.playerCloseButton.enabled = true
-            javascriptIsPlayingDidChange(javascript.isPlaying ?? false)
-        } else {
             windowController.playerSegmentedControl.enabled = false
             windowController.playerCloseButton.enabled = false
-            windowController.playerSegmentedControl.setLabel("▶❙❙", forSegment: 1)
+            // TODO: turn playerCloseButton off
+
+        case .Playing:
+            windowController.playerSegmentedControl.setLabel("❙❙", forSegment: 1)
+            windowController.playerSegmentedControl.enabled = true
+            windowController.playerCloseButton.enabled = true
+            // TODO: turn playerCloseButton on if player visible
+
+        case .Paused:
+            windowController.playerSegmentedControl.setLabel("▶", forSegment: 1)
+            windowController.playerSegmentedControl.enabled = true
+            windowController.playerCloseButton.enabled = true
+            // TODO: turn playerCloseButton on if player visible
         }
     }
 

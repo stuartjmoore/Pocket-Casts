@@ -15,9 +15,11 @@ protocol JavascriptDelegate: class {
     func javascriptRemainingTimeDidChange(remainingTime: String?)
 
     func javascriptCurrentPercentageDidChange(currentPercentage: Float)
+    func javascriptPlayerStateDidChange(playerState: PlayerState)
+}
 
-    func javascriptIsPlayingDidChange(isPlaying: Bool)
-    func javascriptIsPlayerOpenDidChange(isPlayerOpen: Bool)
+enum PlayerState {
+    case Stopped, Buffering, Playing, Paused
 }
 
 class Javascript {
@@ -44,18 +46,10 @@ class Javascript {
         }
     }
 
-    var isPlaying: Bool? {
+    var playerState: PlayerState? {
         didSet(oldValue) {
-            if let isPlaying = isPlaying where oldValue != isPlaying {
-                delegate?.javascriptIsPlayingDidChange(isPlaying)
-            }
-        }
-    }
-
-    var isPlayerOpen: Bool? {
-        didSet(oldValue) {
-            if let isPlayerOpen = isPlayerOpen where oldValue != isPlayerOpen {
-                delegate?.javascriptIsPlayerOpenDidChange(isPlayerOpen)
+            if let playerState = playerState where oldValue != playerState {
+                delegate?.javascriptPlayerStateDidChange(playerState)
             }
         }
     }
@@ -88,8 +82,15 @@ class Javascript {
         let percentage = Float(currentTimeInterval / (currentTimeInterval + remainingTimeInterval))
         currentPercentage = percentage.isFinite ? max(0, min(percentage, 1)) : 0
 
-        isPlaying = valueFor("angular.element(document).injector().get('mediaPlayer').playing") as? Bool ?? false
-        isPlayerOpen = (episodeTitle != nil)
+        let isPlaying = valueFor("angular.element(document).injector().get('mediaPlayer').playing") as? Bool ?? false
+
+        if episodeTitle == nil {
+            playerState = .Stopped
+        } else if isPlaying {
+            playerState = .Playing
+        } else {
+            playerState = .Paused
+        } // TODO: add .Buffering
     }
 
     // MARK: -
@@ -176,11 +177,7 @@ extension JavascriptDelegate {
         return
     }
 
-    func javascriptIsPlayingDidChange(isPlaying: Bool) {
-        return
-    }
-
-    func javascriptIsPlayerOpenDidChange(isPlayerOpen: Bool) {
+    func javascriptPlayerStateDidChange(playerState: PlayerState) {
         return
     }
     
