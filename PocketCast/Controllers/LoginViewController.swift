@@ -46,7 +46,7 @@ class LoginViewController: NSViewController {
 extension LoginViewController: WKNavigationDelegate {
 
     func webView(webView: WKWebView, decidePolicyForNavigationAction navigationAction: WKNavigationAction, decisionHandler: (WKNavigationActionPolicy) -> Void) {
-        if webView === self.webView && navigationAction.request.URL?.path == "/web" {
+        if navigationAction.request.URL?.path == "/web" {
             (presentingViewController as? WebViewController)?.loadRequest(navigationAction.request)
             presentingViewController?.dismissViewController(self)
             decisionHandler(.Cancel)

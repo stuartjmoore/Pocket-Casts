@@ -100,7 +100,7 @@ extension WebViewController: WKNavigationDelegate {
     }
 
     func webView(webView: WKWebView, decidePolicyForNavigationAction navigationAction: WKNavigationAction, decisionHandler: (WKNavigationActionPolicy) -> Void) {
-        if webView === self.webView && navigationAction.request.URL?.path == "/users/sign_in" {
+        if navigationAction.request.URL?.path == "/users/sign_in" {
             performSegueWithIdentifier("LoginSheetIdentifier", sender: navigationAction.request)
             decisionHandler(.Cancel)
         } else {
