@@ -2,6 +2,9 @@
 #import "SPMediaKeyTap.h"
 #import "SPInvocationGrabbing/NSObject+SPInvocationGrabbing.h" // https://gist.github.com/511181, in submodule
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+
 @interface SPMediaKeyTap ()
 -(BOOL)shouldInterceptMediaKeyEvents;
 -(void)setShouldInterceptMediaKeyEvents:(BOOL)newSetting;
@@ -340,5 +343,7 @@ static pascal OSStatus appTerminated (EventHandlerCallRef nextHandler, EventRef 
 	[self appTerminated:deadPSN];
     return CallNextEventHandler(nextHandler, evt);
 }
+
+#pragma GCC diagnostic pop
 
 @end
