@@ -91,7 +91,39 @@ class WebViewController: NSViewController {
 
     func clickSettingsButton() {
         javascript.clickSettingsButton()
-        javascript.settingsMenuItems()
+
+        let menu = NSMenu(title: "Settings")
+
+        for item in javascript.settingsMenuItems {
+            switch item {
+            case .Link(let title, _):
+                menu.addItemWithTitle(title, action: "settingMenuDidSelect:", keyEquivalent: "")
+            case .Action(let title, _):
+                menu.addItemWithTitle(title, action: "settingMenuDidSelect:", keyEquivalent: "")
+            case .Separator:
+                menu.addItem(NSMenuItem.separatorItem())
+            }
+        }
+
+        menu.popUpMenuPositioningItem(nil, atLocation: NSEvent.mouseLocation(), inView: nil)
+    }
+
+    func settingMenuDidSelect(menuItem: NSMenuItem) {
+        if let index = menuItem.menu?.indexOfItem(menuItem) {
+            let item = javascript.settingsMenuItems[index]
+            print("sender: \(item)")
+
+            switch item {
+            case .Link(_, let url):
+                // TODO: sign out doesn't work
+                NSWorkspace.sharedWorkspace().openURL(url)
+            case .Action(_, _):
+                // TODO: action
+                break
+            case .Separator:
+                break
+            }
+        }
     }
 
     func hidePlayer() {

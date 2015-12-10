@@ -126,19 +126,35 @@ class Javascript {
         return (paddingBottom != 0)
     }
 
-    func settingsMenuItems() {
-        webView.evaluateJavaScript("Array.prototype.slice.call(document.getElementById('header').getElementsByClassName('dropdown-menu')[0].getElementsByTagName('li')).map(function(node) { return node.innerText })") { (object, _) in
-//        webView.evaluateJavaScript("Array.prototype.slice.call(document.getElementById('header').getElementsByClassName('dropdown-menu')[0].getElementsByTagName('li')).map(function(node) { return node.firstChild ? (node.firstChild.href ? node.firstChild.href : (node.firstChild.attributes.getNamedItem('ng-click') ? node.firstChild.attributes.getNamedItem('ng-click').value : '')) : '' })") { (object, _) in
-            print("object: \(object)")
+    enum MenuItem {
+        case Link(String, NSURL)
+        case Action(String, String)
+        case Separator
+    }
 
-            guard let items = object as? [String] else {
-                return
-            }
-
-            let titles: [String?] = items.map({ $0 == "" ? nil : $0.stringByTrimmingCharactersInSet(.whitespaceAndNewlineCharacterSet()) })
-
-            print("titles: \(titles)")
+    var settingsMenuItems: [MenuItem] {
+        guard let titleStrings = valueFor("Array.prototype.slice.call(document.getElementById('header').getElementsByClassName('dropdown-menu')[0].getElementsByTagName('li')).map(function(node) { return node.innerText })") as? [String] else {
+            return []
         }
+
+        guard let actionStrings = valueFor("Array.prototype.slice.call(document.getElementById('header').getElementsByClassName('dropdown-menu')[0].getElementsByTagName('li')).map(function(node) { return node.firstChild ? (node.firstChild.href ? node.firstChild.href : (node.firstChild.attributes.getNamedItem('ng-click') ? node.firstChild.attributes.getNamedItem('ng-click').value : '')) : '' })") as? [String] else {
+            return []
+        }
+
+        let titles: [String?] = titleStrings.map({ $0 == "" ? nil : $0.stringByTrimmingCharactersInSet(.newlineCharacterSet()) })
+        let actions: [String?] = actionStrings.map({ $0 == "" ? nil : $0 })
+
+        let items: [MenuItem] = zip(titles, actions).map({ (title, action) in
+            if let title = title, action = action, url = NSURL(string: action) {
+                return .Link(title, url)
+            } else if let title = title, action = action {
+                return .Action(title, action)
+            } else {
+                return .Separator
+            }
+        })
+
+        return items
     }
 
     func searchText(text: String) {
