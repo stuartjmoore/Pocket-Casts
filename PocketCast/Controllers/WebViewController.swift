@@ -23,6 +23,7 @@ class WebViewController: NSViewController {
 
         progressView.wantsLayer = true
 
+        // TODO: Load stylesheet.css
         let source = Javascript.hideToolbarSource + Javascript.changeFontSource
         let userScript = WKUserScript(source: source, injectionTime: .AtDocumentEnd, forMainFrameOnly: true)
 
