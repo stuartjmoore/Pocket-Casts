@@ -207,8 +207,13 @@ extension WebViewController: JavascriptDelegate {
                 options: [.UsesLineFragmentOrigin, .UsesFontLeading]
             )
 
-            windowController.episodeTitleToolbarItem.minSize.width = ceil(rect.size.width) + 16
-            windowController.episodeTitleToolbarItem.maxSize.width = ceil(rect.size.width) + 16
+            let timeRect = windowController.remainingTimeToolbarTextFieldCell.attributedStringValue.boundingRectWithSize(
+                NSSize(width: CGFloat.max, height: CGFloat.max),
+                options: [.UsesLineFragmentOrigin, .UsesFontLeading]
+            )
+
+            windowController.episodeTitleToolbarItem.minSize.width = ceil(rect.size.width + timeRect.size.width) + 8 * 4
+            windowController.episodeTitleToolbarItem.maxSize.width = ceil(rect.size.width + timeRect.size.width) + 8 * 4
         }
     }
 
