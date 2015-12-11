@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="9PK-L3-Vl5">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="9PK-L3-Vl5">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9060"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
     </dependencies>
     <scenes>
         <!--Window Controller-->
@@ -24,7 +24,6 @@
                                     <searchField key="view" wantsLayer="YES" verticalHuggingPriority="750" id="MFk-U3-JjR">
                                         <rect key="frame" x="0.0" y="14" width="96" height="22"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <animations/>
                                         <searchFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" sendsSearchStringImmediately="YES" sendsWholeSearchString="YES" id="SSW-4m-nhq">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -39,7 +38,6 @@
                                     <button key="view" verticalHuggingPriority="750" id="W6t-2M-28K">
                                         <rect key="frame" x="10" y="14" width="32" height="28"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <animations/>
                                         <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="NSActionTemplate" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="XzT-72-TkU">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -56,7 +54,6 @@
                                     <button key="view" verticalHuggingPriority="750" id="RIl-fM-tIb">
                                         <rect key="frame" x="20" y="14" width="32" height="29"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <animations/>
                                         <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="NSListViewTemplate" imagePosition="overlaps" alignment="center" enabled="NO" imageScaling="proportionallyDown" inset="2" id="AYW-EQ-pxv">
                                             <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -73,7 +70,6 @@
                                     <segmentedControl key="view" verticalHuggingPriority="750" id="f0s-oS-caz">
                                         <rect key="frame" x="0.0" y="14" width="116" height="25"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <animations/>
                                         <segmentedCell key="cell" enabled="NO" borderStyle="border" alignment="left" style="texturedSquare" trackingMode="momentary" id="QNS-Ip-wjx">
                                             <font key="font" metaFont="system"/>
                                             <segments>
@@ -95,27 +91,24 @@
                                         <rect key="frame" x="0.0" y="14" width="163" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <subviews>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="giO-Gm-TBv">
-                                                <rect key="frame" x="10" y="9" width="88" height="17"/>
-                                                <animations/>
-                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="center" title="Podcast Title" usesSingleLineMode="YES" id="Qej-zc-1Bt">
-                                                    <font key="font" metaFont="system"/>
-                                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                </textFieldCell>
-                                            </textField>
-                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zuF-KB-g6j">
+                                            <button verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="zuF-KB-g6j">
                                                 <rect key="frame" x="4" y="3" width="155" height="25"/>
-                                                <animations/>
                                                 <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="xoT-3Q-RJk">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
                                             </button>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SNt-2i-U3H">
+                                            <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="giO-Gm-TBv">
+                                                <rect key="frame" x="10" y="9" width="88" height="17"/>
+                                                <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="center" title="Podcast Title" usesSingleLineMode="YES" id="Qej-zc-1Bt">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <textField horizontalHuggingPriority="1000" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SNt-2i-U3H">
                                                 <rect key="frame" x="102" y="9" width="51" height="17"/>
-                                                <animations/>
-                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="center" title="-00:00" placeholderString="" usesSingleLineMode="YES" id="dqp-0o-gJb">
+                                                <textFieldCell key="cell" lineBreakMode="truncatingHead" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="center" title="-00:00" placeholderString="" usesSingleLineMode="YES" id="dqp-0o-gJb">
                                                     <font key="font" metaFont="system"/>
                                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -131,7 +124,6 @@
                                             <constraint firstItem="giO-Gm-TBv" firstAttribute="leading" secondItem="zuF-KB-g6j" secondAttribute="leading" constant="8" id="wA4-9S-pOJ"/>
                                             <constraint firstAttribute="centerY" secondItem="zuF-KB-g6j" secondAttribute="centerY" constant="1" id="zLN-O8-1iH"/>
                                         </constraints>
-                                        <animations/>
                                     </customView>
                                 </toolbarItem>
                             </allowedToolbarItems>
@@ -175,7 +167,6 @@
                                         <constraints>
                                             <constraint firstAttribute="width" id="vzn-Kb-8Mu"/>
                                         </constraints>
-                                        <animations/>
                                     </customView>
                                 </subviews>
                                 <constraints>
@@ -184,7 +175,6 @@
                                     <constraint firstAttribute="height" constant="2" id="jCA-XZ-hGU"/>
                                     <constraint firstAttribute="bottom" secondItem="c53-oZ-3AY" secondAttribute="bottom" id="lTd-le-dPW"/>
                                 </constraints>
-                                <animations/>
                             </customView>
                         </subviews>
                         <constraints>
@@ -192,7 +182,6 @@
                             <constraint firstItem="DBJ-rJ-iSU" firstAttribute="leading" secondItem="LDY-2F-JJN" secondAttribute="leading" id="kVg-X1-haC"/>
                             <constraint firstItem="DBJ-rJ-iSU" firstAttribute="top" secondItem="LDY-2F-JJN" secondAttribute="top" id="sc5-4c-wwD"/>
                         </constraints>
-                        <animations/>
                     </view>
                     <connections>
                         <outlet property="progressLayoutConstraint" destination="vzn-Kb-8Mu" id="N0g-IL-O7g"/>
@@ -211,7 +200,6 @@
                     <view key="view" id="ghf-3Q-yV4">
                         <rect key="frame" x="0.0" y="0.0" width="500" height="500"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
                     </view>
                 </viewController>
                 <customObject id="fzm-ax-92t" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

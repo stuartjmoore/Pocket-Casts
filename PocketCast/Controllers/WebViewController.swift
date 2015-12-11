@@ -200,21 +200,7 @@ extension WebViewController: JavascriptDelegate {
         ]))
 
         windowController.episodeTitleToolbarTextFieldCell.attributedStringValue = attributedTitle
-
-        if attributedTitle.length > 0 {
-            let rect = attributedTitle.boundingRectWithSize(
-                NSSize(width: CGFloat.max, height: CGFloat.max),
-                options: [.UsesLineFragmentOrigin, .UsesFontLeading]
-            )
-
-            let timeRect = windowController.remainingTimeToolbarTextFieldCell.attributedStringValue.boundingRectWithSize(
-                NSSize(width: CGFloat.max, height: CGFloat.max),
-                options: [.UsesLineFragmentOrigin, .UsesFontLeading]
-            )
-
-            windowController.episodeTitleToolbarItem.minSize.width = ceil(rect.size.width + timeRect.size.width) + 8 * 4
-            windowController.episodeTitleToolbarItem.maxSize.width = ceil(rect.size.width + timeRect.size.width) + 8 * 4
-        }
+        windowController.layoutPlayerDisplay()
     }
 
     func javascriptRemainingTimeDidChange(remainingTime: String?) {
@@ -227,6 +213,7 @@ extension WebViewController: JavascriptDelegate {
         }
 
         windowController.remainingTimeToolbarTextFieldCell.title = remainingTime
+        windowController.layoutPlayerDisplay()
     }
 
     func javascriptCurrentPercentageDidChange(currentPercentage: Float) {

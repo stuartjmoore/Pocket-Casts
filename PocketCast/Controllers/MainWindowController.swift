@@ -38,6 +38,24 @@ class MainWindowController: NSWindowController {
         if SPMediaKeyTap.usesGlobalMediaKeyTap() {
             mediaKeyTap!.startWatchingMediaKeys()
         }
+
+        layoutPlayerDisplay()
+    }
+
+    func layoutPlayerDisplay() {
+        if episodeTitleToolbarTextFieldCell.attributedStringValue.length > 0 &&
+           remainingTimeToolbarTextFieldCell.attributedStringValue.length > 0 {
+
+            episodeTitleToolbarTextFieldCell.controlView?.invalidateIntrinsicContentSize()
+            remainingTimeToolbarTextFieldCell.controlView?.invalidateIntrinsicContentSize()
+
+            let titleSize = episodeTitleToolbarTextFieldCell.cellSize
+            let timeSize = remainingTimeToolbarTextFieldCell.cellSize
+
+            episodeTitleToolbarItem.minSize.width = ceil(titleSize.width + timeSize.width) + 8 * 3
+            episodeTitleToolbarItem.maxSize.width = ceil(titleSize.width + timeSize.width) + 8 * 3
+        }
+
     }
 
     // MARK: Toolbar
