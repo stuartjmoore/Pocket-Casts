@@ -121,12 +121,34 @@
                                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                             </textField>
+                                            <customView focusRingType="none" translatesAutoresizingMaskIntoConstraints="NO" id="BRs-RK-Tcr">
+                                                <rect key="frame" x="4" y="4" width="155" height="2"/>
+                                                <subviews>
+                                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="3dz-V8-7Ai">
+                                                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="2"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" id="ocC-K7-1Vn"/>
+                                                        </constraints>
+                                                        <animations/>
+                                                    </customView>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="3dz-V8-7Ai" firstAttribute="leading" secondItem="BRs-RK-Tcr" secondAttribute="leading" id="2fS-eH-EkV"/>
+                                                    <constraint firstItem="3dz-V8-7Ai" firstAttribute="top" secondItem="BRs-RK-Tcr" secondAttribute="top" id="ieW-Vx-j3u"/>
+                                                    <constraint firstAttribute="height" constant="2" id="lnF-Qi-uRa"/>
+                                                    <constraint firstAttribute="bottom" secondItem="3dz-V8-7Ai" secondAttribute="bottom" id="pp1-dJ-GYI"/>
+                                                </constraints>
+                                                <animations/>
+                                            </customView>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="SNt-2i-U3H" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="giO-Gm-TBv" secondAttribute="trailing" constant="8" id="FDB-vW-WAM"/>
+                                            <constraint firstItem="BRs-RK-Tcr" firstAttribute="trailing" secondItem="zuF-KB-g6j" secondAttribute="trailing" id="LNH-uv-nmj"/>
+                                            <constraint firstItem="BRs-RK-Tcr" firstAttribute="leading" secondItem="zuF-KB-g6j" secondAttribute="leading" id="Nn5-Yo-PkV"/>
                                             <constraint firstItem="zuF-KB-g6j" firstAttribute="baseline" secondItem="SNt-2i-U3H" secondAttribute="baseline" constant="1" id="RZ0-FN-lsQ"/>
                                             <constraint firstItem="zuF-KB-g6j" firstAttribute="centerX" secondItem="tT4-Bm-RUD" secondAttribute="centerX" id="WJs-DB-FUO"/>
                                             <constraint firstItem="zuF-KB-g6j" firstAttribute="trailing" secondItem="SNt-2i-U3H" secondAttribute="trailing" constant="8" id="a4h-XV-3yR"/>
+                                            <constraint firstItem="BRs-RK-Tcr" firstAttribute="bottom" secondItem="zuF-KB-g6j" secondAttribute="bottom" id="mwA-Zn-VxL"/>
                                             <constraint firstItem="zuF-KB-g6j" firstAttribute="baseline" secondItem="giO-Gm-TBv" secondAttribute="baseline" constant="1" id="rYr-q7-gqW"/>
                                             <constraint firstItem="giO-Gm-TBv" firstAttribute="leading" secondItem="zuF-KB-g6j" secondAttribute="leading" constant="8" id="wA4-9S-pOJ"/>
                                             <constraint firstAttribute="centerY" secondItem="zuF-KB-g6j" secondAttribute="centerY" id="zLN-O8-1iH"/>
@@ -152,6 +174,8 @@
                         <outlet property="playerDisplayToolbarItem" destination="X18-D7-wxZ" id="Dhu-0c-bfh"/>
                         <outlet property="playerDisplayView" destination="zuF-KB-g6j" id="jbc-7f-4Yv"/>
                         <outlet property="playerSegmentedControl" destination="f0s-oS-caz" id="NE4-55-yJT"/>
+                        <outlet property="progressBarView" destination="3dz-V8-7Ai" id="M7s-ls-8kK"/>
+                        <outlet property="progressBarViewConstraint" destination="ocC-K7-1Vn" id="JnE-0R-LKW"/>
                         <outlet property="remainingTimeToolbarTextField" destination="SNt-2i-U3H" id="Knc-JK-7bb"/>
                         <segue destination="yRR-xE-ySh" kind="relationship" relationship="window.shadowedContentViewController" id="qCN-Rc-7Qx"/>
                     </connections>
@@ -167,37 +191,9 @@
                     <view key="view" focusRingType="none" id="LDY-2F-JJN">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <subviews>
-                            <customView focusRingType="none" translatesAutoresizingMaskIntoConstraints="NO" id="DBJ-rJ-iSU">
-                                <rect key="frame" x="0.0" y="598" width="600" height="2"/>
-                                <subviews>
-                                    <customView focusRingType="none" translatesAutoresizingMaskIntoConstraints="NO" id="c53-oZ-3AY">
-                                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="2"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" id="vzn-Kb-8Mu"/>
-                                        </constraints>
-                                        <animations/>
-                                    </customView>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="c53-oZ-3AY" firstAttribute="top" secondItem="DBJ-rJ-iSU" secondAttribute="top" id="C3R-mO-8af"/>
-                                    <constraint firstItem="c53-oZ-3AY" firstAttribute="leading" secondItem="DBJ-rJ-iSU" secondAttribute="leading" id="ekG-GY-8DV"/>
-                                    <constraint firstAttribute="height" constant="2" id="jCA-XZ-hGU"/>
-                                    <constraint firstAttribute="bottom" secondItem="c53-oZ-3AY" secondAttribute="bottom" id="lTd-le-dPW"/>
-                                </constraints>
-                                <animations/>
-                            </customView>
-                        </subviews>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="DBJ-rJ-iSU" secondAttribute="trailing" id="4Nl-UM-oBP"/>
-                            <constraint firstItem="DBJ-rJ-iSU" firstAttribute="leading" secondItem="LDY-2F-JJN" secondAttribute="leading" id="kVg-X1-haC"/>
-                            <constraint firstItem="DBJ-rJ-iSU" firstAttribute="top" secondItem="LDY-2F-JJN" secondAttribute="top" id="sc5-4c-wwD"/>
-                        </constraints>
                         <animations/>
                     </view>
                     <connections>
-                        <outlet property="progressLayoutConstraint" destination="vzn-Kb-8Mu" id="N0g-IL-O7g"/>
-                        <outlet property="progressView" destination="c53-oZ-3AY" id="8pn-oK-PiA"/>
                         <segue destination="1yl-7M-Mrb" kind="sheet" identifier="LoginSheetIdentifier" id="Ntn-zz-zNe"/>
                     </connections>
                 </viewController>

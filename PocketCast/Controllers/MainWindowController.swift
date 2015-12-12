@@ -19,6 +19,9 @@ class MainWindowController: NSWindowController {
 
     @IBOutlet weak var episodeTitleToolbarTextField: NSTextField!
     @IBOutlet weak var remainingTimeToolbarTextField: NSTextField!
+    @IBOutlet weak var progressBarView: NSView!
+
+    @IBOutlet weak var progressBarViewConstraint: NSLayoutConstraint!
 
     private var mediaKeyTap: SPMediaKeyTap?
 
@@ -42,6 +45,10 @@ class MainWindowController: NSWindowController {
         }
 
         layoutPlayerDisplay()
+    }
+
+    override func awakeFromNib() {
+        progressBarView.layer?.backgroundColor = NSColor(red: 1, green: 0.373, blue: 0.31, alpha: 1).CGColor
     }
 
     func layoutPlayerDisplay() {

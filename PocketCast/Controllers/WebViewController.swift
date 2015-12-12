@@ -11,17 +11,12 @@ import WebKit
 
 class WebViewController: NSViewController {
 
-    @IBOutlet weak var progressView: NSView!
-    @IBOutlet weak var progressLayoutConstraint: NSLayoutConstraint!
-
     private var javascript: Javascript!
     private var loginSheet: NSPanel!
     private var webView: WKWebView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        progressView.wantsLayer = true
 
         // TODO: Load stylesheet.css
         let source = Javascript.hideToolbarSource + Javascript.changeFontSource
@@ -36,7 +31,7 @@ class WebViewController: NSViewController {
         webView = WKWebView(frame: view.bounds, configuration: configuration)
         webView.navigationDelegate = self
         webView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(webView, positioned: .Below, relativeTo: progressView)
+        view.addSubview(webView, positioned: .Below, relativeTo: nil)
 
         view.topAnchor.constraintEqualToAnchor(webView.topAnchor).active = true
         view.leadingAnchor.constraintEqualToAnchor(webView.leadingAnchor).active = true
@@ -52,14 +47,6 @@ class WebViewController: NSViewController {
 
         javascript = Javascript(webView: webView)
         javascript.delegate = self
-    }
-
-    override func awakeFromNib() {
-        progressView.layer?.backgroundColor = NSColor(red: 1, green: 0.373, blue: 0.31, alpha: 1).CGColor
-    }
-
-    func updateProgressBarView(percentage: Float) {
-        progressLayoutConstraint.constant = view.frame.width * CGFloat(percentage)
     }
 
     func loadRequest(request: NSURLRequest) {
@@ -212,12 +199,29 @@ extension WebViewController: JavascriptDelegate {
             return windowController.remainingTimeToolbarTextField.stringValue = ""
         }
 
+        let fontDescriptor = NSFont.systemFontOfSize(13).fontDescriptor
+        let monospacedNumbersFontDescriptor = fontDescriptor.fontDescriptorByAddingAttributes([
+            NSFontFeatureSettingsAttribute: [
+                [
+                    NSFontFeatureTypeIdentifierKey: kNumberSpacingType,
+                    NSFontFeatureSelectorIdentifierKey: kMonospacedNumbersSelector
+                ]
+            ]
+        ])
+
+        let monospacedNumbersFont = NSFont(descriptor: monospacedNumbersFontDescriptor, size: 0)
+
+        windowController.remainingTimeToolbarTextField.font = monospacedNumbersFont
         windowController.remainingTimeToolbarTextField.stringValue = remainingTime
         windowController.layoutPlayerDisplay()
     }
 
     func javascriptCurrentPercentageDidChange(currentPercentage: Float) {
-        updateProgressBarView(currentPercentage)
+        guard let windowController = view.window?.windowController as? MainWindowController else {
+            return
+        }
+
+        windowController.progressBarViewConstraint.constant = windowController.playerDisplayView.frame.width * CGFloat(currentPercentage)
     }
 
     func javascriptPlayerStateDidChange(playerState: PlayerState) {
