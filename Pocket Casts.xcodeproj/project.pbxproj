@@ -14,6 +14,7 @@
 		17AF115B1C0FCF1900620A32 /* Javascript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AF115A1C0FCF1900620A32 /* Javascript.swift */; };
 		A441E3B01B4FF0BE008DBC37 /* NSObject+SPInvocationGrabbing.m in Sources */ = {isa = PBXBuildFile; fileRef = A441E3AD1B4FF0BE008DBC37 /* NSObject+SPInvocationGrabbing.m */; };
 		A441E3B11B4FF0BE008DBC37 /* SPMediaKeyTap.m in Sources */ = {isa = PBXBuildFile; fileRef = A441E3AF1B4FF0BE008DBC37 /* SPMediaKeyTap.m */; };
+		C160BC1E1C1CC6020047EAE9 /* stylesheet.css in Resources */ = {isa = PBXBuildFile; fileRef = C160BC1D1C1CC6020047EAE9 /* stylesheet.css */; };
 		C80F65D61ADE156C00277D77 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80F65D51ADE156C00277D77 /* AppDelegate.swift */; };
 		C80F65D81ADE156C00277D77 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C80F65D71ADE156C00277D77 /* Images.xcassets */; };
 		C80F65F81ADE2BEE00277D77 /* MyApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80F65F71ADE2BEE00277D77 /* MyApplication.swift */; };
@@ -30,6 +31,7 @@
 		A441E3AD1B4FF0BE008DBC37 /* NSObject+SPInvocationGrabbing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SPInvocationGrabbing.m"; sourceTree = "<group>"; };
 		A441E3AE1B4FF0BE008DBC37 /* SPMediaKeyTap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPMediaKeyTap.h; sourceTree = "<group>"; };
 		A441E3AF1B4FF0BE008DBC37 /* SPMediaKeyTap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPMediaKeyTap.m; sourceTree = "<group>"; };
+		C160BC1D1C1CC6020047EAE9 /* stylesheet.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = stylesheet.css; path = PocketCast/stylesheet.css; sourceTree = "<group>"; };
 		C80F65D01ADE156C00277D77 /* Pocket Casts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pocket Casts.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C80F65D41ADE156C00277D77 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = PocketCast/Info.plist; sourceTree = "<group>"; };
 		C80F65D51ADE156C00277D77 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -55,6 +57,7 @@
 				C80F65F71ADE2BEE00277D77 /* MyApplication.swift */,
 				1716B8AF1C17982200BE83D0 /* Main.storyboard */,
 				C80F65D71ADE156C00277D77 /* Images.xcassets */,
+				C160BC1D1C1CC6020047EAE9 /* stylesheet.css */,
 				C80F65D41ADE156C00277D77 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -189,6 +192,7 @@
 			files = (
 				1716B8B01C17982200BE83D0 /* Main.storyboard in Resources */,
 				C80F65D81ADE156C00277D77 /* Images.xcassets in Resources */,
+				C160BC1E1C1CC6020047EAE9 /* stylesheet.css in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

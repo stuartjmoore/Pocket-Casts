@@ -18,10 +18,16 @@ class WebViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // TODO: Load stylesheet.css
-        let source = Javascript.hideToolbarSource + Javascript.changeFontSource
-        let userScript = WKUserScript(source: source, injectionTime: .AtDocumentEnd, forMainFrameOnly: true)
+        let source: String
 
+        if let sourceURL = NSBundle.mainBundle().URLForResource("stylesheet", withExtension: "css") {
+            source = String(try! NSString(contentsOfURL: sourceURL, encoding: NSUTF8StringEncoding))
+            print(source)
+        } else {
+            source = Javascript.hideToolbarSource + Javascript.changeFontSource
+        }
+
+        let userScript = WKUserScript(source: source, injectionTime: .AtDocumentEnd, forMainFrameOnly: true)
         let userContentController = WKUserContentController()
         userContentController.addUserScript(userScript)
 
