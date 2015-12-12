@@ -49,17 +49,9 @@ class MainWindowController: NSWindowController {
     }
 
     override func awakeFromNib() {
-        if let fontDescriptor = remainingTimeToolbarTextField.font?.fontDescriptor {
-            let monospacedNumbersFontDescriptor = fontDescriptor.fontDescriptorByAddingAttributes([
-                NSFontFeatureSettingsAttribute: [[
-                    NSFontFeatureTypeIdentifierKey: kNumberSpacingType,
-                    NSFontFeatureSelectorIdentifierKey: kMonospacedNumbersSelector
-                ]]
-            ])
-
-            let monospacedNumbersFont = NSFont(descriptor: monospacedNumbersFontDescriptor, size: 0)
-            remainingTimeToolbarTextField.font = monospacedNumbersFont
-        }
+        remainingTimeToolbarTextField.font = remainingTimeToolbarTextField.font?.fontByAddingAttribute(
+            [kNumberSpacingType: kMonospacedNumbersSelector]
+        )
 
         progressBarView.layer?.masksToBounds = true
         progressBarView.layer?.cornerRadius = 6
@@ -191,4 +183,13 @@ class MainWindowController: NSWindowController {
         }
     }
 
+}
+
+extension NSFont {
+    func fontByAddingAttribute(input: [Int: Int]) -> NSFont? {
+        let attribute = input.map({ [NSFontFeatureTypeIdentifierKey: $0, NSFontFeatureSelectorIdentifierKey: $1] })
+        let attributes = [NSFontFeatureSettingsAttribute: attribute]
+        let attributedFontDescriptor = fontDescriptor.fontDescriptorByAddingAttributes(attributes)
+        return NSFont(descriptor: attributedFontDescriptor, size: 0)
+    }
 }
