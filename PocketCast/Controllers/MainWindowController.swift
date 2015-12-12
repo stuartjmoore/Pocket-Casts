@@ -114,13 +114,11 @@ class MainWindowController: NSWindowController {
                 playerSegmentedControl.setLabel("❙❙", forSegment: 1)
                 playerSegmentedControl.enabled = true
                 playerCloseButton.enabled = true
-                playerCloseButton.setNextState()
 
             case .Paused:
                 playerSegmentedControl.setLabel("▶", forSegment: 1)
                 playerSegmentedControl.enabled = true
                 playerCloseButton.enabled = true
-                playerCloseButton.setNextState()
             }
         }
     }
@@ -128,6 +126,7 @@ class MainWindowController: NSWindowController {
     var playerVisible: Bool = false {
         didSet {
             playerCloseButton.state = playerVisible ? NSOffState : NSOnState
+            playerCloseButton.setNextState()
         }
     }
 

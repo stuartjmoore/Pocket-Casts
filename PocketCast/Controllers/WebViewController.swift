@@ -177,7 +177,10 @@ extension WebViewController: JavascriptDelegate {
 
     func javascriptPlayerStateDidChange(playerState: PlayerState) {
         windowController?.playerState = playerState
-        windowController?.playerVisible = javascript.playerVisible
+
+        if playerState == .Paused || playerState == .Playing  {
+            windowController?.playerVisible = javascript.playerVisible
+        }
     }
 
 }
