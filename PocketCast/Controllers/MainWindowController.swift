@@ -17,6 +17,7 @@ class MainWindowController: NSWindowController {
     @IBOutlet weak var playerDisplayToolbarItem: NSToolbarItem!
     @IBOutlet weak var playerDisplayView: NSView!
 
+    @IBOutlet weak var showTitleToolbarTextField: NSTextField!
     @IBOutlet weak var episodeTitleToolbarTextField: NSTextField!
     @IBOutlet weak var remainingTimeToolbarTextField: NSTextField!
     @IBOutlet weak var progressBarView: NSView!

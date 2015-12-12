@@ -155,38 +155,29 @@ extension WebViewController: WKNavigationDelegate {
 
 extension WebViewController: JavascriptDelegate {
 
-    func javascriptShowTitleDidChange(title: String?) {
-        fullTitleDidChange(title, episodeTitle: javascript.episodeTitle)
-    }
-
-    func javascriptEpisodeTitleDidChange(title: String?) {
-        fullTitleDidChange(javascript.showTitle, episodeTitle: title)
-    }
-
-    private func fullTitleDidChange(showTitle: String?, episodeTitle: String?) {
+    func javascriptShowTitleDidChange(showTitle: String?) {
         guard let windowController = view.window?.windowController as? MainWindowController else {
             return
         }
 
-        guard let showTitle = showTitle, episodeTitle = episodeTitle else {
+        guard let showTitle = showTitle else {
             return windowController.episodeTitleToolbarTextField.stringValue = ""
         }
 
-        let attributedTitle = NSMutableAttributedString()
+        windowController.showTitleToolbarTextField.stringValue = showTitle
+        windowController.layoutPlayerDisplay()
+    }
 
-        attributedTitle.appendAttributedString(NSAttributedString(string: showTitle, attributes: [
-            NSFontAttributeName: NSFont.systemFontOfSize(13)
-        ]))
+    func javascriptEpisodeTitleDidChange(episodeTitle: String?) {
+        guard let windowController = view.window?.windowController as? MainWindowController else {
+            return
+        }
 
-        attributedTitle.appendAttributedString(NSAttributedString(string: " ", attributes: [
-            NSFontAttributeName: NSFont.systemFontOfSize(13)
-        ]))
+        guard let episodeTitle = episodeTitle else {
+            return windowController.episodeTitleToolbarTextField.stringValue = ""
+        }
 
-        attributedTitle.appendAttributedString(NSAttributedString(string: episodeTitle, attributes: [
-            NSFontAttributeName: NSFont.boldSystemFontOfSize(13)
-        ]))
-
-        windowController.episodeTitleToolbarTextField.attributedStringValue = attributedTitle
+        windowController.episodeTitleToolbarTextField.stringValue = episodeTitle
         windowController.layoutPlayerDisplay()
     }
 
