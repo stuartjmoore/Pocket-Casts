@@ -155,93 +155,29 @@ extension WebViewController: WKNavigationDelegate {
 
 extension WebViewController: JavascriptDelegate {
 
+    var windowController: MainWindowController? {
+        return view.window?.windowController as? MainWindowController
+    }
+
     func javascriptShowTitleDidChange(showTitle: String?) {
-        guard let windowController = view.window?.windowController as? MainWindowController else {
-            return
-        }
-
-        guard let showTitle = showTitle else {
-            return windowController.episodeTitleToolbarTextField.stringValue = ""
-        }
-
-        windowController.showTitleToolbarTextField.stringValue = showTitle
-        windowController.layoutPlayerDisplay()
+        windowController?.showTitle = showTitle
     }
 
     func javascriptEpisodeTitleDidChange(episodeTitle: String?) {
-        guard let windowController = view.window?.windowController as? MainWindowController else {
-            return
-        }
-
-        guard let episodeTitle = episodeTitle else {
-            return windowController.episodeTitleToolbarTextField.stringValue = ""
-        }
-
-        windowController.episodeTitleToolbarTextField.stringValue = episodeTitle
-        windowController.layoutPlayerDisplay()
+        windowController?.episodeTitle = episodeTitle
     }
 
     func javascriptRemainingTimeDidChange(remainingTime: String?) {
-        guard let windowController = view.window?.windowController as? MainWindowController else {
-            return
-        }
-
-        guard let remainingTime = remainingTime else {
-            return windowController.remainingTimeToolbarTextField.stringValue = ""
-        }
-
-        let fontDescriptor = NSFont.systemFontOfSize(13).fontDescriptor
-        let monospacedNumbersFontDescriptor = fontDescriptor.fontDescriptorByAddingAttributes([
-            NSFontFeatureSettingsAttribute: [
-                [
-                    NSFontFeatureTypeIdentifierKey: kNumberSpacingType,
-                    NSFontFeatureSelectorIdentifierKey: kMonospacedNumbersSelector
-                ]
-            ]
-        ])
-
-        let monospacedNumbersFont = NSFont(descriptor: monospacedNumbersFontDescriptor, size: 0)
-
-        windowController.remainingTimeToolbarTextField.font = monospacedNumbersFont
-        windowController.remainingTimeToolbarTextField.stringValue = remainingTime
-        windowController.layoutPlayerDisplay()
+        windowController?.remainingTimeText = remainingTime
     }
 
     func javascriptCurrentPercentageDidChange(currentPercentage: Float) {
-        guard let windowController = view.window?.windowController as? MainWindowController else {
-            return
-        }
-
-        windowController.progressBarViewConstraint.constant = windowController.playerDisplayView.frame.width * CGFloat(currentPercentage)
+        windowController?.progressPercentage = currentPercentage
     }
 
     func javascriptPlayerStateDidChange(playerState: PlayerState) {
-        guard let windowController = view.window?.windowController as? MainWindowController else {
-            return
-        }
-
-        switch playerState {
-        case .Stopped, .Buffering:
-            windowController.playerSegmentedControl.setLabel("▶❙❙", forSegment: 1)
-            windowController.playerSegmentedControl.enabled = false
-            windowController.playerCloseButton.enabled = false
-            windowController.playerCloseButton.state = NSOnState
-            windowController.playerCloseButton.setNextState()
-
-        case .Playing:
-            windowController.playerSegmentedControl.setLabel("❙❙", forSegment: 1)
-            windowController.playerSegmentedControl.enabled = true
-            windowController.playerCloseButton.enabled = true
-            windowController.playerCloseButton.state = javascript.playerVisible ? NSOffState : NSOnState
-            windowController.playerCloseButton.setNextState()
-
-        case .Paused:
-            windowController.playerSegmentedControl.setLabel("▶", forSegment: 1)
-            windowController.playerSegmentedControl.enabled = true
-            windowController.playerCloseButton.enabled = true
-            windowController.playerCloseButton.state = javascript.playerVisible ? NSOffState : NSOnState
-            windowController.playerCloseButton.setNextState()
-        }
+        windowController?.playerState = playerState
+        windowController?.playerVisible = javascript.playerVisible
     }
 
 }

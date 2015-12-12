@@ -49,6 +49,18 @@ class MainWindowController: NSWindowController {
     }
 
     override func awakeFromNib() {
+        if let fontDescriptor = remainingTimeToolbarTextField.font?.fontDescriptor {
+            let monospacedNumbersFontDescriptor = fontDescriptor.fontDescriptorByAddingAttributes([
+                NSFontFeatureSettingsAttribute: [[
+                    NSFontFeatureTypeIdentifierKey: kNumberSpacingType,
+                    NSFontFeatureSelectorIdentifierKey: kMonospacedNumbersSelector
+                ]]
+            ])
+
+            let monospacedNumbersFont = NSFont(descriptor: monospacedNumbersFontDescriptor, size: 0)
+            remainingTimeToolbarTextField.font = monospacedNumbersFont
+        }
+
         progressBarView.layer?.masksToBounds = true
         progressBarView.layer?.cornerRadius = 6
         progressBarView.layer?.backgroundColor = NSColor(red: 1, green: 0.373, blue: 0.31, alpha: 1).CGColor
@@ -59,7 +71,75 @@ class MainWindowController: NSWindowController {
         playerDisplayToolbarItem.maxSize.width = ceil(playerDisplayView.bounds.size.width) + 12
     }
 
-    // MARK: Toolbar
+    // MARK: - Set Items
+
+    var showTitle: String? {
+        set(showTitle) {
+            showTitleToolbarTextField.stringValue = showTitle ?? ""
+            layoutPlayerDisplay()
+        } get {
+            return showTitleToolbarTextField.stringValue
+        }
+    }
+
+    var episodeTitle: String? {
+        set(episodeTitle) {
+            episodeTitleToolbarTextField.stringValue = episodeTitle ?? ""
+            layoutPlayerDisplay()
+        } get {
+            return episodeTitleToolbarTextField.stringValue
+        }
+    }
+
+    var remainingTimeText: String? {
+        set(remainingTimeText) {
+            remainingTimeToolbarTextField.stringValue = remainingTimeText ?? ""
+            layoutPlayerDisplay()
+        } get {
+            return remainingTimeToolbarTextField.stringValue
+        }
+    }
+
+    var progressPercentage: Float? {
+        set(progressPercentage) {
+            progressBarViewConstraint.constant = playerDisplayView.frame.width * CGFloat(progressPercentage ?? 0)
+        } get {
+            return Float(progressBarViewConstraint.constant)
+        }
+    }
+
+    var playerState: PlayerState = .Stopped {
+        didSet {
+            switch playerState {
+            case .Stopped, .Buffering:
+                playerSegmentedControl.setLabel("▶❙❙", forSegment: 1)
+                playerSegmentedControl.enabled = false
+                playerCloseButton.enabled = false
+                playerCloseButton.state = NSOnState
+                playerCloseButton.setNextState()
+
+            case .Playing:
+                playerSegmentedControl.setLabel("❙❙", forSegment: 1)
+                playerSegmentedControl.enabled = true
+                playerCloseButton.enabled = true
+                playerCloseButton.setNextState()
+
+            case .Paused:
+                playerSegmentedControl.setLabel("▶", forSegment: 1)
+                playerSegmentedControl.enabled = true
+                playerCloseButton.enabled = true
+                playerCloseButton.setNextState()
+            }
+        }
+    }
+
+    var playerVisible: Bool = false {
+        didSet {
+            playerCloseButton.state = playerVisible ? NSOffState : NSOnState
+        }
+    }
+
+    // MARK: - Toolbar
 
     @IBAction func playerSegmentTapped(sender: NSSegmentedControl) {
         if sender.selectedSegment == 0 {
