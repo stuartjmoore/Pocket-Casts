@@ -95,6 +95,24 @@
                                         <rect key="frame" x="0.0" y="14" width="178" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <subviews>
+                                            <customView focusRingType="none" translatesAutoresizingMaskIntoConstraints="NO" id="BRs-RK-Tcr">
+                                                <rect key="frame" x="4" y="2" width="170" height="24"/>
+                                                <subviews>
+                                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="3dz-V8-7Ai">
+                                                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="24"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" id="ocC-K7-1Vn"/>
+                                                        </constraints>
+                                                        <animations/>
+                                                    </customView>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="3dz-V8-7Ai" firstAttribute="leading" secondItem="BRs-RK-Tcr" secondAttribute="leading" id="2fS-eH-EkV"/>
+                                                    <constraint firstItem="3dz-V8-7Ai" firstAttribute="top" secondItem="BRs-RK-Tcr" secondAttribute="top" id="ieW-Vx-j3u"/>
+                                                    <constraint firstAttribute="bottom" secondItem="3dz-V8-7Ai" secondAttribute="bottom" id="pp1-dJ-GYI"/>
+                                                </constraints>
+                                                <animations/>
+                                            </customView>
                                             <button verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="zuF-KB-g6j">
                                                 <rect key="frame" x="4" y="2" width="170" height="25"/>
                                                 <animations/>
@@ -130,35 +148,17 @@
                                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                             </textField>
-                                            <customView focusRingType="none" translatesAutoresizingMaskIntoConstraints="NO" id="BRs-RK-Tcr">
-                                                <rect key="frame" x="4" y="4" width="170" height="2"/>
-                                                <subviews>
-                                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="3dz-V8-7Ai">
-                                                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="2"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" id="ocC-K7-1Vn"/>
-                                                        </constraints>
-                                                        <animations/>
-                                                    </customView>
-                                                </subviews>
-                                                <constraints>
-                                                    <constraint firstItem="3dz-V8-7Ai" firstAttribute="leading" secondItem="BRs-RK-Tcr" secondAttribute="leading" id="2fS-eH-EkV"/>
-                                                    <constraint firstItem="3dz-V8-7Ai" firstAttribute="top" secondItem="BRs-RK-Tcr" secondAttribute="top" id="ieW-Vx-j3u"/>
-                                                    <constraint firstAttribute="height" constant="2" id="lnF-Qi-uRa"/>
-                                                    <constraint firstAttribute="bottom" secondItem="3dz-V8-7Ai" secondAttribute="bottom" id="pp1-dJ-GYI"/>
-                                                </constraints>
-                                                <animations/>
-                                            </customView>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="zuF-KB-g6j" firstAttribute="baseline" secondItem="sN8-FM-Ypg" secondAttribute="baseline" constant="1" id="EQB-UX-PUj"/>
+                                            <constraint firstItem="BRs-RK-Tcr" firstAttribute="top" secondItem="zuF-KB-g6j" secondAttribute="top" id="Eap-re-CfV"/>
                                             <constraint firstItem="BRs-RK-Tcr" firstAttribute="trailing" secondItem="zuF-KB-g6j" secondAttribute="trailing" id="LNH-uv-nmj"/>
-                                            <constraint firstItem="BRs-RK-Tcr" firstAttribute="leading" secondItem="zuF-KB-g6j" secondAttribute="leading" id="Nn5-Yo-PkV"/>
+                                            <constraint firstItem="zuF-KB-g6j" firstAttribute="leading" secondItem="BRs-RK-Tcr" secondAttribute="leading" id="Nn5-Yo-PkV"/>
                                             <constraint firstItem="zuF-KB-g6j" firstAttribute="baseline" secondItem="SNt-2i-U3H" secondAttribute="baseline" constant="1" id="RZ0-FN-lsQ"/>
                                             <constraint firstItem="zuF-KB-g6j" firstAttribute="centerX" secondItem="tT4-Bm-RUD" secondAttribute="centerX" id="WJs-DB-FUO"/>
                                             <constraint firstItem="zuF-KB-g6j" firstAttribute="trailing" secondItem="SNt-2i-U3H" secondAttribute="trailing" constant="8" id="a4h-XV-3yR"/>
                                             <constraint firstItem="SNt-2i-U3H" firstAttribute="leading" secondItem="sN8-FM-Ypg" secondAttribute="trailing" constant="8" id="jeA-rH-yqn"/>
-                                            <constraint firstItem="BRs-RK-Tcr" firstAttribute="bottom" secondItem="zuF-KB-g6j" secondAttribute="bottom" id="mwA-Zn-VxL"/>
+                                            <constraint firstItem="BRs-RK-Tcr" firstAttribute="bottom" secondItem="zuF-KB-g6j" secondAttribute="bottom" constant="2" id="mwA-Zn-VxL"/>
                                             <constraint firstItem="sN8-FM-Ypg" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="giO-Gm-TBv" secondAttribute="trailing" constant="8" id="ozf-Fi-jkK"/>
                                             <constraint firstItem="zuF-KB-g6j" firstAttribute="baseline" secondItem="giO-Gm-TBv" secondAttribute="baseline" constant="1" id="rYr-q7-gqW"/>
                                             <constraint firstItem="giO-Gm-TBv" firstAttribute="leading" secondItem="zuF-KB-g6j" secondAttribute="leading" constant="8" id="wA4-9S-pOJ"/>

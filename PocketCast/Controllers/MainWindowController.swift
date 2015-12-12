@@ -49,6 +49,8 @@ class MainWindowController: NSWindowController {
     }
 
     override func awakeFromNib() {
+        progressBarView.layer?.masksToBounds = true
+        progressBarView.layer?.cornerRadius = 6
         progressBarView.layer?.backgroundColor = NSColor(red: 1, green: 0.373, blue: 0.31, alpha: 1).CGColor
     }
 
