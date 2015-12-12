@@ -182,7 +182,7 @@ extension WebViewController: JavascriptDelegate {
         }
 
         guard let showTitle = showTitle, episodeTitle = episodeTitle else {
-            return windowController.episodeTitleToolbarTextFieldCell.title = ""
+            return windowController.episodeTitleToolbarTextField.stringValue = ""
         }
 
         let attributedTitle = NSMutableAttributedString()
@@ -199,7 +199,7 @@ extension WebViewController: JavascriptDelegate {
             NSFontAttributeName: NSFont.boldSystemFontOfSize(13)
         ]))
 
-        windowController.episodeTitleToolbarTextFieldCell.attributedStringValue = attributedTitle
+        windowController.episodeTitleToolbarTextField.attributedStringValue = attributedTitle
         windowController.layoutPlayerDisplay()
     }
 
@@ -209,10 +209,10 @@ extension WebViewController: JavascriptDelegate {
         }
 
         guard let remainingTime = remainingTime else {
-            return windowController.remainingTimeToolbarTextFieldCell.title = ""
+            return windowController.remainingTimeToolbarTextField.stringValue = ""
         }
 
-        windowController.remainingTimeToolbarTextFieldCell.title = remainingTime
+        windowController.remainingTimeToolbarTextField.stringValue = remainingTime
         windowController.layoutPlayerDisplay()
     }
 

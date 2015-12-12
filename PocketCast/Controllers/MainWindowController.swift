@@ -14,9 +14,11 @@ class MainWindowController: NSWindowController {
     @IBOutlet weak var playerSegmentedControl: NSSegmentedControl!
     @IBOutlet weak var playerCloseButton: NSButton!
 
-    @IBOutlet weak var episodeTitleToolbarItem: NSToolbarItem!
-    @IBOutlet weak var episodeTitleToolbarTextFieldCell: NSTextFieldCell!
-    @IBOutlet weak var remainingTimeToolbarTextFieldCell: NSTextFieldCell!
+    @IBOutlet weak var playerDisplayToolbarItem: NSToolbarItem!
+    @IBOutlet weak var playerDisplayView: NSView!
+
+    @IBOutlet weak var episodeTitleToolbarTextField: NSTextField!
+    @IBOutlet weak var remainingTimeToolbarTextField: NSTextField!
 
     private var mediaKeyTap: SPMediaKeyTap?
 
@@ -43,19 +45,8 @@ class MainWindowController: NSWindowController {
     }
 
     func layoutPlayerDisplay() {
-        if episodeTitleToolbarTextFieldCell.attributedStringValue.length > 0 &&
-           remainingTimeToolbarTextFieldCell.attributedStringValue.length > 0 {
-
-            episodeTitleToolbarTextFieldCell.controlView?.invalidateIntrinsicContentSize()
-            remainingTimeToolbarTextFieldCell.controlView?.invalidateIntrinsicContentSize()
-
-            let titleSize = episodeTitleToolbarTextFieldCell.cellSize
-            let timeSize = remainingTimeToolbarTextFieldCell.cellSize
-
-            episodeTitleToolbarItem.minSize.width = ceil(titleSize.width + timeSize.width) + 8 * 3
-            episodeTitleToolbarItem.maxSize.width = ceil(titleSize.width + timeSize.width) + 8 * 3
-        }
-
+        playerDisplayToolbarItem.minSize.width = ceil(playerDisplayView.bounds.size.width) + 12
+        playerDisplayToolbarItem.maxSize.width = ceil(playerDisplayView.bounds.size.width) + 12
     }
 
     // MARK: Toolbar
