@@ -18,23 +18,20 @@ class WebViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let source: String
+        if let sourceCSS = String(resource: "stylesheet", withExtension: "css") {
+            let sourceJS = Javascript.sourceFromCSS(sourceCSS)
+            let userScript = WKUserScript(source: sourceJS, injectionTime: .AtDocumentEnd, forMainFrameOnly: true)
+            let userContentController = WKUserContentController()
+            userContentController.addUserScript(userScript)
 
-        if let sourceURL = NSBundle.mainBundle().URLForResource("stylesheet", withExtension: "css") {
-            source = String(try! NSString(contentsOfURL: sourceURL, encoding: NSUTF8StringEncoding))
-            print(source)
+            let configuration = WKWebViewConfiguration()
+            configuration.userContentController = userContentController
+
+            webView = WKWebView(frame: view.bounds, configuration: configuration)
         } else {
-            source = Javascript.hideToolbarSource + Javascript.changeFontSource
+            webView = WKWebView(frame: view.bounds)
         }
 
-        let userScript = WKUserScript(source: source, injectionTime: .AtDocumentEnd, forMainFrameOnly: true)
-        let userContentController = WKUserContentController()
-        userContentController.addUserScript(userScript)
-
-        let configuration = WKWebViewConfiguration()
-        configuration.userContentController = userContentController
-
-        webView = WKWebView(frame: view.bounds, configuration: configuration)
         webView.navigationDelegate = self
         webView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(webView, positioned: .Below, relativeTo: nil)
@@ -189,4 +186,20 @@ extension WebViewController: JavascriptDelegate {
         }
     }
 
+}
+
+// MARK: -
+
+extension String {
+    init?(resource: String, withExtension: String) {
+        guard let resourceURL = NSBundle.mainBundle().URLForResource(resource, withExtension: withExtension) else {
+            return nil
+        }
+
+        guard let resourceString = try? NSString(contentsOfURL: resourceURL, encoding: NSUTF8StringEncoding) as String else {
+            return nil
+        }
+
+        self = resourceString
+    }
 }
