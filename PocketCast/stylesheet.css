@@ -6,35 +6,54 @@
 //  Copyright © 2015 Stuart Moore. All rights reserved.
 */
 
-/* Hide toolbar */
-document.getElementById('header').style.boxShadow = '0 0 0 0 transparent';
-document.getElementById('header').style.webkitBoxShadow = '0 0 0 0 transparent';
-document.getElementById('header').style.top = '-70px';
-document.getElementById('main').style.paddingTop = 0;
+var styleTag = document.createElement("style");
 
-/* System font */
-document.body.style.fontFamily = '-apple-system';
+styleTag.textContent = '\
+    /* Hide toolbar */\
+    #main {\
+        padding-top: 0;\
+    }\
+    #header {\
+        -webkit-box-shadow: 0 0 0 0 transparent;\
+        box-shadow: 0 0 0 0 transparent;\
+        top: -70px;\
+    }\
+\
+    /* System color highlight */\
+    #content_left .episode_section.selected {\
+        background-color: #577287;\
+    }\
+\
+    /* Remove wide background */\
+    #main #content_container {\
+        background-color: white;\
+    }\
+    media="screen"\
+    @media screen and (max-width: 1722px) and (min-width: 1361px)\
+    #main #content_container #content_row #content_middle {\
+        -webkit-box-shadow: 0 0 0 0 transparent;\
+        box-shadow: 0 0 0 0 transparent;\
+    }\
+\
+    /* Shrink sidebar */\
+    #main #content_container #content_row #content_middle .scrollable {\
+        margin-left: 224px;\
+    }\
+    #main #content_container #content_row #content_left {\
+        width: 224px;\
+    }\
+    #main #content_container #content_row #content_left .scrollable {\
+        width: 224px;\
+    }\
+    #content_left .list .podcast {\
+        width: 224px;\
+    }\
+    #content_left .list .podcast .podcast_text {\
+        width: 149px;\
+    }\
+    #content_left .list .podcast .podcast_text .text, #content_left .list .podcast .podcast_text .title, #content_left .list .podcast .podcast_text .author {\
+        width: 110px;\
+    }\
+';
 
-/* TODO: Most of this doesn’t work */
-
-/* system color highlight */
-/*document.getElementById('content_left').getElementsByClassName('episode_section')[0].getElementsByClassName('selected')[0].style.backgroundColor = '#577287';*/
-
-/* Remove wide background and shadow */
-document.getElementById('content_container').style.backgroundColor = 'white';
-document.getElementById('content_middle').style.webkitBoxShadow = '0 0 0 0 transparent';
-document.getElementById('content_middle').style.boxShadow = '0 0 0 0 transparent';
-
-/* Shrink sidebar */
-document.getElementById('content_middle').getElementsByClassName('scrollable')[0].style.marginLeft = '244px';
-
-document.getElementById('content_left').style.width = '244px';
-document.getElementById('content_left').getElementsByClassName('scrollable')[0].style.width = '244px';
-
-document.getElementById('content_left').getElementsByClassName('list')[0].getElementsByClassName('podcast')[0].style.width = '244px';
-
-document.getElementById('content_left').getElementsByClassName('list')[0].getElementsByClassName('podcast')[0].getElementsByClassName('podcast_text')[0].style.width = '169px';
-
-document.getElementById('content_left').getElementsByClassName('list')[0].getElementsByClassName('podcast')[0].getElementsByClassName('podcast_text')[0].getElementsByClassName('text')[0].style.width = '130px';
-document.getElementById('content_left').getElementsByClassName('list')[0].getElementsByClassName('podcast')[0].getElementsByClassName('podcast_text')[0].getElementsByClassName('title')[0].style.width = '130px';
-document.getElementById('content_left').getElementsByClassName('list')[0].getElementsByClassName('podcast')[0].getElementsByClassName('podcast_text')[0].getElementsByClassName('author')[0].style.width = '130px';
+document.documentElement.appendChild(styleTag);
