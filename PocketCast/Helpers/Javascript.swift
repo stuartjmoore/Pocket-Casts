@@ -33,14 +33,17 @@ class Javascript {
     var episodeTitle: String? { didSet(oldValue) { if oldValue != episodeTitle { delegate?.javascriptEpisodeTitleDidChange(episodeTitle) } } }
     var remainingTime: String? { didSet(oldValue) { if oldValue != remainingTime { delegate?.javascriptRemainingTimeDidChange(remainingTime) } } }
 
-    var currentTimeInterval: NSTimeInterval = 0
-    var remainingTimeInterval: NSTimeInterval = 0
-    var bufferStartTimeInterval: NSTimeInterval = 0
-    var bufferEndTimeInterval: NSTimeInterval = 0
-
-    var currentPercentage: Float = 0 {
+    var currentTimeInterval: NSTimeInterval = 0 {
         didSet(oldValue) {
-            if oldValue != currentPercentage {
+            if oldValue != currentTimeInterval {
+                delegate?.javascriptCurrentPercentageDidChange(currentPercentage)
+            }
+        }
+    }
+
+    var remainingTimeInterval: NSTimeInterval = 0 {
+        didSet(oldValue) {
+            if oldValue != remainingTimeInterval {
                 delegate?.javascriptCurrentPercentageDidChange(currentPercentage)
             }
         }
@@ -79,32 +82,46 @@ class Javascript {
     // MARK: - Timers
 
     @objc private func updatePropertiesTimerDidFire(timer: NSTimer) {
-        showTitle = valueFor("angular.element(document).injector().get('mediaPlayer').episode.podcast.title") as? String
-        episodeTitle = valueFor("angular.element(document).injector().get('mediaPlayer').episode.title") as? String
+        webView.evaluateJavaScript("angular.element(document).injector().get('mediaPlayer').episode.podcast.title") { [weak self] (data, _) in
+            self?.showTitle = data  as? String
+        }
 
-        let remainingTimeDisplay = valueFor("document.getElementById('audio_player').getElementsByClassName('remaining_time')[0].innerText") as? String
-        remainingTime = remainingTimeDisplay != "-00:00" ? remainingTimeDisplay : nil
+        webView.evaluateJavaScript("angular.element(document).injector().get('mediaPlayer').episode.title") { [weak self] (data, _) in
+            self?.episodeTitle = data  as? String
+        }
 
-        currentTimeInterval = valueFor("angular.element(document).injector().get('mediaPlayer').currentTime") as? NSTimeInterval ?? 0
-        remainingTimeInterval = valueFor("angular.element(document).injector().get('mediaPlayer').remainingTime") as? NSTimeInterval ?? 0
-        bufferStartTimeInterval = valueFor("angular.element(document).injector().get('mediaPlayer').bufferStart") as? NSTimeInterval ?? 0
-        bufferEndTimeInterval = valueFor("angular.element(document).injector().get('mediaPlayer').bufferEnd") as? NSTimeInterval ?? 0
+        webView.evaluateJavaScript("document.getElementById('audio_player').getElementsByClassName('remaining_time')[0].innerText") { [weak self] (data, _) in
+            let remainingTimeDisplay = data  as? String
+            self?.remainingTime = remainingTimeDisplay != "-00:00" ? remainingTimeDisplay : nil
+        }
 
-        let percentage = Float(currentTimeInterval / (currentTimeInterval + remainingTimeInterval))
-        currentPercentage = percentage.isFinite ? max(0, min(percentage, 1)) : 0
+        webView.evaluateJavaScript("angular.element(document).injector().get('mediaPlayer').currentTime") { [weak self] (data, _) in
+            self?.currentTimeInterval = data  as? NSTimeInterval ?? 0
+        }
 
-        let isPlaying = valueFor("angular.element(document).injector().get('mediaPlayer').playing") as? Bool ?? false
+        webView.evaluateJavaScript("angular.element(document).injector().get('mediaPlayer').remainingTime") { [weak self] (data, _) in
+            self?.remainingTimeInterval = data  as? NSTimeInterval ?? 0
+        }
 
-        if episodeTitle == nil {
-            playerState = .Stopped
-        } else if isPlaying {
-            playerState = .Playing
-        } else {
-            playerState = .Paused
-        } // TODO: add .Buffering
+        webView.evaluateJavaScript("angular.element(document).injector().get('mediaPlayer').playing") { [weak self] (data, _) in
+            let isPlaying = data  as? Bool ?? false
+
+            if self?.episodeTitle == nil {
+                self?.playerState = .Stopped
+            } else if isPlaying {
+                self?.playerState = .Playing
+            } else {
+                self?.playerState = .Paused
+            } // TODO: add .Buffering
+        }
     }
 
     // MARK: -
+
+    var currentPercentage: Float {
+        let percentage = Float(currentTimeInterval / (currentTimeInterval + remainingTimeInterval))
+        return percentage.isFinite ? max(0, min(percentage, 1)) : 0
+    }
 
     var playerVisible: Bool {
         guard let paddingBottomString = valueFor("document.getElementById('main').style.paddingBottom") as? String else {
@@ -121,6 +138,8 @@ class Javascript {
 
         return (paddingBottom != 0)
     }
+
+    // MARK: -
 
     enum MenuItem {
         case Link(String, NSURL)
@@ -152,6 +171,8 @@ class Javascript {
 
         return items
     }
+
+    // MARK: -
 
     func searchText(text: String) {
         webView.evaluateJavaScript("document.getElementById('search_input_value').value = '\(text)';", completionHandler:  nil)
