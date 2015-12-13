@@ -15,6 +15,7 @@
 		A441E3B01B4FF0BE008DBC37 /* NSObject+SPInvocationGrabbing.m in Sources */ = {isa = PBXBuildFile; fileRef = A441E3AD1B4FF0BE008DBC37 /* NSObject+SPInvocationGrabbing.m */; };
 		A441E3B11B4FF0BE008DBC37 /* SPMediaKeyTap.m in Sources */ = {isa = PBXBuildFile; fileRef = A441E3AF1B4FF0BE008DBC37 /* SPMediaKeyTap.m */; };
 		C160BC1E1C1CC6020047EAE9 /* stylesheet.css in Resources */ = {isa = PBXBuildFile; fileRef = C160BC1D1C1CC6020047EAE9 /* stylesheet.css */; };
+		C1E7E6A31C1E082800089E26 /* DockProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E7E6A21C1E082800089E26 /* DockProgressView.swift */; };
 		C80F65D61ADE156C00277D77 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80F65D51ADE156C00277D77 /* AppDelegate.swift */; };
 		C80F65D81ADE156C00277D77 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C80F65D71ADE156C00277D77 /* Images.xcassets */; };
 		C80F65F81ADE2BEE00277D77 /* MyApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = C80F65F71ADE2BEE00277D77 /* MyApplication.swift */; };
@@ -32,6 +33,7 @@
 		A441E3AE1B4FF0BE008DBC37 /* SPMediaKeyTap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPMediaKeyTap.h; sourceTree = "<group>"; };
 		A441E3AF1B4FF0BE008DBC37 /* SPMediaKeyTap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPMediaKeyTap.m; sourceTree = "<group>"; };
 		C160BC1D1C1CC6020047EAE9 /* stylesheet.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = stylesheet.css; path = PocketCast/stylesheet.css; sourceTree = "<group>"; };
+		C1E7E6A21C1E082800089E26 /* DockProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DockProgressView.swift; path = PocketCast/Views/DockProgressView.swift; sourceTree = "<group>"; };
 		C80F65D01ADE156C00277D77 /* Pocket Casts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pocket Casts.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C80F65D41ADE156C00277D77 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = PocketCast/Info.plist; sourceTree = "<group>"; };
 		C80F65D51ADE156C00277D77 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -99,10 +101,19 @@
 			path = SPInvocationGrabbing;
 			sourceTree = "<group>";
 		};
+		C1E7E6A11C1E07FB00089E26 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C1E7E6A21C1E082800089E26 /* DockProgressView.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		C80F65C71ADE156C00277D77 = {
 			isa = PBXGroup;
 			children = (
 				C80F65D21ADE156C00277D77 /* Controllers */,
+				C1E7E6A11C1E07FB00089E26 /* Views */,
 				17AF11591C0FCEA400620A32 /* Helpers */,
 				17AF11581C0FCE8A00620A32 /* Libraries */,
 				17AF11571C0FCE4F00620A32 /* Supporting Files */,
@@ -208,6 +219,7 @@
 				C80F65F81ADE2BEE00277D77 /* MyApplication.swift in Sources */,
 				1716B8B21C179B0D00BE83D0 /* MainWindowController.swift in Sources */,
 				1716B8B71C179B3400BE83D0 /* LoginViewController.swift in Sources */,
+				C1E7E6A31C1E082800089E26 /* DockProgressView.swift in Sources */,
 				C80F65D61ADE156C00277D77 /* AppDelegate.swift in Sources */,
 				A441E3B11B4FF0BE008DBC37 /* SPMediaKeyTap.m in Sources */,
 				17AF115B1C0FCF1900620A32 /* Javascript.swift in Sources */,

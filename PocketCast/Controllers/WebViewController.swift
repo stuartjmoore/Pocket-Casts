@@ -176,6 +176,17 @@ extension WebViewController: JavascriptDelegate {
 
     func javascriptCurrentPercentageDidChange(currentPercentage: Float) {
         windowController?.progressPercentage = currentPercentage
+
+        if let dockView = NSApplication.sharedApplication().dockTile.contentView as? DockProgressView {
+            dockView.percentage = currentPercentage
+            NSApp.dockTile.display()
+        } else {
+            let dockView = DockProgressView()
+            dockView.percentage = currentPercentage
+
+            NSApplication.sharedApplication().dockTile.contentView = dockView
+            NSApp.dockTile.display()
+        }
     }
 
     func javascriptPlayerStateDidChange(playerState: PlayerState) {
