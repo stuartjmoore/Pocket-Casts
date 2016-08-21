@@ -25,7 +25,6 @@ import WebKit
         window.movableByWindowBackground = true
         // TODO: Set red gradient view underneath
         // window.titlebarAppearsTransparent = true
-        window.titleVisibility = .Hidden
     }
 
     func applicationShouldHandleReopen(sender: NSApplication, hasVisibleWindows visibleWindows: Bool) -> Bool {
