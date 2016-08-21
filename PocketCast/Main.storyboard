@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="9PK-L3-Vl5">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="9PK-L3-Vl5">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9060"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
     </dependencies>
     <scenes>
         <!--Window Controller-->
@@ -24,7 +24,6 @@
                                     <searchField key="view" wantsLayer="YES" verticalHuggingPriority="750" id="MFk-U3-JjR">
                                         <rect key="frame" x="0.0" y="14" width="96" height="22"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <animations/>
                                         <searchFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" sendsSearchStringImmediately="YES" sendsWholeSearchString="YES" id="SSW-4m-nhq">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -39,7 +38,6 @@
                                     <button key="view" verticalHuggingPriority="750" id="W6t-2M-28K">
                                         <rect key="frame" x="10" y="14" width="32" height="28"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <animations/>
                                         <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="NSActionTemplate" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="XzT-72-TkU">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -56,7 +54,6 @@
                                     <button key="view" verticalHuggingPriority="750" id="RIl-fM-tIb">
                                         <rect key="frame" x="20" y="14" width="32" height="29"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <animations/>
                                         <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="NSListViewTemplate" imagePosition="overlaps" alignment="center" enabled="NO" imageScaling="proportionallyDown" inset="2" id="AYW-EQ-pxv">
                                             <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -73,7 +70,6 @@
                                     <segmentedControl key="view" verticalHuggingPriority="750" id="f0s-oS-caz">
                                         <rect key="frame" x="0.0" y="14" width="116" height="25"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <animations/>
                                         <segmentedCell key="cell" enabled="NO" borderStyle="border" alignment="left" style="texturedSquare" trackingMode="momentary" id="QNS-Ip-wjx">
                                             <font key="font" metaFont="system"/>
                                             <segments>
@@ -103,7 +99,6 @@
                                                         <constraints>
                                                             <constraint firstAttribute="width" id="ocC-K7-1Vn"/>
                                                         </constraints>
-                                                        <animations/>
                                                     </customView>
                                                 </subviews>
                                                 <constraints>
@@ -111,11 +106,9 @@
                                                     <constraint firstItem="3dz-V8-7Ai" firstAttribute="top" secondItem="BRs-RK-Tcr" secondAttribute="top" id="ieW-Vx-j3u"/>
                                                     <constraint firstAttribute="bottom" secondItem="3dz-V8-7Ai" secondAttribute="bottom" id="pp1-dJ-GYI"/>
                                                 </constraints>
-                                                <animations/>
                                             </customView>
                                             <button verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="zuF-KB-g6j">
                                                 <rect key="frame" x="4" y="2" width="170" height="25"/>
-                                                <animations/>
                                                 <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="xoT-3Q-RJk">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
@@ -123,7 +116,6 @@
                                             </button>
                                             <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="giO-Gm-TBv">
                                                 <rect key="frame" x="10" y="8" width="41" height="17"/>
-                                                <animations/>
                                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="center" title="Show" usesSingleLineMode="YES" id="Qej-zc-1Bt">
                                                     <font key="font" metaFont="systemLight" size="13"/>
                                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -132,7 +124,6 @@
                                             </textField>
                                             <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="sN8-FM-Ypg">
                                                 <rect key="frame" x="55" y="8" width="58" height="17"/>
-                                                <animations/>
                                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="center" title="Episode" usesSingleLineMode="YES" id="vcF-4T-b0k">
                                                     <font key="font" metaFont="systemMedium" size="13"/>
                                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -141,7 +132,6 @@
                                             </textField>
                                             <textField horizontalHuggingPriority="1000" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="SNt-2i-U3H">
                                                 <rect key="frame" x="117" y="8" width="51" height="17"/>
-                                                <animations/>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="center" title="-00:00" placeholderString="" usesSingleLineMode="YES" id="dqp-0o-gJb">
                                                     <font key="font" metaFont="systemLight" size="13"/>
                                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -164,7 +154,6 @@
                                             <constraint firstItem="giO-Gm-TBv" firstAttribute="leading" secondItem="zuF-KB-g6j" secondAttribute="leading" constant="8" id="wA4-9S-pOJ"/>
                                             <constraint firstAttribute="centerY" secondItem="zuF-KB-g6j" secondAttribute="centerY" id="zLN-O8-1iH"/>
                                         </constraints>
-                                        <animations/>
                                     </customView>
                                 </toolbarItem>
                             </allowedToolbarItems>
@@ -203,7 +192,6 @@
                     <view key="view" focusRingType="none" id="LDY-2F-JJN">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
                     </view>
                     <connections>
                         <segue destination="1yl-7M-Mrb" kind="sheet" identifier="LoginSheetIdentifier" id="Ntn-zz-zNe"/>
@@ -220,7 +208,6 @@
                     <view key="view" id="ghf-3Q-yV4">
                         <rect key="frame" x="0.0" y="0.0" width="500" height="500"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
                     </view>
                 </viewController>
                 <customObject id="fzm-ax-92t" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
