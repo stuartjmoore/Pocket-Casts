@@ -11,16 +11,16 @@ import WebKit
 
 class WebViewController: NSViewController {
 
-    private var javascript: Javascript!
-    private var loginSheet: NSPanel!
-    private var webView: WKWebView!
+    fileprivate var javascript: Javascript!
+    fileprivate var loginSheet: NSPanel!
+    fileprivate var webView: WKWebView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         if let sourceCSS = String(resource: "stylesheet", withExtension: "css") {
             let sourceJS = Javascript.sourceFromCSS(sourceCSS)
-            let userScript = WKUserScript(source: sourceJS, injectionTime: .AtDocumentEnd, forMainFrameOnly: true)
+            let userScript = WKUserScript(source: sourceJS, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
             let userContentController = WKUserContentController()
             userContentController.addUserScript(userScript)
 
@@ -34,16 +34,16 @@ class WebViewController: NSViewController {
 
         webView.navigationDelegate = self
         webView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(webView, positioned: .Below, relativeTo: nil)
+        view.addSubview(webView, positioned: .below, relativeTo: nil)
 
-        view.topAnchor.constraintEqualToAnchor(webView.topAnchor).active = true
-        view.leadingAnchor.constraintEqualToAnchor(webView.leadingAnchor).active = true
-        view.bottomAnchor.constraintEqualToAnchor(webView.bottomAnchor).active = true
-        view.trailingAnchor.constraintEqualToAnchor(webView.trailingAnchor).active = true
+        view.topAnchor.constraint(equalTo: webView.topAnchor).isActive = true
+        view.leadingAnchor.constraint(equalTo: webView.leadingAnchor).isActive = true
+        view.bottomAnchor.constraint(equalTo: webView.bottomAnchor).isActive = true
+        view.trailingAnchor.constraint(equalTo: webView.trailingAnchor).isActive = true
 
-        if let pocketCastsURL = NSURL(string: "https://play.pocketcasts.com/web") {
-            let pocketCastsRequest = NSURLRequest(URL: pocketCastsURL)
-            webView.loadRequest(pocketCastsRequest)
+        if let pocketCastsURL = URL(string: "https://play.pocketcasts.com/web") {
+            let pocketCastsRequest = URLRequest(url: pocketCastsURL)
+            webView.load(pocketCastsRequest)
         } else {
             fatalError("Unable to create Pocket Casts URL.")
         }
@@ -52,14 +52,14 @@ class WebViewController: NSViewController {
         javascript.delegate = self
     }
 
-    func loadRequest(request: NSURLRequest) {
-        webView.loadRequest(request)
+    func loadRequest(_ request: URLRequest) {
+        webView.load(request)
     }
 
     // MARK: - Javascript
 
     var isPlaying: Bool {
-        return javascript.playerState == .Playing
+        return javascript.playerState == .playing
     }
 
     var playerVisible: Bool {
@@ -100,17 +100,17 @@ class WebViewController: NSViewController {
         */
     }
 
-    func settingMenuDidSelect(menuItem: NSMenuItem) {
-        if let index = menuItem.menu?.indexOfItem(menuItem) {
+    func settingMenuDidSelect(_ menuItem: NSMenuItem) {
+        if let index = menuItem.menu?.index(of: menuItem) {
             let item = javascript.settingsMenuItems[index]
             switch item {
-            case .Link(_, let url):
+            case .link(_, let url):
                 // TODO: sign out doesn't work
-                NSWorkspace.sharedWorkspace().openURL(url)
-            case .Action(_, _):
+                NSWorkspace.shared().open(url)
+            case .action(_, _):
                 // TODO: action
                 break
-            case .Separator:
+            case .separator:
                 break
             }
         }
@@ -130,24 +130,24 @@ class WebViewController: NSViewController {
 
 extension WebViewController: WKNavigationDelegate {
 
-    func webView(webView: WKWebView, decidePolicyForNavigationAction navigationAction: WKNavigationAction, decisionHandler: (WKNavigationActionPolicy) -> Void) {
-        if navigationAction.request.URL?.path == "/account", let url = navigationAction.request.URL {
-            NSWorkspace.sharedWorkspace().openURL(url)
-            decisionHandler(.Cancel)
-        } else if navigationAction.request.URL?.path == "/users/sign_in" {
-            performSegueWithIdentifier("LoginSheetIdentifier", sender: navigationAction.request)
-            decisionHandler(.Cancel)
-        } else if navigationAction.navigationType == .LinkActivated, let url = navigationAction.request.URL {
-            NSWorkspace.sharedWorkspace().openURL(url)
-            decisionHandler(.Cancel)
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        if navigationAction.request.url?.path == "/account", let url = navigationAction.request.url {
+            NSWorkspace.shared().open(url)
+            decisionHandler(.cancel)
+        } else if navigationAction.request.url?.path == "/users/sign_in" {
+            performSegue(withIdentifier: "LoginSheetIdentifier", sender: navigationAction.request)
+            decisionHandler(.cancel)
+        } else if navigationAction.navigationType == .linkActivated, let url = navigationAction.request.url {
+            NSWorkspace.shared().open(url)
+            decisionHandler(.cancel)
         } else {
-            decisionHandler(.Allow)
+            decisionHandler(.allow)
         }
     }
 
-    override func prepareForSegue(segue: NSStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
         if segue.identifier == "LoginSheetIdentifier",
-        let loginViewController = segue.destinationController as? LoginViewController, request = sender as? NSURLRequest {
+        let loginViewController = segue.destinationController as? LoginViewController, let request = sender as? URLRequest {
             loginViewController.request = request
         }
     }
@@ -162,37 +162,37 @@ extension WebViewController: JavascriptDelegate {
         return view.window?.windowController as? MainWindowController
     }
 
-    func javascriptShowTitleDidChange(showTitle: String?) {
+    func javascriptShowTitleDidChange(_ showTitle: String?) {
         windowController?.showTitle = showTitle
     }
 
-    func javascriptEpisodeTitleDidChange(episodeTitle: String?) {
+    func javascriptEpisodeTitleDidChange(_ episodeTitle: String?) {
         windowController?.episodeTitle = episodeTitle
     }
 
-    func javascriptRemainingTimeDidChange(remainingTime: String?) {
+    func javascriptRemainingTimeDidChange(_ remainingTime: String?) {
         windowController?.remainingTimeText = remainingTime
     }
 
-    func javascriptCurrentPercentageDidChange(currentPercentage: Float) {
+    func javascriptCurrentPercentageDidChange(_ currentPercentage: Float) {
         windowController?.progressPercentage = currentPercentage
 
-        if let dockView = NSApplication.sharedApplication().dockTile.contentView as? DockProgressView {
+        if let dockView = NSApplication.shared().dockTile.contentView as? DockProgressView {
             dockView.percentage = currentPercentage
             NSApp.dockTile.display()
         } else {
             let dockView = DockProgressView()
             dockView.percentage = currentPercentage
 
-            NSApplication.sharedApplication().dockTile.contentView = dockView
+            NSApplication.shared().dockTile.contentView = dockView
             NSApp.dockTile.display()
         }
     }
 
-    func javascriptPlayerStateDidChange(playerState: PlayerState) {
+    func javascriptPlayerStateDidChange(_ playerState: PlayerState) {
         windowController?.playerState = playerState
 
-        if playerState == .Paused || playerState == .Playing  {
+        if playerState == .paused || playerState == .playing  {
             windowController?.playerVisible = javascript.playerVisible
         }
     }
@@ -203,11 +203,11 @@ extension WebViewController: JavascriptDelegate {
 
 extension String {
     init?(resource: String, withExtension: String) {
-        guard let resourceURL = NSBundle.mainBundle().URLForResource(resource, withExtension: withExtension) else {
+        guard let resourceURL = Bundle.main.url(forResource: resource, withExtension: withExtension) else {
             return nil
         }
 
-        guard let resourceString = try? NSString(contentsOfURL: resourceURL, encoding: NSUTF8StringEncoding) as String else {
+        guard let resourceString = try? String(contentsOf: resourceURL, encoding: .utf8) else {
             return nil
         }
 

@@ -14,11 +14,11 @@ import Cocoa
         super.init()
     }
 
-    override func sendEvent(theEvent: NSEvent) {
+    override func sendEvent(_ theEvent: NSEvent) {
         let shouldHandleMediaKeyLocally = !SPMediaKeyTap.usesGlobalMediaKeyTap()
 
         if shouldHandleMediaKeyLocally
-        && theEvent.type == NSEventType.SystemDefined
+        && theEvent.type == .systemDefined
         && Int32(theEvent.subtype.rawValue) == SPSystemDefinedEventMediaKeys {
             if let delegate = self.delegate as? AppDelegate {
                 delegate.mediaKeyTap(nil, receivedMediaKeyEvent: theEvent)

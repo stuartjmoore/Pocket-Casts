@@ -24,7 +24,7 @@ class MainWindowController: NSWindowController {
 
     @IBOutlet weak var progressBarViewConstraint: NSLayoutConstraint!
 
-    private var mediaKeyTap: SPMediaKeyTap?
+    fileprivate var mediaKeyTap: SPMediaKeyTap?
 
     var webViewController: WebViewController! {
         return window?.contentViewController as? WebViewController
@@ -32,13 +32,13 @@ class MainWindowController: NSWindowController {
 
     override func windowDidLoad() {
         shouldCascadeWindows = false
-        window?.titleVisibility = .Hidden
+        window?.titleVisibility = .hidden
         window?.setFrameAutosaveName("Main Window")
         windowFrameAutosaveName = "Main Window"
 
         super.windowDidLoad()
 
-        (NSApplication.sharedApplication().delegate as? AppDelegate)?.window = window
+        (NSApplication.shared().delegate as? AppDelegate)?.window = window
 
         mediaKeyTap = SPMediaKeyTap(delegate: self)
 
@@ -56,7 +56,7 @@ class MainWindowController: NSWindowController {
 
         progressBarView.layer?.masksToBounds = true
         progressBarView.layer?.cornerRadius = 6
-        progressBarView.layer?.backgroundColor = NSColor(red: 1, green: 0.373, blue: 0.31, alpha: 1).CGColor
+        progressBarView.layer?.backgroundColor = NSColor(red: 1, green: 0.373, blue: 0.31, alpha: 1).cgColor
     }
 
     func layoutPlayerDisplay() {
@@ -101,25 +101,25 @@ class MainWindowController: NSWindowController {
         }
     }
 
-    var playerState: PlayerState = .Stopped {
+    var playerState: PlayerState = .stopped {
         didSet {
             switch playerState {
-            case .Stopped, .Buffering:
+            case .stopped, .buffering:
                 playerSegmentedControl.setLabel("▶❙❙", forSegment: 1)
-                playerSegmentedControl.enabled = false
-                playerCloseButton.enabled = false
+                playerSegmentedControl.isEnabled = false
+                playerCloseButton.isEnabled = false
                 playerCloseButton.state = NSOnState
                 playerCloseButton.setNextState()
 
-            case .Playing:
+            case .playing:
                 playerSegmentedControl.setLabel("❙❙", forSegment: 1)
-                playerSegmentedControl.enabled = true
-                playerCloseButton.enabled = true
+                playerSegmentedControl.isEnabled = true
+                playerCloseButton.isEnabled = true
 
-            case .Paused:
+            case .paused:
                 playerSegmentedControl.setLabel("▶", forSegment: 1)
-                playerSegmentedControl.enabled = true
-                playerCloseButton.enabled = true
+                playerSegmentedControl.isEnabled = true
+                playerCloseButton.isEnabled = true
             }
         }
     }
@@ -133,7 +133,7 @@ class MainWindowController: NSWindowController {
 
     // MARK: - Toolbar
 
-    @IBAction func playerSegmentTapped(sender: NSSegmentedControl) {
+    @IBAction func playerSegmentTapped(_ sender: NSSegmentedControl) {
         if sender.selectedSegment == 0 {
             webViewController.jumpBack()
         } else if sender.selectedSegment == 1 {
@@ -143,11 +143,11 @@ class MainWindowController: NSWindowController {
         }
     }
 
-    @IBAction func settingsTapped(sender: NSButton) {
+    @IBAction func settingsTapped(_ sender: NSButton) {
         webViewController.clickSettingsButton()
     }
 
-    @IBAction func togglePlayerTapped(sender: NSButton) {
+    @IBAction func togglePlayerTapped(_ sender: NSButton) {
         if webViewController.playerVisible {
             webViewController.hidePlayer()
             sender.state = NSOnState
@@ -161,7 +161,7 @@ class MainWindowController: NSWindowController {
 
     // MARK: Media Keys
 
-    override func mediaKeyTap(mediaKeyTap: SPMediaKeyTap?, receivedMediaKeyEvent event: NSEvent) {
+    override func mediaKeyTap(_ mediaKeyTap: SPMediaKeyTap?, receivedMediaKeyEvent event: NSEvent) {
         let keyCode = Int((event.data1 & 0xFFFF0000) >> 16)
         let keyFlags = (event.data1 & 0x0000FFFF)
         let keyIsPressed = (((keyFlags & 0xFF00) >> 8)) == 0xA
@@ -186,10 +186,10 @@ class MainWindowController: NSWindowController {
 }
 
 extension NSFont {
-    func fontByAddingAttribute(input: [Int: Int]) -> NSFont? {
+    func fontByAddingAttribute(_ input: [Int: Int]) -> NSFont? {
         let attribute = input.map({ [NSFontFeatureTypeIdentifierKey: $0, NSFontFeatureSelectorIdentifierKey: $1] })
         let attributes = [NSFontFeatureSettingsAttribute: attribute]
-        let attributedFontDescriptor = fontDescriptor.fontDescriptorByAddingAttributes(attributes)
+        let attributedFontDescriptor = fontDescriptor.addingAttributes(attributes)
         return NSFont(descriptor: attributedFontDescriptor, size: 0)
     }
 }

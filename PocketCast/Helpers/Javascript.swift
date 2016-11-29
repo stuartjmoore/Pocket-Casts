@@ -10,22 +10,22 @@ import Foundation
 import WebKit
 
 protocol JavascriptDelegate: class {
-    func javascriptShowTitleDidChange(title: String?)
-    func javascriptEpisodeTitleDidChange(title: String?)
-    func javascriptRemainingTimeDidChange(remainingTime: String?)
+    func javascriptShowTitleDidChange(_ title: String?)
+    func javascriptEpisodeTitleDidChange(_ title: String?)
+    func javascriptRemainingTimeDidChange(_ remainingTime: String?)
 
-    func javascriptCurrentPercentageDidChange(currentPercentage: Float)
-    func javascriptPlayerStateDidChange(playerState: PlayerState)
+    func javascriptCurrentPercentageDidChange(_ currentPercentage: Float)
+    func javascriptPlayerStateDidChange(_ playerState: PlayerState)
 }
 
 enum PlayerState {
-    case Stopped, Buffering, Playing, Paused
+    case stopped, buffering, playing, paused
 }
 
 class Javascript {
 
-    private let webView: WKWebView
-    private var updatePropertiesTimer: NSTimer!
+    fileprivate let webView: WKWebView
+    fileprivate var updatePropertiesTimer: Timer!
 
     weak var delegate: JavascriptDelegate?
 
@@ -33,7 +33,7 @@ class Javascript {
     var episodeTitle: String? { didSet(oldValue) { if oldValue != episodeTitle { delegate?.javascriptEpisodeTitleDidChange(episodeTitle) } } }
     var remainingTime: String? { didSet(oldValue) { if oldValue != remainingTime { delegate?.javascriptRemainingTimeDidChange(remainingTime) } } }
 
-    var currentTimeInterval: NSTimeInterval = 0 {
+    var currentTimeInterval: TimeInterval = 0 {
         didSet(oldValue) {
             if oldValue != currentTimeInterval {
                 delegate?.javascriptCurrentPercentageDidChange(currentPercentage)
@@ -41,7 +41,7 @@ class Javascript {
         }
     }
 
-    var remainingTimeInterval: NSTimeInterval = 0 {
+    var remainingTimeInterval: TimeInterval = 0 {
         didSet(oldValue) {
             if oldValue != remainingTimeInterval {
                 delegate?.javascriptCurrentPercentageDidChange(currentPercentage)
@@ -51,7 +51,7 @@ class Javascript {
 
     var playerState: PlayerState? {
         didSet(oldValue) {
-            if let playerState = playerState where oldValue != playerState {
+            if let playerState = playerState, oldValue != playerState {
                 delegate?.javascriptPlayerStateDidChange(playerState)
             }
         }
@@ -59,8 +59,8 @@ class Javascript {
 
     // MARK: -
 
-    class func sourceFromCSS(css: String) -> String {
-        let strippedCSS = css.stringByReplacingOccurrencesOfString("\n", withString: " ")
+    class func sourceFromCSS(_ css: String) -> String {
+        let strippedCSS = css.replacingOccurrences(of: "\n", with: " ")
         return "var styleTag = document.createElement('style');" +
                "styleTag.textContent = '\(strippedCSS)';" +
                "document.documentElement.appendChild(styleTag);"
@@ -71,9 +71,9 @@ class Javascript {
     init(webView: WKWebView) {
         self.webView = webView
 
-        updatePropertiesTimer = NSTimer.scheduledTimerWithTimeInterval(0.5,
+        updatePropertiesTimer = Timer.scheduledTimer(timeInterval: 0.5,
             target: self,
-            selector: "updatePropertiesTimerDidFire:",
+            selector: #selector(updatePropertiesTimerDidFire(_:)),
             userInfo: nil,
             repeats: true
         )
@@ -81,7 +81,7 @@ class Javascript {
 
     // MARK: - Timers
 
-    @objc private func updatePropertiesTimerDidFire(timer: NSTimer) {
+    @objc fileprivate func updatePropertiesTimerDidFire(_ timer: Timer) {
         webView.evaluateJavaScript("angular.element(document).injector().get('mediaPlayer').episode.podcast.title") { [weak self] (data, _) in
             self?.showTitle = data  as? String
         }
@@ -96,22 +96,22 @@ class Javascript {
         }
 
         webView.evaluateJavaScript("angular.element(document).injector().get('mediaPlayer').currentTime") { [weak self] (data, _) in
-            self?.currentTimeInterval = data  as? NSTimeInterval ?? 0
+            self?.currentTimeInterval = data  as? TimeInterval ?? 0
         }
 
         webView.evaluateJavaScript("angular.element(document).injector().get('mediaPlayer').remainingTime") { [weak self] (data, _) in
-            self?.remainingTimeInterval = data  as? NSTimeInterval ?? 0
+            self?.remainingTimeInterval = data  as? TimeInterval ?? 0
         }
 
         webView.evaluateJavaScript("angular.element(document).injector().get('mediaPlayer').playing") { [weak self] (data, _) in
             let isPlaying = data  as? Bool ?? false
 
             if self?.episodeTitle == nil {
-                self?.playerState = .Stopped
+                self?.playerState = .stopped
             } else if isPlaying {
-                self?.playerState = .Playing
+                self?.playerState = .playing
             } else {
-                self?.playerState = .Paused
+                self?.playerState = .paused
             } // TODO: add .Buffering
         }
     }
@@ -132,7 +132,7 @@ class Javascript {
             return true // HACK: First pass doesn’t return values
         }
 
-        guard let paddingBottom = Int(paddingBottomString.stringByTrimmingCharactersInSet(.letterCharacterSet())) else {
+        guard let paddingBottom = Int(paddingBottomString.trimmingCharacters(in: .letters)) else {
             return false
         }
 
@@ -142,9 +142,9 @@ class Javascript {
     // MARK: -
 
     enum MenuItem {
-        case Link(String, NSURL)
-        case Action(String, String)
-        case Separator
+        case link(String, URL)
+        case action(String, String)
+        case separator
     }
 
     var settingsMenuItems: [MenuItem] {
@@ -156,16 +156,16 @@ class Javascript {
             return []
         }
 
-        let titles: [String?] = titleStrings.map({ $0 == "" ? nil : $0.stringByTrimmingCharactersInSet(.newlineCharacterSet()) })
+        let titles: [String?] = titleStrings.map({ $0 == "" ? nil : $0.trimmingCharacters(in: .newlines) })
         let actions: [String?] = actionStrings.map({ $0 == "" ? nil : $0 })
 
         let items: [MenuItem] = zip(titles, actions).map({ (title, action) in
-            if let title = title, action = action, url = NSURL(string: action) /* TODO: where hasPrefix("http") */ {
-                return .Link(title, url)
-            } else if let title = title, action = action {
-                return .Action(title, action)
+            if let title = title, let action = action, let url = URL(string: action) /* TODO: where hasPrefix("http") */ {
+                return .link(title, url)
+            } else if let title = title, let action = action {
+                return .action(title, action)
             } else {
-                return .Separator
+                return .separator
             }
         })
 
@@ -174,7 +174,7 @@ class Javascript {
 
     // MARK: -
 
-    func searchText(text: String) {
+    func searchText(_ text: String) {
         webView.evaluateJavaScript("document.getElementById('search_input_value').value = '\(text)';", completionHandler:  nil)
         // angular.element("#search_input_value").scope().inputChangeHandler("alison")
         //
@@ -209,7 +209,7 @@ class Javascript {
 
     // MARK: -
 
-    private func valueFor(javascript: String) -> Any? {
+    fileprivate func valueFor(_ javascript: String) -> Any? {
         var value: Any?
         var finished = false
 
@@ -219,7 +219,7 @@ class Javascript {
         }
 
         while !finished {
-            NSRunLoop.currentRunLoop().runMode(NSDefaultRunLoopMode, beforeDate: NSDate.distantFuture())
+            RunLoop.current.run(mode: .defaultRunLoopMode, before: .distantFuture)
         }
 
         return value
@@ -229,23 +229,23 @@ class Javascript {
 
 extension JavascriptDelegate {
 
-    func javascriptShowTitleDidChange(title: String?) {
+    func javascriptShowTitleDidChange(_ title: String?) {
         return
     }
 
-    func javascriptEpisodeTitleDidChange(title: String?) {
+    func javascriptEpisodeTitleDidChange(_ title: String?) {
         return
     }
 
-    func javascriptRemainingTimeDidChange(remainingTime: String?) {
+    func javascriptRemainingTimeDidChange(_ remainingTime: String?) {
         return
     }
 
-    func javascriptCurrentPercentageDidChange(currentPercentage: Float) {
+    func javascriptCurrentPercentageDidChange(_ currentPercentage: Float) {
         return
     }
 
-    func javascriptPlayerStateDidChange(playerState: PlayerState) {
+    func javascriptPlayerStateDidChange(_ playerState: PlayerState) {
         return
     }
     

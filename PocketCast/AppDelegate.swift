@@ -15,19 +15,19 @@ import WebKit
 
     override init() {
         let whitelist = [kMediaKeyUsingBundleIdentifiersDefaultsKey: SPMediaKeyTap.defaultMediaKeyUserBundleIdentifiers()]
-        NSUserDefaults.standardUserDefaults().registerDefaults(whitelist)
+        UserDefaults.standard.register(defaults: whitelist)
     }
 
-    func applicationDidFinishLaunching(aNotification: NSNotification) {
+    func applicationDidFinishLaunching(_ aNotification: Notification) {
         // TODO: Figure out how to get the webView’s scrollViews underneath
         // window.appearance = NSAppearance(named: NSAppearanceNameVibrantLight)
         // window.styleMask |= NSFullSizeContentViewWindowMask
-        window.movableByWindowBackground = true
+        window.isMovableByWindowBackground = true
         // TODO: Set red gradient view underneath
         // window.titlebarAppearsTransparent = true
     }
 
-    func applicationShouldHandleReopen(sender: NSApplication, hasVisibleWindows visibleWindows: Bool) -> Bool {
+    func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows visibleWindows: Bool) -> Bool {
         if visibleWindows {
             window.orderFront(self)
         } else {
@@ -39,7 +39,7 @@ import WebKit
 
     // MARK: - Exit
 
-    func applicationWillTerminate(aNotification: NSNotification) {
+    func applicationWillTerminate(_ aNotification: Notification) {
         return
     }
 

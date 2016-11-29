@@ -14,15 +14,15 @@ class DockProgressView: NSView {
 
     var percentage: Float = 0 {
         didSet {
-            setNeedsDisplayInRect(bounds)
+            setNeedsDisplay(bounds)
         }
     }
 
-    override func drawRect(dirtyRect: NSRect) {
-        super.drawRect(dirtyRect)
+    override func draw(_ dirtyRect: NSRect) {
+        super.draw(dirtyRect)
 
-        let icon = NSWorkspace.sharedWorkspace().iconForFile(NSBundle.mainBundle().bundlePath)
-        icon.drawInRect(bounds, fromRect: .zero, operation: .CompositeSourceOver, fraction: 1)
+        let icon = NSWorkspace.shared().icon(forFile: Bundle.main.bundlePath)
+        icon.draw(in: bounds, from: .zero, operation: .sourceOver, fraction: 1)
 
         let rect = bounds.insetBy(dx: thickness + thickness / 2, dy: thickness + thickness / 2)
         let start = NSPoint(x: rect.midX, y: rect.maxY)
@@ -32,15 +32,15 @@ class DockProgressView: NSView {
         let angle: CGFloat = percentage < 0.25 ? 90 - 360 * CGFloat(percentage) + 360 : 90 - 360 * CGFloat(percentage)
 
         let arc = NSBezierPath()
-        arc.moveToPoint(start)
+        arc.move(to: start)
 
-        arc.appendBezierPathWithArcWithCenter(center,
+        arc.appendArc(withCenter: center,
             radius: radius,
             startAngle: 90,
             endAngle: angle,
             clockwise: true)
 
-        NSColor.whiteColor().set()
+        NSColor.white.set()
         arc.lineWidth = thickness
         arc.stroke()
     }

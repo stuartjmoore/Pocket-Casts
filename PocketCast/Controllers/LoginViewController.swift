@@ -11,12 +11,12 @@ import WebKit
 
 class LoginViewController: NSViewController {
 
-    private var webView: WKWebView!
+    fileprivate var webView: WKWebView!
 
-    var request: NSURLRequest? {
+    var request: URLRequest? {
         didSet {
             if let request = request {
-                webView?.loadRequest(request)
+                webView?.load(request)
             }
         }
     }
@@ -27,15 +27,15 @@ class LoginViewController: NSViewController {
         webView = WKWebView(frame: view.bounds)
         webView.navigationDelegate = self
         webView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(webView, positioned: .Below, relativeTo: nil)
+        view.addSubview(webView, positioned: .below, relativeTo: nil)
 
-        view.topAnchor.constraintEqualToAnchor(webView.topAnchor).active = true
-        view.leadingAnchor.constraintEqualToAnchor(webView.leadingAnchor).active = true
-        view.bottomAnchor.constraintEqualToAnchor(webView.bottomAnchor).active = true
-        view.trailingAnchor.constraintEqualToAnchor(webView.trailingAnchor).active = true
+        view.topAnchor.constraint(equalTo: webView.topAnchor).isActive = true
+        view.leadingAnchor.constraint(equalTo: webView.leadingAnchor).isActive = true
+        view.bottomAnchor.constraint(equalTo: webView.bottomAnchor).isActive = true
+        view.trailingAnchor.constraint(equalTo: webView.trailingAnchor).isActive = true
 
         if let request = request {
-            webView.loadRequest(request)
+            webView.load(request)
         }
     }
 
@@ -45,13 +45,13 @@ class LoginViewController: NSViewController {
 
 extension LoginViewController: WKNavigationDelegate {
 
-    func webView(webView: WKWebView, decidePolicyForNavigationAction navigationAction: WKNavigationAction, decisionHandler: (WKNavigationActionPolicy) -> Void) {
-        if navigationAction.request.URL?.path == "/web" {
-            (presentingViewController as? WebViewController)?.loadRequest(navigationAction.request)
-            presentingViewController?.dismissViewController(self)
-            decisionHandler(.Cancel)
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        if navigationAction.request.url?.path == "/web" {
+            (presenting as? WebViewController)?.loadRequest(navigationAction.request)
+            presenting?.dismissViewController(self)
+            decisionHandler(.cancel)
         } else {
-            decisionHandler(.Allow)
+            decisionHandler(.allow)
         }
     }
 
