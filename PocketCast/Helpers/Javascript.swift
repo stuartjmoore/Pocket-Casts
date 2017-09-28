@@ -73,7 +73,7 @@ class Javascript {
 
         updatePropertiesTimer = Timer.scheduledTimer(timeInterval: 0.5,
             target: self,
-            selector: #selector(updatePropertiesTimerDidFire(_:)),
+            selector: #selector(updatePropertiesTimerDidFire),
             userInfo: nil,
             repeats: true
         )
@@ -81,7 +81,7 @@ class Javascript {
 
     // MARK: - Timers
 
-    @objc fileprivate func updatePropertiesTimerDidFire(_ timer: Timer) {
+    @objc func updatePropertiesTimerDidFire() {
         webView.evaluateJavaScript("angular.element(document).injector().get('mediaPlayer').episode.podcast.title") { [weak self] (data, _) in
             self?.showTitle = data  as? String
         }

@@ -33,12 +33,12 @@ class MainWindowController: NSWindowController {
     override func windowDidLoad() {
         shouldCascadeWindows = false
         window?.titleVisibility = .hidden
-        window?.setFrameAutosaveName("Main Window")
-        windowFrameAutosaveName = "Main Window"
+        window?.setFrameAutosaveName(NSWindow.FrameAutosaveName(rawValue: "Main Window"))
+        windowFrameAutosaveName = NSWindow.FrameAutosaveName(rawValue: "Main Window")
 
         super.windowDidLoad()
 
-        (NSApplication.shared().delegate as? AppDelegate)?.window = window
+        (NSApplication.shared.delegate as? AppDelegate)?.window = window
 
         mediaKeyTap = SPMediaKeyTap(delegate: self)
 
@@ -108,7 +108,7 @@ class MainWindowController: NSWindowController {
                 playerSegmentedControl.setLabel("▶❙❙", forSegment: 1)
                 playerSegmentedControl.isEnabled = false
                 playerCloseButton.isEnabled = false
-                playerCloseButton.state = NSOnState
+                playerCloseButton.state = .on
                 playerCloseButton.setNextState()
 
             case .playing:
@@ -126,7 +126,7 @@ class MainWindowController: NSWindowController {
 
     var playerVisible: Bool = false {
         didSet {
-            playerCloseButton.state = playerVisible ? NSOffState : NSOnState
+            playerCloseButton.state = playerVisible ? .off : .on
             playerCloseButton.setNextState()
         }
     }
@@ -150,10 +150,10 @@ class MainWindowController: NSWindowController {
     @IBAction func togglePlayerTapped(_ sender: NSButton) {
         if webViewController.playerVisible {
             webViewController.hidePlayer()
-            sender.state = NSOnState
+            sender.state = .on
         } else {
             webViewController.showPlayer()
-            sender.state = NSOffState
+            sender.state = .off
         }
 
         sender.setNextState()
@@ -187,8 +187,8 @@ class MainWindowController: NSWindowController {
 
 extension NSFont {
     func fontByAddingAttribute(_ input: [Int: Int]) -> NSFont? {
-        let attribute = input.map({ [NSFontFeatureTypeIdentifierKey: $0, NSFontFeatureSelectorIdentifierKey: $1] })
-        let attributes = [NSFontFeatureSettingsAttribute: attribute]
+        let attribute = input.map({ [NSFontDescriptor.FeatureKey.typeIdentifier: $0, NSFontDescriptor.FeatureKey.selectorIdentifier: $1] })
+        let attributes = [NSFontDescriptor.AttributeName.featureSettings: attribute]
         let attributedFontDescriptor = fontDescriptor.addingAttributes(attributes)
         return NSFont(descriptor: attributedFontDescriptor, size: 0)
     }

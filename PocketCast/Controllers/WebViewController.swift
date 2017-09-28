@@ -106,7 +106,7 @@ class WebViewController: NSViewController {
             switch item {
             case .link(_, let url):
                 // TODO: sign out doesn't work
-                NSWorkspace.shared().open(url)
+                NSWorkspace.shared.open(url)
             case .action(_, _):
                 // TODO: action
                 break
@@ -132,13 +132,13 @@ extension WebViewController: WKNavigationDelegate {
 
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         if navigationAction.request.url?.path == "/account", let url = navigationAction.request.url {
-            NSWorkspace.shared().open(url)
+            NSWorkspace.shared.open(url)
             decisionHandler(.cancel)
         } else if navigationAction.request.url?.path == "/users/sign_in" {
-            performSegue(withIdentifier: "LoginSheetIdentifier", sender: navigationAction.request)
+            performSegue(withIdentifier: NSStoryboardSegue.Identifier(rawValue: "LoginSheetIdentifier"), sender: navigationAction.request)
             decisionHandler(.cancel)
         } else if navigationAction.navigationType == .linkActivated, let url = navigationAction.request.url {
-            NSWorkspace.shared().open(url)
+            NSWorkspace.shared.open(url)
             decisionHandler(.cancel)
         } else {
             decisionHandler(.allow)
@@ -146,7 +146,7 @@ extension WebViewController: WKNavigationDelegate {
     }
 
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
-        if segue.identifier == "LoginSheetIdentifier",
+        if segue.identifier?.rawValue == "LoginSheetIdentifier",
         let loginViewController = segue.destinationController as? LoginViewController, let request = sender as? URLRequest {
             loginViewController.request = request
         }
@@ -177,14 +177,14 @@ extension WebViewController: JavascriptDelegate {
     func javascriptCurrentPercentageDidChange(_ currentPercentage: Float) {
         windowController?.progressPercentage = currentPercentage
 
-        if let dockView = NSApplication.shared().dockTile.contentView as? DockProgressView {
+        if let dockView = NSApplication.shared.dockTile.contentView as? DockProgressView {
             dockView.percentage = currentPercentage
             NSApp.dockTile.display()
         } else {
             let dockView = DockProgressView()
             dockView.percentage = currentPercentage
 
-            NSApplication.shared().dockTile.contentView = dockView
+            NSApplication.shared.dockTile.contentView = dockView
             NSApp.dockTile.display()
         }
     }
