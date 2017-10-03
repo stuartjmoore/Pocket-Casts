@@ -41,14 +41,20 @@
                                     <size key="minSize" width="96" height="25"/>
                                     <size key="maxSize" width="116" height="32"/>
                                     <segmentedControl key="view" verticalHuggingPriority="750" id="f0s-oS-caz">
-                                        <rect key="frame" x="0.0" y="14" width="116" height="25"/>
+                                        <rect key="frame" x="0.0" y="14" width="112" height="28"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <segmentedCell key="cell" enabled="NO" borderStyle="border" alignment="left" style="texturedSquare" trackingMode="momentary" id="QNS-Ip-wjx">
-                                            <font key="font" metaFont="system"/>
+                                            <font key="font" metaFont="miniSystem"/>
                                             <segments>
-                                                <segment label="⤺" width="36"/>
+                                                <segment width="36">
+                                                    <string key="label">⤺
+15</string>
+                                                </segment>
                                                 <segment label="▶❙❙" width="36" tag="1"/>
-                                                <segment label="⤻" width="36"/>
+                                                <segment width="36">
+                                                    <string key="label">⤻
+30</string>
+                                                </segment>
                                             </segments>
                                         </segmentedCell>
                                         <connections>
