@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13196"/>
-        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
         <capability name="stacking Non-gravity area distributions on NSStackView" minToolsVersion="7.0" minSystemVersion="10.11"/>
         <capability name="system font weights other than Regular or Bold" minToolsVersion="7.0"/>
@@ -59,17 +58,17 @@
                                 </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="7B2EBAE9-F661-4350-8856-3F73D35182A4" label="Display" paletteLabel="Display" tag="-1" id="X18-D7-wxZ">
                                     <nil key="toolTip"/>
-                                    <size key="minSize" width="127" height="25"/>
-                                    <size key="maxSize" width="1024" height="32"/>
+                                    <size key="minSize" width="127" height="40"/>
+                                    <size key="maxSize" width="1024" height="40"/>
                                     <customView key="view" id="tT4-Bm-RUD">
-                                        <rect key="frame" x="0.0" y="14" width="127" height="31"/>
+                                        <rect key="frame" x="0.0" y="14" width="127" height="37"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <subviews>
                                             <customView focusRingType="none" translatesAutoresizingMaskIntoConstraints="NO" id="BRs-RK-Tcr" userLabel="Progress Bar Container View">
-                                                <rect key="frame" x="0.0" y="0.5" width="127" height="19"/>
+                                                <rect key="frame" x="0.0" y="2" width="127" height="19"/>
                                                 <subviews>
                                                     <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gQR-LG-ge2">
-                                                        <rect key="frame" x="-2" y="0.5" width="131" height="19"/>
+                                                        <rect key="frame" x="-2" y="0.0" width="131" height="19"/>
                                                         <sliderCell key="cell" scrollable="YES" lineBreakMode="clipping" continuous="YES" state="on" alignment="left" maxValue="1" tickMarkPosition="above" sliderType="linear" id="Bga-Up-vR5"/>
                                                         <connections>
                                                             <action selector="progressSliderMoved:" target="9PK-L3-Vl5" id="VQE-0u-VLT"/>
@@ -84,7 +83,7 @@
                                                 </constraints>
                                             </customView>
                                             <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="guW-sT-LJb">
-                                                <rect key="frame" x="0.0" y="7" width="127" height="17"/>
+                                                <rect key="frame" x="0.0" y="16" width="127" height="17"/>
                                                 <subviews>
                                                     <textField horizontalHuggingPriority="1000" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="giO-Gm-TBv">
                                                         <rect key="frame" x="-2" y="0.0" width="21" height="17"/>
@@ -126,10 +125,10 @@
                                         <constraints>
                                             <constraint firstItem="BRs-RK-Tcr" firstAttribute="leading" secondItem="guW-sT-LJb" secondAttribute="leading" id="AJh-VS-9HN"/>
                                             <constraint firstItem="BRs-RK-Tcr" firstAttribute="trailing" secondItem="guW-sT-LJb" secondAttribute="trailing" id="TIQ-37-oGJ"/>
-                                            <constraint firstItem="guW-sT-LJb" firstAttribute="centerY" secondItem="tT4-Bm-RUD" secondAttribute="centerY" id="VPO-kY-lE8"/>
+                                            <constraint firstItem="guW-sT-LJb" firstAttribute="top" secondItem="tT4-Bm-RUD" secondAttribute="top" constant="4" id="VPO-kY-lE8"/>
                                             <constraint firstAttribute="trailing" secondItem="guW-sT-LJb" secondAttribute="trailing" id="cNV-uo-1bp"/>
-                                            <constraint firstItem="BRs-RK-Tcr" firstAttribute="centerY" secondItem="guW-sT-LJb" secondAttribute="firstBaseline" id="fkR-Re-LKB"/>
                                             <constraint firstItem="guW-sT-LJb" firstAttribute="leading" secondItem="tT4-Bm-RUD" secondAttribute="leading" id="hU9-xa-HKp"/>
+                                            <constraint firstAttribute="bottom" secondItem="BRs-RK-Tcr" secondAttribute="bottom" constant="2" id="opb-Bv-m8n"/>
                                         </constraints>
                                     </customView>
                                 </toolbarItem>
