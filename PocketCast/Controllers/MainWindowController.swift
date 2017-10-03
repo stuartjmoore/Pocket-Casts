@@ -160,8 +160,7 @@ class MainWindowController: NSWindowController {
             return
         }
 
-        remainingTimeToolbarTextField.stringValue = timeInterval.asClock
-        layoutRemainingTimeDisplay()
+        remainingTimeText = timeInterval.asClock
 
         if let event = NSApplication.shared.currentEvent, event.type == .leftMouseUp {
             webViewController.jump(toPercentage: sender.doubleValue)
