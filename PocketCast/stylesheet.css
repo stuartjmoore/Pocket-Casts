@@ -6,6 +6,12 @@
 //  Copyright © 2015 Stuart Moore. All rights reserved.
 */
 
+/* San Francisco font */
+
+* {
+    font-family: -apple-system !important;
+}
+
 /* Scroll navigation */
 
 .navigation {
@@ -25,4 +31,15 @@
 
 .navigation > .nav-discover, .navigation > .nav-starred {
     margin-bottom: 0;
+}
+
+/* Hide player */
+
+.layout .layout-footer {
+    height: 0;
+}
+
+.player-controls {
+    -webkit-box-shadow: none;
+    box-shadow: none;
 }
