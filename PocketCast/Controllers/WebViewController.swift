@@ -75,6 +75,12 @@ class WebViewController: NSViewController {
         javascript.jumpForward()
     }
 
+    // MARK: UI
+
+    func showUpNext() {
+        javascript.press(key: .u)
+    }
+
 }
 
 // MARK: - JavascriptDelegate

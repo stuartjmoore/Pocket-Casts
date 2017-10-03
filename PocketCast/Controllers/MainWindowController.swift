@@ -120,6 +120,10 @@ class MainWindowController: NSWindowController {
 
     // MARK: - Toolbar
 
+    @IBAction func upNextTapped(_ sender: NSButton) {
+        webViewController.showUpNext()
+    }
+
     @IBAction func playerSegmentTapped(_ sender: NSSegmentedControl) {
         if sender.selectedSegment == 0 {
             webViewController.jumpBack()

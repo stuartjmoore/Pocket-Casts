@@ -19,6 +19,22 @@
                             <allowedToolbarItems>
                                 <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="k8u-jp-sHf"/>
                                 <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="Yms-xo-OpC"/>
+                                <toolbarItem implicitItemIdentifier="2B13B966-1929-4297-972B-213C7179F424" label="Up Next" paletteLabel="Up Next" id="0tl-sN-weP">
+                                    <nil key="toolTip"/>
+                                    <size key="minSize" width="18" height="18"/>
+                                    <size key="maxSize" width="37" height="32"/>
+                                    <button key="view" verticalHuggingPriority="750" id="dth-WQ-RgE">
+                                        <rect key="frame" x="7" y="14" width="37" height="28"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="roundTextured" title="≔" bezelStyle="texturedRounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="FBj-gh-sFn">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system" size="20"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="upNextTapped:" target="9PK-L3-Vl5" id="G8O-Lf-hhH"/>
+                                        </connections>
+                                    </button>
+                                </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="9A0B51D8-1AD1-4989-B646-72F4A0D5CDD2" label="Controls" paletteLabel="Controls" id="Kkd-or-ju7">
                                     <nil key="toolTip"/>
                                     <size key="minSize" width="96" height="25"/>
@@ -117,7 +133,9 @@
                                 <toolbarItem reference="Kkd-or-ju7"/>
                                 <toolbarItem reference="Yms-xo-OpC"/>
                                 <toolbarItem reference="X18-D7-wxZ"/>
+                                <toolbarItem reference="0tl-sN-weP"/>
                                 <toolbarItem reference="Yms-xo-OpC"/>
+                                <toolbarItem reference="k8u-jp-sHf"/>
                             </defaultToolbarItems>
                         </toolbar>
                         <connections>

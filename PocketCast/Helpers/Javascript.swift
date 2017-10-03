@@ -63,13 +63,13 @@ class Javascript {
     // MARK: -
 
     enum Key: Int {
-        case spacebar = 32
-        case left = 37
-        case right = 39
+        case spacebar = 32 // Play/Pause
+        case left = 37 // Skip backward
+        case right = 39 // Skip forward
+        case e = 69 // Open playing episode popup
+        case u = 85 // Open Up Next
         /*
-        u - Open Up Next
         m - Mute sound
-        e - Open playing episode popup
         minus - Reduce speed
         plus - Increase speed
         s - Search
