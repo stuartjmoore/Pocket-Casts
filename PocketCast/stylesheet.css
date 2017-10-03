@@ -6,51 +6,9 @@
 //  Copyright © 2015 Stuart Moore. All rights reserved.
 */
 
-/* Hide toolbar */
+/* Scroll navigation */
 
-#main {
-    padding-top: 0;
-}
-
-#header {
-    -webkit-box-shadow: 0 0 0 0 transparent;
-    box-shadow: 0 0 0 0 transparent;
-    top: -70px;
-}
-
-/* System color highlight */
-
-#content_left .episode_section.selected {
-    background-color: #577287; /* TODO: Get system color */
-}
-
-/* Remove wide background */
-
-#main #content_container {
-    background-color: white;
-}
-
-media="screen" @media screen and (max-width: 1722px) and (min-width: 1361px) #main #content_container #content_row #content_middle {
-    -webkit-box-shadow: 0 0 0 0 transparent;
-    box-shadow: 0 0 0 0 transparent;
-}
-
-/* Shrink sidebar */
-
-#main #content_container #content_row #content_middle .scrollable {
-    margin-left: 224px;
-}
-
-#main #content_container #content_row #content_left,
-#main #content_container #content_row #content_left .scrollable,
-#content_left .list .podcast {
-    width: 224px;
-}
-
-#content_left .list .podcast .podcast_text {
-    width: 149px;
-}
-
-#content_left .list .podcast .podcast_text .text, #content_left .list .podcast .podcast_text .title, #content_left .list .podcast .podcast_text .author {
-    width: 110px;
+.navigation {
+    overflow-y: overlay;
+    padding-bottom: 122px;
 }
