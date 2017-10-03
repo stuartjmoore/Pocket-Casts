@@ -12,6 +12,8 @@
 		1716B8B41C179B2400BE83D0 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1716B8B31C179B2400BE83D0 /* WebViewController.swift */; };
 		1716B8B71C179B3400BE83D0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1716B8B51C179B3400BE83D0 /* LoginViewController.swift */; };
 		17AF115B1C0FCF1900620A32 /* Javascript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AF115A1C0FCF1900620A32 /* Javascript.swift */; };
+		17F0A4D91F841D9200AD8082 /* TimeInterval+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F0A4D81F841D9200AD8082 /* TimeInterval+Util.swift */; };
+		17F0A4DB1F84224600AD8082 /* String+PodcastTrim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F0A4DA1F84224600AD8082 /* String+PodcastTrim.swift */; };
 		A441E3B01B4FF0BE008DBC37 /* NSObject+SPInvocationGrabbing.m in Sources */ = {isa = PBXBuildFile; fileRef = A441E3AD1B4FF0BE008DBC37 /* NSObject+SPInvocationGrabbing.m */; };
 		A441E3B11B4FF0BE008DBC37 /* SPMediaKeyTap.m in Sources */ = {isa = PBXBuildFile; fileRef = A441E3AF1B4FF0BE008DBC37 /* SPMediaKeyTap.m */; };
 		C160BC1E1C1CC6020047EAE9 /* stylesheet.css in Resources */ = {isa = PBXBuildFile; fileRef = C160BC1D1C1CC6020047EAE9 /* stylesheet.css */; };
@@ -27,6 +29,8 @@
 		1716B8B31C179B2400BE83D0 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebViewController.swift; path = Controllers/WebViewController.swift; sourceTree = "<group>"; };
 		1716B8B51C179B3400BE83D0 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = Controllers/LoginViewController.swift; sourceTree = "<group>"; };
 		17AF115A1C0FCF1900620A32 /* Javascript.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Javascript.swift; path = PocketCast/Helpers/Javascript.swift; sourceTree = "<group>"; };
+		17F0A4D81F841D9200AD8082 /* TimeInterval+Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "TimeInterval+Util.swift"; path = "PocketCast/Helpers/TimeInterval+Util.swift"; sourceTree = "<group>"; };
+		17F0A4DA1F84224600AD8082 /* String+PodcastTrim.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "String+PodcastTrim.swift"; path = "PocketCast/Helpers/String+PodcastTrim.swift"; sourceTree = "<group>"; };
 		A441E39E1B4FEF9E008DBC37 /* PocketCast-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "PocketCast-Bridging-Header.h"; path = "PocketCast/PocketCast-Bridging-Header.h"; sourceTree = "<group>"; };
 		A441E3AC1B4FF0BE008DBC37 /* NSObject+SPInvocationGrabbing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SPInvocationGrabbing.h"; sourceTree = "<group>"; };
 		A441E3AD1B4FF0BE008DBC37 /* NSObject+SPInvocationGrabbing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SPInvocationGrabbing.m"; sourceTree = "<group>"; };
@@ -77,6 +81,8 @@
 			isa = PBXGroup;
 			children = (
 				17AF115A1C0FCF1900620A32 /* Javascript.swift */,
+				17F0A4D81F841D9200AD8082 /* TimeInterval+Util.swift */,
+				17F0A4DA1F84224600AD8082 /* String+PodcastTrim.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -220,7 +226,9 @@
 				C80F65F81ADE2BEE00277D77 /* MyApplication.swift in Sources */,
 				1716B8B21C179B0D00BE83D0 /* MainWindowController.swift in Sources */,
 				1716B8B71C179B3400BE83D0 /* LoginViewController.swift in Sources */,
+				17F0A4D91F841D9200AD8082 /* TimeInterval+Util.swift in Sources */,
 				C1E7E6A31C1E082800089E26 /* DockProgressView.swift in Sources */,
+				17F0A4DB1F84224600AD8082 /* String+PodcastTrim.swift in Sources */,
 				C80F65D61ADE156C00277D77 /* AppDelegate.swift in Sources */,
 				A441E3B11B4FF0BE008DBC37 /* SPMediaKeyTap.m in Sources */,
 				17AF115B1C0FCF1900620A32 /* Javascript.swift in Sources */,

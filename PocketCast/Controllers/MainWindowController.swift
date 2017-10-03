@@ -72,6 +72,11 @@ class MainWindowController: NSWindowController {
     var showTitle: String? {
         set(showTitle) {
             showTitleToolbarTextField.stringValue = showTitle ?? ""
+
+            if let episodeTitle = episodeTitle, let showTitle = showTitle {
+                episodeTitleToolbarTextField.stringValue = episodeTitle.trimPodcastTitle(forShowTitle: showTitle)
+            }
+
             layoutPlayerDisplay()
         } get {
             return showTitleToolbarTextField.stringValue
@@ -80,7 +85,12 @@ class MainWindowController: NSWindowController {
 
     var episodeTitle: String? {
         set(episodeTitle) {
-            episodeTitleToolbarTextField.stringValue = episodeTitle ?? ""
+            if let episodeTitle = episodeTitle, let showTitle = showTitle {
+                episodeTitleToolbarTextField.stringValue = episodeTitle.trimPodcastTitle(forShowTitle: showTitle)
+            } else {
+                episodeTitleToolbarTextField.stringValue = ""
+            }
+
             layoutPlayerDisplay()
         } get {
             return episodeTitleToolbarTextField.stringValue
@@ -139,24 +149,13 @@ class MainWindowController: NSWindowController {
     }
 
     @IBAction func progressSliderMoved(_ sender: NSSlider) {
-        let formatter = NumberFormatter()
-        formatter.minimumIntegerDigits = 2
-
         let timeInterval = webViewController.timeInterval(atPercentage: sender.doubleValue)
 
         guard !timeInterval.isNaN else {
             return
         }
 
-        let hours = Int(timeInterval / 3600)
-        let minutes = Int((timeInterval.truncatingRemainder(dividingBy: 3600)) / 60)
-        let seconds = Int(timeInterval.truncatingRemainder(dividingBy: 60))
-
-        let hoursString = formatter.string(from: NSNumber(integerLiteral: hours)) ?? ""
-        let minutesString = formatter.string(from: NSNumber(integerLiteral: minutes)) ?? ""
-        let secondsString = formatter.string(from: NSNumber(integerLiteral: seconds)) ?? ""
-
-        remainingTimeToolbarTextField.stringValue = "\(hoursString):\(minutesString):\(secondsString)"
+        remainingTimeToolbarTextField.stringValue = timeInterval.asClock
 
         if let event = NSApplication.shared.currentEvent, event.type == .leftMouseUp {
             webViewController.jump(toPercentage: sender.doubleValue)
