@@ -14,7 +14,7 @@ class MainWindowController: NSWindowController {
     @IBOutlet weak var playerSegmentedControl: NSSegmentedControl!
 
     @IBOutlet weak var playerDisplayToolbarItem: NSToolbarItem!
-    @IBOutlet weak var playerDisplayView: NSView!
+    @IBOutlet weak var playerDisplayView: NSStackView!
 
     @IBOutlet weak var showTitleToolbarTextField: NSTextField!
     @IBOutlet weak var episodeTitleToolbarTextField: NSTextField!
@@ -54,13 +54,19 @@ class MainWindowController: NSWindowController {
         )
 
         progressBarView.layer?.masksToBounds = true
-        progressBarView.layer?.cornerRadius = 6
+        progressBarView.layer?.cornerRadius = 1
         progressBarView.layer?.backgroundColor = NSColor(red: 1, green: 0.373, blue: 0.31, alpha: 1).cgColor
     }
 
     func layoutPlayerDisplay() {
-        playerDisplayToolbarItem.minSize.width = ceil(playerDisplayView.bounds.size.width) + 12
-        playerDisplayToolbarItem.maxSize.width = ceil(playerDisplayView.bounds.size.width) + 12
+        let showTitleWidth = showTitleToolbarTextField.intrinsicContentSize.width
+        let episodeTitleWidth = episodeTitleToolbarTextField.intrinsicContentSize.width
+        let remainingTimeWidth = remainingTimeToolbarTextField.intrinsicContentSize.width
+        let marginWidth = playerDisplayView.spacing
+        let playerDisplayWidth = ceil(showTitleWidth + marginWidth + episodeTitleWidth + marginWidth + remainingTimeWidth)
+
+        playerDisplayToolbarItem.minSize.width = playerDisplayWidth
+        playerDisplayToolbarItem.maxSize.width = playerDisplayWidth
     }
 
     // MARK: - Set Items
