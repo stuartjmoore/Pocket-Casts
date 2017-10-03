@@ -69,7 +69,8 @@ class MainWindowController: NSWindowController {
         set(showTitle) {
             showTitleToolbarTextField.stringValue = showTitle ?? ""
 
-            if let episodeTitle = episodeTitle, let showTitle = showTitle {
+            if let episodeTitle = episodeTitle, episodeTitle != "", episodeTitle != "Podcast",
+               let showTitle = showTitle, showTitle != "", showTitle != "No" {
                 episodeTitleToolbarTextField.stringValue = episodeTitle.trimPodcastTitle(forShowTitle: showTitle)
             }
 
@@ -81,7 +82,8 @@ class MainWindowController: NSWindowController {
 
     var episodeTitle: String? {
         set(episodeTitle) {
-            if let episodeTitle = episodeTitle, let showTitle = showTitle {
+            if let episodeTitle = episodeTitle, episodeTitle != "", episodeTitle != "Podcast",
+               let showTitle = showTitle, showTitle != "", showTitle != "No" {
                 episodeTitleToolbarTextField.stringValue = episodeTitle.trimPodcastTitle(forShowTitle: showTitle)
             } else {
                 episodeTitleToolbarTextField.stringValue = ""
