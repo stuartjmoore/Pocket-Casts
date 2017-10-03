@@ -18,6 +18,7 @@ class MainWindowController: NSWindowController {
 
     @IBOutlet weak var remainingTimeToolbarItem: NSToolbarItem!
 
+    @IBOutlet weak var albumArtButton: NSButton!
     @IBOutlet weak var showTitleToolbarTextField: NSTextField!
     @IBOutlet weak var episodeTitleToolbarTextField: NSTextField!
     @IBOutlet weak var remainingTimeToolbarTextField: NSTextField!
@@ -56,10 +57,11 @@ class MainWindowController: NSWindowController {
     }
 
     func layoutPlayerDisplay() {
+        let albumArtWidth: CGFloat = 29
         let showTitleWidth = showTitleToolbarTextField.intrinsicContentSize.width
         let episodeTitleWidth = episodeTitleToolbarTextField.intrinsicContentSize.width
         let marginWidth = playerDisplayView.spacing
-        let playerDisplayWidth = ceil(showTitleWidth + marginWidth + episodeTitleWidth)
+        let playerDisplayWidth = ceil(albumArtWidth + marginWidth + showTitleWidth + marginWidth + episodeTitleWidth)
         playerDisplayToolbarItem.minSize.width = playerDisplayWidth
         playerDisplayToolbarItem.maxSize.width = playerDisplayWidth
     }
@@ -71,6 +73,14 @@ class MainWindowController: NSWindowController {
     }
 
     // MARK: - Set Items
+
+    var albumArtURL: URL? {
+        set(albumArtURL) {
+            albumArtButton.image = albumArtURL != nil ? NSImage(contentsOf: albumArtURL!) : nil
+        } get {
+            return nil
+        }
+    }
 
     var showTitle: String? {
         set(showTitle) {
@@ -141,6 +151,10 @@ class MainWindowController: NSWindowController {
 
     @IBAction func upNextTapped(_ sender: NSButton) {
         webViewController.showUpNext()
+    }
+
+    @IBAction func albumArtTapped(_ sender: NSButton) {
+        webViewController.showEpisodeInfo()
     }
 
     @IBAction func playerSegmentTapped(_ sender: NSSegmentedControl) {

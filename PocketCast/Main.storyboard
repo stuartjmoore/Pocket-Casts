@@ -67,31 +67,65 @@
                                     <size key="minSize" width="75" height="37"/>
                                     <size key="maxSize" width="1024" height="40"/>
                                     <customView key="view" id="tT4-Bm-RUD">
-                                        <rect key="frame" x="0.0" y="14" width="76" height="37"/>
+                                        <rect key="frame" x="0.0" y="14" width="113" height="37"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <subviews>
-                                            <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Dk-gC-0ts">
-                                                <rect key="frame" x="0.0" y="4" width="76" height="29"/>
+                                            <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qdo-i2-DAv">
+                                                <rect key="frame" x="0.0" y="4" width="113" height="29"/>
                                                 <subviews>
-                                                    <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="guW-sT-LJb">
-                                                        <rect key="frame" x="0.0" y="12" width="76" height="17"/>
+                                                    <button horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="uj4-XT-EWY">
+                                                        <rect key="frame" x="0.0" y="0.0" width="29" height="29"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="29" id="MLL-Av-XGv"/>
+                                                            <constraint firstAttribute="width" constant="29" id="R8v-Rx-HCO"/>
+                                                        </constraints>
+                                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSHomeTemplate" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="Rye-Mo-tuT">
+                                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                            <font key="font" metaFont="system"/>
+                                                        </buttonCell>
+                                                        <connections>
+                                                            <action selector="albumArtTapped:" target="9PK-L3-Vl5" id="QsN-UE-ecT"/>
+                                                        </connections>
+                                                    </button>
+                                                    <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Dk-gC-0ts">
+                                                        <rect key="frame" x="37" y="0.0" width="76" height="29"/>
                                                         <subviews>
-                                                            <textField horizontalHuggingPriority="1000" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="giO-Gm-TBv">
-                                                                <rect key="frame" x="-2" y="0.0" width="21" height="17"/>
-                                                                <textFieldCell key="cell" lineBreakMode="truncatingMiddle" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" title="No" usesSingleLineMode="YES" id="Qej-zc-1Bt">
-                                                                    <font key="font" metaFont="systemLight" size="13"/>
-                                                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                                </textFieldCell>
-                                                            </textField>
-                                                            <textField horizontalHuggingPriority="1000" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="sN8-FM-Ypg">
-                                                                <rect key="frame" x="23" y="0.0" width="55" height="17"/>
-                                                                <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="justified" title="Podcast" usesSingleLineMode="YES" id="vcF-4T-b0k">
-                                                                    <font key="font" metaFont="systemMedium" size="13"/>
-                                                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                                </textFieldCell>
-                                                            </textField>
+                                                            <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="guW-sT-LJb">
+                                                                <rect key="frame" x="0.0" y="12" width="76" height="17"/>
+                                                                <subviews>
+                                                                    <textField horizontalHuggingPriority="1000" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="giO-Gm-TBv">
+                                                                        <rect key="frame" x="-2" y="0.0" width="21" height="17"/>
+                                                                        <textFieldCell key="cell" lineBreakMode="truncatingMiddle" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" title="No" usesSingleLineMode="YES" id="Qej-zc-1Bt">
+                                                                            <font key="font" metaFont="systemLight" size="13"/>
+                                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                        </textFieldCell>
+                                                                    </textField>
+                                                                    <textField horizontalHuggingPriority="1000" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="sN8-FM-Ypg">
+                                                                        <rect key="frame" x="23" y="0.0" width="55" height="17"/>
+                                                                        <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="justified" title="Podcast" usesSingleLineMode="YES" id="vcF-4T-b0k">
+                                                                            <font key="font" metaFont="systemMedium" size="13"/>
+                                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                        </textFieldCell>
+                                                                    </textField>
+                                                                </subviews>
+                                                                <visibilityPriorities>
+                                                                    <integer value="1000"/>
+                                                                    <integer value="1000"/>
+                                                                </visibilityPriorities>
+                                                                <customSpacing>
+                                                                    <real value="3.4028234663852886e+38"/>
+                                                                    <real value="3.4028234663852886e+38"/>
+                                                                </customSpacing>
+                                                            </stackView>
+                                                            <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gQR-LG-ge2">
+                                                                <rect key="frame" x="0.0" y="-1" width="76" height="13"/>
+                                                                <sliderCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" continuous="YES" state="on" alignment="left" maxValue="1" tickMarkPosition="above" sliderType="linear" id="Bga-Up-vR5"/>
+                                                                <connections>
+                                                                    <action selector="progressSliderMoved:" target="9PK-L3-Vl5" id="VQE-0u-VLT"/>
+                                                                </connections>
+                                                            </slider>
                                                         </subviews>
                                                         <visibilityPriorities>
                                                             <integer value="1000"/>
@@ -102,13 +136,6 @@
                                                             <real value="3.4028234663852886e+38"/>
                                                         </customSpacing>
                                                     </stackView>
-                                                    <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gQR-LG-ge2">
-                                                        <rect key="frame" x="0.0" y="-1" width="76" height="13"/>
-                                                        <sliderCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" continuous="YES" state="on" alignment="left" maxValue="1" tickMarkPosition="above" sliderType="linear" id="Bga-Up-vR5"/>
-                                                        <connections>
-                                                            <action selector="progressSliderMoved:" target="9PK-L3-Vl5" id="VQE-0u-VLT"/>
-                                                        </connections>
-                                                    </slider>
                                                 </subviews>
                                                 <visibilityPriorities>
                                                     <integer value="1000"/>
@@ -121,9 +148,9 @@
                                             </stackView>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="5Dk-gC-0ts" secondAttribute="trailing" id="8On-Ul-J76"/>
-                                            <constraint firstItem="5Dk-gC-0ts" firstAttribute="leading" secondItem="tT4-Bm-RUD" secondAttribute="leading" id="M9n-oO-lPm"/>
-                                            <constraint firstItem="5Dk-gC-0ts" firstAttribute="centerY" secondItem="tT4-Bm-RUD" secondAttribute="centerY" id="y7U-gX-2Ok"/>
+                                            <constraint firstItem="qdo-i2-DAv" firstAttribute="leading" secondItem="tT4-Bm-RUD" secondAttribute="leading" id="Ffo-Q1-dSe"/>
+                                            <constraint firstAttribute="trailing" secondItem="qdo-i2-DAv" secondAttribute="trailing" id="NAv-wn-jog"/>
+                                            <constraint firstItem="qdo-i2-DAv" firstAttribute="centerY" secondItem="tT4-Bm-RUD" secondAttribute="centerY" id="t5o-Kb-M4l"/>
                                         </constraints>
                                     </customView>
                                 </toolbarItem>
@@ -167,6 +194,7 @@
                         </connections>
                     </window>
                     <connections>
+                        <outlet property="albumArtButton" destination="uj4-XT-EWY" id="lmL-7l-DnN"/>
                         <outlet property="episodeTitleToolbarTextField" destination="sN8-FM-Ypg" id="V5I-0l-xDn"/>
                         <outlet property="playerDisplayToolbarItem" destination="X18-D7-wxZ" id="Dhu-0c-bfh"/>
                         <outlet property="playerDisplayView" destination="guW-sT-LJb" id="TJi-bE-LTe"/>
@@ -427,4 +455,7 @@
             <point key="canvasLocation" x="995.5" y="-324"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="NSHomeTemplate" width="14" height="14"/>
+    </resources>
 </document>

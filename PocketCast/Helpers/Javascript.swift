@@ -10,6 +10,7 @@ import Foundation
 import WebKit
 
 protocol JavascriptDelegate: class {
+    func javascriptAlbumArtDidChange(_ url: URL?)
     func javascriptShowTitleDidChange(_ title: String?)
     func javascriptEpisodeTitleDidChange(_ title: String?)
     func javascriptRemainingTimeDidChange(_ remainingTime: String?)
@@ -25,13 +26,15 @@ enum PlayerState {
 class Javascript {
 
     fileprivate let playerString = "document.getElementsByTagName('audio')[0]"
-    fileprivate let controlsString = "document.getElementsByClassName('player-controls')[0].getElementsByClassName('controls-center')[0]"
+    fileprivate let leftControlsString = "document.getElementsByClassName('player-controls')[0].getElementsByClassName('controls-left')[0]"
+    fileprivate let centerControlsString = "document.getElementsByClassName('player-controls')[0].getElementsByClassName('controls-center')[0]"
 
     fileprivate let webView: WKWebView
     fileprivate var updatePropertiesTimer: Timer!
 
     weak var delegate: JavascriptDelegate?
 
+    var albumArtURL: URL? { didSet(oldValue) { if oldValue != albumArtURL { delegate?.javascriptAlbumArtDidChange(albumArtURL) } } }
     var showTitle: String? { didSet(oldValue) { if oldValue != showTitle { delegate?.javascriptShowTitleDidChange(showTitle) } } }
     var episodeTitle: String? { didSet(oldValue) { if oldValue != episodeTitle { delegate?.javascriptEpisodeTitleDidChange(episodeTitle) } } }
     var remainingTime: String? { didSet(oldValue) { if oldValue != remainingTime { delegate?.javascriptRemainingTimeDidChange(remainingTime) } } }
@@ -110,15 +113,23 @@ class Javascript {
     // MARK: - Timers
 
     @objc func updatePropertiesTimerDidFire() {
-        webView.evaluateJavaScript("\(controlsString).getElementsByClassName('podcast-title')[0].innerText") { [weak self] (data, _) in
+        webView.evaluateJavaScript("\(leftControlsString).getElementsByClassName('podcast-image')[0].getElementsByTagName('img')[0]['src']") { [weak self] (data, _) in
+            guard let urlString = data as? String, let albumArtURL = URL(string: urlString) else {
+                return
+            }
+
+            self?.albumArtURL = albumArtURL
+        }
+
+        webView.evaluateJavaScript("\(centerControlsString).getElementsByClassName('podcast-title')[0].innerText") { [weak self] (data, _) in
             self?.showTitle = data as? String
         }
 
-        webView.evaluateJavaScript("\(controlsString).getElementsByClassName('episode-title')[0].innerText") { [weak self] (data, _) in
+        webView.evaluateJavaScript("\(centerControlsString).getElementsByClassName('episode-title')[0].innerText") { [weak self] (data, _) in
             self?.episodeTitle = data as? String
         }
 
-        webView.evaluateJavaScript("\(controlsString).getElementsByClassName('time-remaining')[0].innerText") { [weak self] (data, _) in
+        webView.evaluateJavaScript("\(centerControlsString).getElementsByClassName('time-remaining')[0].innerText") { [weak self] (data, _) in
             let remainingTimeDisplay = data as? String
             self?.remainingTime = remainingTimeDisplay != "-00:00" ? remainingTimeDisplay : nil
         }
@@ -191,6 +202,10 @@ class Javascript {
 }
 
 extension JavascriptDelegate {
+
+    func javascriptAlbumArtDidChange(_ url: URL?) {
+        return
+    }
 
     func javascriptShowTitleDidChange(_ title: String?) {
         return

@@ -89,6 +89,10 @@ class WebViewController: NSViewController {
         javascript.press(key: .u)
     }
 
+    func showEpisodeInfo() {
+        javascript.press(key: .e)
+    }
+
 }
 
 // MARK: - JavascriptDelegate
@@ -97,6 +101,10 @@ extension WebViewController: JavascriptDelegate {
 
     var windowController: MainWindowController? {
         return view.window?.windowController as? MainWindowController
+    }
+
+    func javascriptAlbumArtDidChange(_ url: URL?) {
+        windowController?.albumArtURL = url
     }
 
     func javascriptShowTitleDidChange(_ showTitle: String?) {
