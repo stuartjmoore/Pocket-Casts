@@ -165,6 +165,11 @@ class Javascript {
         press(key: .left)
     }
 
+    func jump(toPercentage percentage: Double) {
+        let timeInterval = percentage * durationTimeInterval
+        webView.evaluateJavaScript("\(playerString).currentTime = \(timeInterval)", completionHandler: nil)
+    }
+
     // MARK: -
 
     fileprivate func valueFor(_ javascript: String) -> Any? {

@@ -19,9 +19,7 @@ class MainWindowController: NSWindowController {
     @IBOutlet weak var showTitleToolbarTextField: NSTextField!
     @IBOutlet weak var episodeTitleToolbarTextField: NSTextField!
     @IBOutlet weak var remainingTimeToolbarTextField: NSTextField!
-    @IBOutlet weak var progressBarView: NSView!
-
-    @IBOutlet weak var progressBarViewConstraint: NSLayoutConstraint!
+    @IBOutlet weak var progressSlider: NSSlider!
 
     fileprivate var mediaKeyTap: SPMediaKeyTap?
 
@@ -53,9 +51,9 @@ class MainWindowController: NSWindowController {
             [kNumberSpacingType: kMonospacedNumbersSelector]
         )
 
-        progressBarView.layer?.masksToBounds = true
-        progressBarView.layer?.cornerRadius = 1
-        progressBarView.layer?.backgroundColor = NSColor(red: 1, green: 0.373, blue: 0.31, alpha: 1).cgColor
+//        progressBarView.layer?.masksToBounds = true
+//        progressBarView.layer?.cornerRadius = 1
+//        progressBarView.layer?.backgroundColor = NSColor(red: 1, green: 0.373, blue: 0.31, alpha: 1).cgColor
     }
 
     func layoutPlayerDisplay() {
@@ -100,9 +98,9 @@ class MainWindowController: NSWindowController {
 
     var progressPercentage: Float? {
         set(progressPercentage) {
-            progressBarViewConstraint.constant = playerDisplayView.frame.width * CGFloat(progressPercentage ?? 0)
+            progressSlider.floatValue = progressPercentage ?? 0
         } get {
-            return Float(progressBarViewConstraint.constant)
+            return Float(progressSlider.floatValue)
         }
     }
 
@@ -138,6 +136,33 @@ class MainWindowController: NSWindowController {
         } else if sender.selectedSegment == 2 {
             webViewController.jumpForward()
         }
+    }
+
+    @IBAction func progressSliderMoved(_ sender: NSSlider) {
+        let formatter = NumberFormatter()
+        formatter.minimumIntegerDigits = 2
+
+        let timeInterval = webViewController.timeInterval(atPercentage: sender.doubleValue)
+
+        guard !timeInterval.isNaN else {
+            return
+        }
+
+        let hours = Int(timeInterval / 3600)
+        let minutes = Int((timeInterval.truncatingRemainder(dividingBy: 3600)) / 60)
+        let seconds = Int(timeInterval.truncatingRemainder(dividingBy: 60))
+
+        let hoursString = formatter.string(from: NSNumber(integerLiteral: hours)) ?? ""
+        let minutesString = formatter.string(from: NSNumber(integerLiteral: minutes)) ?? ""
+        let secondsString = formatter.string(from: NSNumber(integerLiteral: seconds)) ?? ""
+
+        remainingTimeToolbarTextField.stringValue = "\(hoursString):\(minutesString):\(secondsString)"
+
+        if let event = NSApplication.shared.currentEvent, event.type == .leftMouseUp {
+            webViewController.jump(toPercentage: sender.doubleValue)
+        }
+
+        layoutPlayerDisplay()
     }
 
     // MARK: Media Keys

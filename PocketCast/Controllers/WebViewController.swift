@@ -61,6 +61,10 @@ class WebViewController: NSViewController {
         return javascript.playerState == .playing
     }
 
+    func timeInterval(atPercentage percentage: Double) -> TimeInterval {
+        return percentage * javascript.durationTimeInterval
+    }
+
     // MARK: Actions
 
     func jumpBack() {
@@ -73,6 +77,10 @@ class WebViewController: NSViewController {
 
     func jumpForward() {
         javascript.jumpForward()
+    }
+
+    func jump(toPercentage percentage: Double) {
+        javascript.jump(toPercentage: percentage)
     }
 
     // MARK: UI

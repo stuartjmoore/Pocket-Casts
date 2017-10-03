@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13196"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
         <capability name="stacking Non-gravity area distributions on NSStackView" minToolsVersion="7.0" minSystemVersion="10.11"/>
         <capability name="system font weights other than Regular or Bold" minToolsVersion="7.0"/>
@@ -65,20 +66,21 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <subviews>
                                             <customView focusRingType="none" translatesAutoresizingMaskIntoConstraints="NO" id="BRs-RK-Tcr" userLabel="Progress Bar Container View">
-                                                <rect key="frame" x="0.0" y="3" width="127" height="2"/>
+                                                <rect key="frame" x="0.0" y="0.5" width="127" height="19"/>
                                                 <subviews>
-                                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="3dz-V8-7Ai">
-                                                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="2"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" id="ocC-K7-1Vn"/>
-                                                        </constraints>
-                                                    </customView>
+                                                    <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gQR-LG-ge2">
+                                                        <rect key="frame" x="-2" y="0.5" width="131" height="19"/>
+                                                        <sliderCell key="cell" scrollable="YES" lineBreakMode="clipping" continuous="YES" state="on" alignment="left" maxValue="1" tickMarkPosition="above" sliderType="linear" id="Bga-Up-vR5"/>
+                                                        <connections>
+                                                            <action selector="progressSliderMoved:" target="9PK-L3-Vl5" id="VQE-0u-VLT"/>
+                                                        </connections>
+                                                    </slider>
                                                 </subviews>
                                                 <constraints>
-                                                    <constraint firstItem="3dz-V8-7Ai" firstAttribute="leading" secondItem="BRs-RK-Tcr" secondAttribute="leading" id="2fS-eH-EkV"/>
-                                                    <constraint firstAttribute="height" constant="2" id="eWb-iF-bE5"/>
-                                                    <constraint firstItem="3dz-V8-7Ai" firstAttribute="top" secondItem="BRs-RK-Tcr" secondAttribute="top" id="ieW-Vx-j3u"/>
-                                                    <constraint firstAttribute="bottom" secondItem="3dz-V8-7Ai" secondAttribute="bottom" id="pp1-dJ-GYI"/>
+                                                    <constraint firstAttribute="trailing" secondItem="gQR-LG-ge2" secondAttribute="trailing" id="Ujf-an-uC5"/>
+                                                    <constraint firstItem="gQR-LG-ge2" firstAttribute="leading" secondItem="BRs-RK-Tcr" secondAttribute="leading" id="d3k-or-ssw"/>
+                                                    <constraint firstItem="gQR-LG-ge2" firstAttribute="centerY" secondItem="BRs-RK-Tcr" secondAttribute="centerY" id="dJN-TO-7XL"/>
+                                                    <constraint firstAttribute="height" constant="19" id="eWb-iF-bE5"/>
                                                 </constraints>
                                             </customView>
                                             <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="guW-sT-LJb">
@@ -126,7 +128,7 @@
                                             <constraint firstItem="BRs-RK-Tcr" firstAttribute="trailing" secondItem="guW-sT-LJb" secondAttribute="trailing" id="TIQ-37-oGJ"/>
                                             <constraint firstItem="guW-sT-LJb" firstAttribute="centerY" secondItem="tT4-Bm-RUD" secondAttribute="centerY" id="VPO-kY-lE8"/>
                                             <constraint firstAttribute="trailing" secondItem="guW-sT-LJb" secondAttribute="trailing" id="cNV-uo-1bp"/>
-                                            <constraint firstItem="BRs-RK-Tcr" firstAttribute="top" secondItem="guW-sT-LJb" secondAttribute="bottom" constant="2" id="fkR-Re-LKB"/>
+                                            <constraint firstItem="BRs-RK-Tcr" firstAttribute="centerY" secondItem="guW-sT-LJb" secondAttribute="firstBaseline" id="fkR-Re-LKB"/>
                                             <constraint firstItem="guW-sT-LJb" firstAttribute="leading" secondItem="tT4-Bm-RUD" secondAttribute="leading" id="hU9-xa-HKp"/>
                                         </constraints>
                                     </customView>
@@ -136,9 +138,8 @@
                                 <toolbarItem reference="Kkd-or-ju7"/>
                                 <toolbarItem reference="Yms-xo-OpC"/>
                                 <toolbarItem reference="X18-D7-wxZ"/>
-                                <toolbarItem reference="0tl-sN-weP"/>
                                 <toolbarItem reference="Yms-xo-OpC"/>
-                                <toolbarItem reference="k8u-jp-sHf"/>
+                                <toolbarItem reference="0tl-sN-weP"/>
                             </defaultToolbarItems>
                         </toolbar>
                         <connections>
@@ -150,8 +151,7 @@
                         <outlet property="playerDisplayToolbarItem" destination="X18-D7-wxZ" id="Dhu-0c-bfh"/>
                         <outlet property="playerDisplayView" destination="guW-sT-LJb" id="TJi-bE-LTe"/>
                         <outlet property="playerSegmentedControl" destination="f0s-oS-caz" id="NE4-55-yJT"/>
-                        <outlet property="progressBarView" destination="3dz-V8-7Ai" id="M7s-ls-8kK"/>
-                        <outlet property="progressBarViewConstraint" destination="ocC-K7-1Vn" id="JnE-0R-LKW"/>
+                        <outlet property="progressSlider" destination="gQR-LG-ge2" id="zbk-on-2E7"/>
                         <outlet property="remainingTimeToolbarTextField" destination="SNt-2i-U3H" id="Knc-JK-7bb"/>
                         <outlet property="showTitleToolbarTextField" destination="giO-Gm-TBv" id="sgN-Vg-V55"/>
                         <segue destination="yRR-xE-ySh" kind="relationship" relationship="window.shadowedContentViewController" id="qCN-Rc-7Qx"/>
