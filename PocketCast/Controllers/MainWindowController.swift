@@ -16,6 +16,8 @@ class MainWindowController: NSWindowController {
     @IBOutlet weak var playerDisplayToolbarItem: NSToolbarItem!
     @IBOutlet weak var playerDisplayView: NSStackView!
 
+    @IBOutlet weak var remainingTimeToolbarItem: NSToolbarItem!
+
     @IBOutlet weak var showTitleToolbarTextField: NSTextField!
     @IBOutlet weak var episodeTitleToolbarTextField: NSTextField!
     @IBOutlet weak var remainingTimeToolbarTextField: NSTextField!
@@ -44,6 +46,7 @@ class MainWindowController: NSWindowController {
         }
 
         layoutPlayerDisplay()
+        layoutRemainingTimeDisplay()
     }
 
     override func awakeFromNib() {
@@ -55,12 +58,16 @@ class MainWindowController: NSWindowController {
     func layoutPlayerDisplay() {
         let showTitleWidth = showTitleToolbarTextField.intrinsicContentSize.width
         let episodeTitleWidth = episodeTitleToolbarTextField.intrinsicContentSize.width
-        let remainingTimeWidth = remainingTimeToolbarTextField.intrinsicContentSize.width
         let marginWidth = playerDisplayView.spacing
-        let playerDisplayWidth = ceil(showTitleWidth + marginWidth + episodeTitleWidth + marginWidth + remainingTimeWidth)
-
+        let playerDisplayWidth = ceil(showTitleWidth + marginWidth + episodeTitleWidth)
         playerDisplayToolbarItem.minSize.width = playerDisplayWidth
         playerDisplayToolbarItem.maxSize.width = playerDisplayWidth
+    }
+
+    func layoutRemainingTimeDisplay() {
+        let remainingTimeWidth = remainingTimeToolbarTextField.intrinsicContentSize.width
+        remainingTimeToolbarItem.minSize.width = remainingTimeWidth
+        remainingTimeToolbarItem.maxSize.width = remainingTimeWidth
     }
 
     // MARK: - Set Items
@@ -98,7 +105,7 @@ class MainWindowController: NSWindowController {
     var remainingTimeText: String? {
         set(remainingTimeText) {
             remainingTimeToolbarTextField.stringValue = remainingTimeText ?? ""
-            layoutPlayerDisplay()
+            layoutRemainingTimeDisplay()
         } get {
             return remainingTimeToolbarTextField.stringValue
         }
@@ -154,12 +161,11 @@ class MainWindowController: NSWindowController {
         }
 
         remainingTimeToolbarTextField.stringValue = timeInterval.asClock
+        layoutRemainingTimeDisplay()
 
         if let event = NSApplication.shared.currentEvent, event.type == .leftMouseUp {
             webViewController.jump(toPercentage: sender.doubleValue)
         }
-
-        layoutPlayerDisplay()
     }
 
     // MARK: Media Keys

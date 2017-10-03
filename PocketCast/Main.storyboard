@@ -58,77 +58,90 @@
                                 </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="7B2EBAE9-F661-4350-8856-3F73D35182A4" label="Display" paletteLabel="Display" tag="-1" id="X18-D7-wxZ">
                                     <nil key="toolTip"/>
-                                    <size key="minSize" width="127" height="37"/>
+                                    <size key="minSize" width="75" height="37"/>
                                     <size key="maxSize" width="1024" height="40"/>
                                     <customView key="view" id="tT4-Bm-RUD">
-                                        <rect key="frame" x="0.0" y="14" width="127" height="37"/>
+                                        <rect key="frame" x="0.0" y="14" width="76" height="37"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <subviews>
-                                            <customView focusRingType="none" translatesAutoresizingMaskIntoConstraints="NO" id="BRs-RK-Tcr" userLabel="Progress Bar Container View">
-                                                <rect key="frame" x="0.0" y="0.0" width="127" height="19"/>
+                                            <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Dk-gC-0ts">
+                                                <rect key="frame" x="0.0" y="4" width="76" height="29"/>
                                                 <subviews>
+                                                    <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="guW-sT-LJb">
+                                                        <rect key="frame" x="0.0" y="12" width="76" height="17"/>
+                                                        <subviews>
+                                                            <textField horizontalHuggingPriority="1000" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="giO-Gm-TBv">
+                                                                <rect key="frame" x="-2" y="0.0" width="21" height="17"/>
+                                                                <textFieldCell key="cell" lineBreakMode="truncatingMiddle" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" title="No" usesSingleLineMode="YES" id="Qej-zc-1Bt">
+                                                                    <font key="font" metaFont="systemLight" size="13"/>
+                                                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                </textFieldCell>
+                                                            </textField>
+                                                            <textField horizontalHuggingPriority="1000" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="sN8-FM-Ypg">
+                                                                <rect key="frame" x="23" y="0.0" width="55" height="17"/>
+                                                                <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="justified" title="Podcast" usesSingleLineMode="YES" id="vcF-4T-b0k">
+                                                                    <font key="font" metaFont="systemMedium" size="13"/>
+                                                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                </textFieldCell>
+                                                            </textField>
+                                                        </subviews>
+                                                        <visibilityPriorities>
+                                                            <integer value="1000"/>
+                                                            <integer value="1000"/>
+                                                        </visibilityPriorities>
+                                                        <customSpacing>
+                                                            <real value="3.4028234663852886e+38"/>
+                                                            <real value="3.4028234663852886e+38"/>
+                                                        </customSpacing>
+                                                    </stackView>
                                                     <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gQR-LG-ge2">
-                                                        <rect key="frame" x="0.0" y="3" width="127" height="13"/>
+                                                        <rect key="frame" x="0.0" y="-1" width="76" height="13"/>
                                                         <sliderCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" continuous="YES" state="on" alignment="left" maxValue="1" tickMarkPosition="above" sliderType="linear" id="Bga-Up-vR5"/>
                                                         <connections>
                                                             <action selector="progressSliderMoved:" target="9PK-L3-Vl5" id="VQE-0u-VLT"/>
                                                         </connections>
                                                     </slider>
                                                 </subviews>
-                                                <constraints>
-                                                    <constraint firstAttribute="trailing" secondItem="gQR-LG-ge2" secondAttribute="trailing" id="Ujf-an-uC5"/>
-                                                    <constraint firstItem="gQR-LG-ge2" firstAttribute="leading" secondItem="BRs-RK-Tcr" secondAttribute="leading" id="d3k-or-ssw"/>
-                                                    <constraint firstItem="gQR-LG-ge2" firstAttribute="centerY" secondItem="BRs-RK-Tcr" secondAttribute="centerY" id="dJN-TO-7XL"/>
-                                                    <constraint firstAttribute="height" constant="19" id="eWb-iF-bE5"/>
-                                                </constraints>
-                                            </customView>
-                                            <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="guW-sT-LJb">
-                                                <rect key="frame" x="0.0" y="16" width="127" height="17"/>
-                                                <subviews>
-                                                    <textField horizontalHuggingPriority="1000" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="giO-Gm-TBv">
-                                                        <rect key="frame" x="-2" y="0.0" width="21" height="17"/>
-                                                        <textFieldCell key="cell" lineBreakMode="truncatingMiddle" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="right" title="No" usesSingleLineMode="YES" id="Qej-zc-1Bt">
-                                                            <font key="font" metaFont="systemLight" size="13"/>
-                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                        </textFieldCell>
-                                                    </textField>
-                                                    <textField horizontalHuggingPriority="1000" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="sN8-FM-Ypg">
-                                                        <rect key="frame" x="23" y="0.0" width="55" height="17"/>
-                                                        <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="justified" title="Podcast" usesSingleLineMode="YES" id="vcF-4T-b0k">
-                                                            <font key="font" metaFont="systemMedium" size="13"/>
-                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                        </textFieldCell>
-                                                    </textField>
-                                                    <textField horizontalHuggingPriority="1000" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="SNt-2i-U3H">
-                                                        <rect key="frame" x="82" y="0.0" width="47" height="17"/>
-                                                        <textFieldCell key="cell" lineBreakMode="truncatingHead" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="Playing" placeholderString="" usesSingleLineMode="YES" id="dqp-0o-gJb">
-                                                            <font key="font" metaFont="systemLight" size="13"/>
-                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                        </textFieldCell>
-                                                    </textField>
-                                                </subviews>
                                                 <visibilityPriorities>
-                                                    <integer value="1000"/>
                                                     <integer value="1000"/>
                                                     <integer value="1000"/>
                                                 </visibilityPriorities>
                                                 <customSpacing>
                                                     <real value="3.4028234663852886e+38"/>
                                                     <real value="3.4028234663852886e+38"/>
-                                                    <real value="3.4028234663852886e+38"/>
                                                 </customSpacing>
                                             </stackView>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstItem="BRs-RK-Tcr" firstAttribute="leading" secondItem="guW-sT-LJb" secondAttribute="leading" id="AJh-VS-9HN"/>
-                                            <constraint firstItem="BRs-RK-Tcr" firstAttribute="trailing" secondItem="guW-sT-LJb" secondAttribute="trailing" id="TIQ-37-oGJ"/>
-                                            <constraint firstItem="guW-sT-LJb" firstAttribute="top" secondItem="tT4-Bm-RUD" secondAttribute="top" constant="4" id="VPO-kY-lE8"/>
-                                            <constraint firstAttribute="trailing" secondItem="guW-sT-LJb" secondAttribute="trailing" id="cNV-uo-1bp"/>
-                                            <constraint firstItem="guW-sT-LJb" firstAttribute="leading" secondItem="tT4-Bm-RUD" secondAttribute="leading" id="hU9-xa-HKp"/>
-                                            <constraint firstAttribute="bottom" secondItem="BRs-RK-Tcr" secondAttribute="bottom" id="opb-Bv-m8n"/>
+                                            <constraint firstAttribute="trailing" secondItem="5Dk-gC-0ts" secondAttribute="trailing" id="8On-Ul-J76"/>
+                                            <constraint firstItem="5Dk-gC-0ts" firstAttribute="leading" secondItem="tT4-Bm-RUD" secondAttribute="leading" id="M9n-oO-lPm"/>
+                                            <constraint firstItem="5Dk-gC-0ts" firstAttribute="centerY" secondItem="tT4-Bm-RUD" secondAttribute="centerY" id="y7U-gX-2Ok"/>
+                                        </constraints>
+                                    </customView>
+                                </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="EAF45AC8-E1F2-45E5-A263-7284C04E492D" label="Display" paletteLabel="Display" tag="-1" id="5gm-Uh-r8y">
+                                    <nil key="toolTip"/>
+                                    <size key="minSize" width="37" height="37"/>
+                                    <size key="maxSize" width="1024" height="40"/>
+                                    <customView key="view" id="Qnj-uC-JLW">
+                                        <rect key="frame" x="5" y="14" width="37" height="37"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <subviews>
+                                            <textField horizontalHuggingPriority="1000" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="Hfg-0O-WVb">
+                                                <rect key="frame" x="-2" y="12" width="41" height="14"/>
+                                                <textFieldCell key="cell" lineBreakMode="truncatingHead" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="-00:00" placeholderString="" usesSingleLineMode="YES" id="lJd-fv-2vD">
+                                                    <font key="font" metaFont="smallSystem"/>
+                                                    <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="Hfg-0O-WVb" firstAttribute="leading" secondItem="Qnj-uC-JLW" secondAttribute="leading" id="4tk-yo-Zto"/>
+                                            <constraint firstItem="Hfg-0O-WVb" firstAttribute="centerY" secondItem="Qnj-uC-JLW" secondAttribute="centerY" id="XXE-2I-pH9"/>
+                                            <constraint firstAttribute="trailing" secondItem="Hfg-0O-WVb" secondAttribute="trailing" id="qYY-PP-niw"/>
                                         </constraints>
                                     </customView>
                                 </toolbarItem>
@@ -136,7 +149,9 @@
                             <defaultToolbarItems>
                                 <toolbarItem reference="Kkd-or-ju7"/>
                                 <toolbarItem reference="Yms-xo-OpC"/>
+                                <toolbarItem reference="k8u-jp-sHf"/>
                                 <toolbarItem reference="X18-D7-wxZ"/>
+                                <toolbarItem reference="5gm-Uh-r8y"/>
                                 <toolbarItem reference="Yms-xo-OpC"/>
                                 <toolbarItem reference="0tl-sN-weP"/>
                             </defaultToolbarItems>
@@ -151,7 +166,8 @@
                         <outlet property="playerDisplayView" destination="guW-sT-LJb" id="TJi-bE-LTe"/>
                         <outlet property="playerSegmentedControl" destination="f0s-oS-caz" id="NE4-55-yJT"/>
                         <outlet property="progressSlider" destination="gQR-LG-ge2" id="zbk-on-2E7"/>
-                        <outlet property="remainingTimeToolbarTextField" destination="SNt-2i-U3H" id="Knc-JK-7bb"/>
+                        <outlet property="remainingTimeToolbarItem" destination="5gm-Uh-r8y" id="LFa-Ba-tAe"/>
+                        <outlet property="remainingTimeToolbarTextField" destination="Hfg-0O-WVb" id="YUX-ND-rxD"/>
                         <outlet property="showTitleToolbarTextField" destination="giO-Gm-TBv" id="sgN-Vg-V55"/>
                         <segue destination="yRR-xE-ySh" kind="relationship" relationship="window.shadowedContentViewController" id="qCN-Rc-7Qx"/>
                     </connections>
