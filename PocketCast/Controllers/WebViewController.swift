@@ -32,7 +32,6 @@ class WebViewController: NSViewController {
             webView = WKWebView(frame: view.bounds)
         }
 
-        webView.navigationDelegate = self
         webView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(webView, positioned: .below, relativeTo: nil)
 
@@ -74,34 +73,6 @@ class WebViewController: NSViewController {
 
     func jumpForward() {
         javascript.jumpForward()
-    }
-
-}
-
-// MARK: - WKNavigationDelegate
-
-extension WebViewController: WKNavigationDelegate {
-
-    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-        if navigationAction.request.url?.path == "/account", let url = navigationAction.request.url {
-            NSWorkspace.shared.open(url)
-            decisionHandler(.cancel)
-        } else if navigationAction.request.url?.path == "/users/sign_in" {
-            performSegue(withIdentifier: NSStoryboardSegue.Identifier(rawValue: "LoginSheetIdentifier"), sender: navigationAction.request)
-            decisionHandler(.cancel)
-        } else if navigationAction.navigationType == .linkActivated, let url = navigationAction.request.url {
-            NSWorkspace.shared.open(url)
-            decisionHandler(.cancel)
-        } else {
-            decisionHandler(.allow)
-        }
-    }
-
-    override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
-        if segue.identifier?.rawValue == "LoginSheetIdentifier",
-        let loginViewController = segue.destinationController as? LoginViewController, let request = sender as? URLRequest {
-            loginViewController.request = request
-        }
     }
 
 }
