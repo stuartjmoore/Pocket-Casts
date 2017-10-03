@@ -58,18 +58,18 @@
                                 </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="7B2EBAE9-F661-4350-8856-3F73D35182A4" label="Display" paletteLabel="Display" tag="-1" id="X18-D7-wxZ">
                                     <nil key="toolTip"/>
-                                    <size key="minSize" width="127" height="40"/>
+                                    <size key="minSize" width="127" height="37"/>
                                     <size key="maxSize" width="1024" height="40"/>
                                     <customView key="view" id="tT4-Bm-RUD">
                                         <rect key="frame" x="0.0" y="14" width="127" height="37"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <subviews>
                                             <customView focusRingType="none" translatesAutoresizingMaskIntoConstraints="NO" id="BRs-RK-Tcr" userLabel="Progress Bar Container View">
-                                                <rect key="frame" x="0.0" y="2" width="127" height="19"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="127" height="19"/>
                                                 <subviews>
                                                     <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gQR-LG-ge2">
-                                                        <rect key="frame" x="-2" y="0.0" width="131" height="19"/>
-                                                        <sliderCell key="cell" scrollable="YES" lineBreakMode="clipping" continuous="YES" state="on" alignment="left" maxValue="1" tickMarkPosition="above" sliderType="linear" id="Bga-Up-vR5"/>
+                                                        <rect key="frame" x="0.0" y="3" width="127" height="13"/>
+                                                        <sliderCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" continuous="YES" state="on" alignment="left" maxValue="1" tickMarkPosition="above" sliderType="linear" id="Bga-Up-vR5"/>
                                                         <connections>
                                                             <action selector="progressSliderMoved:" target="9PK-L3-Vl5" id="VQE-0u-VLT"/>
                                                         </connections>
@@ -128,7 +128,7 @@
                                             <constraint firstItem="guW-sT-LJb" firstAttribute="top" secondItem="tT4-Bm-RUD" secondAttribute="top" constant="4" id="VPO-kY-lE8"/>
                                             <constraint firstAttribute="trailing" secondItem="guW-sT-LJb" secondAttribute="trailing" id="cNV-uo-1bp"/>
                                             <constraint firstItem="guW-sT-LJb" firstAttribute="leading" secondItem="tT4-Bm-RUD" secondAttribute="leading" id="hU9-xa-HKp"/>
-                                            <constraint firstAttribute="bottom" secondItem="BRs-RK-Tcr" secondAttribute="bottom" constant="2" id="opb-Bv-m8n"/>
+                                            <constraint firstAttribute="bottom" secondItem="BRs-RK-Tcr" secondAttribute="bottom" id="opb-Bv-m8n"/>
                                         </constraints>
                                     </customView>
                                 </toolbarItem>
