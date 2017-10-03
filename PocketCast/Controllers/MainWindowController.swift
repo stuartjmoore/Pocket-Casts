@@ -12,7 +12,6 @@ import WebKit
 class MainWindowController: NSWindowController {
 
     @IBOutlet weak var playerSegmentedControl: NSSegmentedControl!
-    @IBOutlet weak var playerCloseButton: NSButton!
 
     @IBOutlet weak var playerDisplayToolbarItem: NSToolbarItem!
     @IBOutlet weak var playerDisplayView: NSView!
@@ -107,27 +106,15 @@ class MainWindowController: NSWindowController {
             case .stopped, .buffering:
                 playerSegmentedControl.setLabel("▶❙❙", forSegment: 1)
                 playerSegmentedControl.isEnabled = false
-                playerCloseButton.isEnabled = false
-                playerCloseButton.state = .on
-                playerCloseButton.setNextState()
 
             case .playing:
                 playerSegmentedControl.setLabel("❙❙", forSegment: 1)
                 playerSegmentedControl.isEnabled = true
-                playerCloseButton.isEnabled = true
 
             case .paused:
                 playerSegmentedControl.setLabel("▶", forSegment: 1)
                 playerSegmentedControl.isEnabled = true
-                playerCloseButton.isEnabled = true
             }
-        }
-    }
-
-    var playerVisible: Bool = false {
-        didSet {
-            playerCloseButton.state = playerVisible ? .off : .on
-            playerCloseButton.setNextState()
         }
     }
 
@@ -141,22 +128,6 @@ class MainWindowController: NSWindowController {
         } else if sender.selectedSegment == 2 {
             webViewController.jumpForward()
         }
-    }
-
-    @IBAction func settingsTapped(_ sender: NSButton) {
-        webViewController.clickSettingsButton()
-    }
-
-    @IBAction func togglePlayerTapped(_ sender: NSButton) {
-        if webViewController.playerVisible {
-            webViewController.hidePlayer()
-            sender.state = .on
-        } else {
-            webViewController.showPlayer()
-            sender.state = .off
-        }
-
-        sender.setNextState()
     }
 
     // MARK: Media Keys

@@ -151,10 +151,6 @@ class Javascript {
         return percentage.isFinite ? max(0, min(percentage, 1)) : 0
     }
 
-    var playerVisible: Bool {
-        return true
-    }
-
     // MARK: -
 
     func playPause() {

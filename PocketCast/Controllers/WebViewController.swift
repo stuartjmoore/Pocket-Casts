@@ -62,10 +62,6 @@ class WebViewController: NSViewController {
         return javascript.playerState == .playing
     }
 
-    var playerVisible: Bool {
-        return javascript.playerVisible
-    }
-
     // MARK: Actions
 
     func jumpBack() {
@@ -78,22 +74,6 @@ class WebViewController: NSViewController {
 
     func jumpForward() {
         javascript.jumpForward()
-    }
-
-    func clickSettingsButton() {
-        //
-    }
-
-    func settingMenuDidSelect(_ menuItem: NSMenuItem) {
-        //
-    }
-
-    func hidePlayer() {
-        //
-    }
-
-    func showPlayer() {
-        //
     }
 
 }
@@ -163,10 +143,6 @@ extension WebViewController: JavascriptDelegate {
 
     func javascriptPlayerStateDidChange(_ playerState: PlayerState) {
         windowController?.playerState = playerState
-
-        if playerState == .paused || playerState == .playing  {
-            windowController?.playerVisible = javascript.playerVisible
-        }
     }
 
 }

@@ -1,8 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="9PK-L3-Vl5">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="9PK-L3-Vl5">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13196"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+        <capability name="system font weights other than Regular or Bold" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--Window Controller-->
@@ -10,59 +12,13 @@
             <objects>
                 <windowController id="9PK-L3-Vl5" customClass="MainWindowController" customModule="Pocket_Casts" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" frameAutosaveName="MainWindow" animationBehavior="default" id="YZT-mR-ptF">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" unifiedTitleAndToolbar="YES"/>
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <rect key="contentRect" x="744" y="268" width="600" height="600"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1177"/>
                         <toolbar key="toolbar" implicitIdentifier="7E99F0F6-83BB-4AEC-887A-C58C08440504" autosavesConfiguration="NO" displayMode="iconOnly" sizeMode="regular" id="Z6S-hV-99m">
                             <allowedToolbarItems>
                                 <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="k8u-jp-sHf"/>
                                 <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="Yms-xo-OpC"/>
-                                <toolbarItem implicitItemIdentifier="8F628D90-C167-49EB-891F-91186B370436" label="Search" paletteLabel="Search" id="KD1-5m-60l">
-                                    <nil key="toolTip"/>
-                                    <size key="minSize" width="96" height="22"/>
-                                    <size key="maxSize" width="96" height="22"/>
-                                    <searchField key="view" wantsLayer="YES" verticalHuggingPriority="750" id="MFk-U3-JjR">
-                                        <rect key="frame" x="0.0" y="14" width="96" height="22"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <searchFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" sendsSearchStringImmediately="YES" sendsWholeSearchString="YES" id="SSW-4m-nhq">
-                                            <font key="font" metaFont="system"/>
-                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                        </searchFieldCell>
-                                    </searchField>
-                                </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="20D10335-6144-4059-9BDF-91E3B5DD014C" label="Settings" paletteLabel="Settings" image="NSActionTemplate" id="UKm-1Z-B1F">
-                                    <nil key="toolTip"/>
-                                    <size key="minSize" width="25" height="25"/>
-                                    <size key="maxSize" width="32" height="32"/>
-                                    <button key="view" verticalHuggingPriority="750" id="W6t-2M-28K">
-                                        <rect key="frame" x="10" y="14" width="32" height="28"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="NSActionTemplate" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="XzT-72-TkU">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="settingsTapped:" target="9PK-L3-Vl5" id="noN-pi-nxF"/>
-                                        </connections>
-                                    </button>
-                                </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="7CB76C11-D703-426E-AF50-BA04323262DC" label="Show Player" paletteLabel="Show Player" image="NSListViewTemplate" id="zeb-HU-EW3">
-                                    <nil key="toolTip"/>
-                                    <size key="minSize" width="25" height="25"/>
-                                    <size key="maxSize" width="32" height="32"/>
-                                    <button key="view" verticalHuggingPriority="750" id="RIl-fM-tIb">
-                                        <rect key="frame" x="20" y="14" width="32" height="29"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="NSListViewTemplate" imagePosition="overlaps" alignment="center" enabled="NO" imageScaling="proportionallyDown" inset="2" id="AYW-EQ-pxv">
-                                            <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="togglePlayerTapped:" target="9PK-L3-Vl5" id="Xop-gA-4AF"/>
-                                        </connections>
-                                    </button>
-                                </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="9A0B51D8-1AD1-4989-B646-72F4A0D5CDD2" label="Controls" paletteLabel="Controls" id="Kkd-or-ju7">
                                     <nil key="toolTip"/>
                                     <size key="minSize" width="96" height="25"/>
@@ -158,19 +114,18 @@
                                 </toolbarItem>
                             </allowedToolbarItems>
                             <defaultToolbarItems>
-                                <toolbarItem reference="zeb-HU-EW3"/>
                                 <toolbarItem reference="Kkd-or-ju7"/>
                                 <toolbarItem reference="Yms-xo-OpC"/>
                                 <toolbarItem reference="X18-D7-wxZ"/>
                                 <toolbarItem reference="Yms-xo-OpC"/>
-                                <toolbarItem reference="KD1-5m-60l"/>
-                                <toolbarItem reference="UKm-1Z-B1F"/>
                             </defaultToolbarItems>
                         </toolbar>
+                        <connections>
+                            <outlet property="delegate" destination="9PK-L3-Vl5" id="xbf-jg-9SJ"/>
+                        </connections>
                     </window>
                     <connections>
                         <outlet property="episodeTitleToolbarTextField" destination="sN8-FM-Ypg" id="V5I-0l-xDn"/>
-                        <outlet property="playerCloseButton" destination="RIl-fM-tIb" id="X8S-YL-T8B"/>
                         <outlet property="playerDisplayToolbarItem" destination="X18-D7-wxZ" id="Dhu-0c-bfh"/>
                         <outlet property="playerDisplayView" destination="zuF-KB-g6j" id="jbc-7f-4Yv"/>
                         <outlet property="playerSegmentedControl" destination="f0s-oS-caz" id="NE4-55-yJT"/>
@@ -430,8 +385,4 @@
             <point key="canvasLocation" x="995.5" y="-324"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="NSActionTemplate" width="14" height="14"/>
-        <image name="NSListViewTemplate" width="14" height="10"/>
-    </resources>
 </document>
