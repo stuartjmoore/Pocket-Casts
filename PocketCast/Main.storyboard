@@ -62,7 +62,7 @@
                                         </connections>
                                     </segmentedControl>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="7B2EBAE9-F661-4350-8856-3F73D35182A4" label="Display" paletteLabel="Display" tag="-1" id="X18-D7-wxZ">
+                                <toolbarItem implicitItemIdentifier="7B2EBAE9-F661-4350-8856-3F73D35182A4" label="Podcast" paletteLabel="Podcast" tag="-1" id="X18-D7-wxZ">
                                     <nil key="toolTip"/>
                                     <size key="minSize" width="75" height="37"/>
                                     <size key="maxSize" width="1024" height="40"/>
@@ -79,7 +79,7 @@
                                                             <constraint firstAttribute="height" constant="29" id="MLL-Av-XGv"/>
                                                             <constraint firstAttribute="width" constant="29" id="R8v-Rx-HCO"/>
                                                         </constraints>
-                                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSHomeTemplate" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="Rye-Mo-tuT">
+                                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="Rye-Mo-tuT">
                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                             <font key="font" metaFont="system"/>
                                                         </buttonCell>
@@ -121,7 +121,7 @@
                                                             </stackView>
                                                             <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gQR-LG-ge2">
                                                                 <rect key="frame" x="0.0" y="-1" width="76" height="13"/>
-                                                                <sliderCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" continuous="YES" state="on" alignment="left" maxValue="1" tickMarkPosition="above" sliderType="linear" id="Bga-Up-vR5"/>
+                                                                <sliderCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" continuous="YES" state="on" alignment="left" maxValue="1" tickMarkPosition="above" sliderType="linear" id="Bga-Up-vR5" customClass="ProgressSliderCell" customModule="Pocket_Casts" customModuleProvider="target"/>
                                                                 <connections>
                                                                     <action selector="progressSliderMoved:" target="9PK-L3-Vl5" id="VQE-0u-VLT"/>
                                                                 </connections>
@@ -154,12 +154,12 @@
                                         </constraints>
                                     </customView>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="EAF45AC8-E1F2-45E5-A263-7284C04E492D" label="Display" paletteLabel="Display" tag="-1" id="5gm-Uh-r8y">
+                                <toolbarItem implicitItemIdentifier="EAF45AC8-E1F2-45E5-A263-7284C04E492D" label="Time" paletteLabel="Time" tag="-1" id="5gm-Uh-r8y">
                                     <nil key="toolTip"/>
                                     <size key="minSize" width="0.0" height="37"/>
                                     <size key="maxSize" width="1024" height="40"/>
                                     <customView key="view" id="Qnj-uC-JLW">
-                                        <rect key="frame" x="23" y="14" width="0.0" height="37"/>
+                                        <rect key="frame" x="17" y="14" width="0.0" height="37"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <subviews>
                                             <textField horizontalHuggingPriority="1000" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="Hfg-0O-WVb">
@@ -455,7 +455,4 @@
             <point key="canvasLocation" x="995.5" y="-324"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="NSHomeTemplate" width="14" height="14"/>
-    </resources>
 </document>

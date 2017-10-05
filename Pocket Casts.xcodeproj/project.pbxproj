@@ -11,6 +11,8 @@
 		1716B8B21C179B0D00BE83D0 /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1716B8B11C179B0D00BE83D0 /* MainWindowController.swift */; };
 		1716B8B41C179B2400BE83D0 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1716B8B31C179B2400BE83D0 /* WebViewController.swift */; };
 		1716B8B71C179B3400BE83D0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1716B8B51C179B3400BE83D0 /* LoginViewController.swift */; };
+		1790438F1F85AAE900CEF8EF /* ProgressSliderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1790438E1F85AAE900CEF8EF /* ProgressSliderCell.swift */; };
+		179043931F85B28100CEF8EF /* NSColor+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179043921F85B28100CEF8EF /* NSColor+Util.swift */; };
 		17AF115B1C0FCF1900620A32 /* Javascript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AF115A1C0FCF1900620A32 /* Javascript.swift */; };
 		17F0A4D91F841D9200AD8082 /* TimeInterval+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F0A4D81F841D9200AD8082 /* TimeInterval+Util.swift */; };
 		17F0A4DB1F84224600AD8082 /* String+PodcastTrim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F0A4DA1F84224600AD8082 /* String+PodcastTrim.swift */; };
@@ -28,6 +30,8 @@
 		1716B8B11C179B0D00BE83D0 /* MainWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainWindowController.swift; path = Controllers/MainWindowController.swift; sourceTree = "<group>"; };
 		1716B8B31C179B2400BE83D0 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebViewController.swift; path = Controllers/WebViewController.swift; sourceTree = "<group>"; };
 		1716B8B51C179B3400BE83D0 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = Controllers/LoginViewController.swift; sourceTree = "<group>"; };
+		1790438E1F85AAE900CEF8EF /* ProgressSliderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProgressSliderCell.swift; path = PocketCast/Views/ProgressSliderCell.swift; sourceTree = "<group>"; };
+		179043921F85B28100CEF8EF /* NSColor+Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "NSColor+Util.swift"; path = "PocketCast/Helpers/NSColor+Util.swift"; sourceTree = "<group>"; };
 		17AF115A1C0FCF1900620A32 /* Javascript.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Javascript.swift; path = PocketCast/Helpers/Javascript.swift; sourceTree = "<group>"; };
 		17F0A4D81F841D9200AD8082 /* TimeInterval+Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "TimeInterval+Util.swift"; path = "PocketCast/Helpers/TimeInterval+Util.swift"; sourceTree = "<group>"; };
 		17F0A4DA1F84224600AD8082 /* String+PodcastTrim.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "String+PodcastTrim.swift"; path = "PocketCast/Helpers/String+PodcastTrim.swift"; sourceTree = "<group>"; };
@@ -83,6 +87,7 @@
 				17AF115A1C0FCF1900620A32 /* Javascript.swift */,
 				17F0A4D81F841D9200AD8082 /* TimeInterval+Util.swift */,
 				17F0A4DA1F84224600AD8082 /* String+PodcastTrim.swift */,
+				179043921F85B28100CEF8EF /* NSColor+Util.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -111,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				C1E7E6A21C1E082800089E26 /* DockProgressView.swift */,
+				1790438E1F85AAE900CEF8EF /* ProgressSliderCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -228,8 +234,10 @@
 				1716B8B71C179B3400BE83D0 /* LoginViewController.swift in Sources */,
 				17F0A4D91F841D9200AD8082 /* TimeInterval+Util.swift in Sources */,
 				C1E7E6A31C1E082800089E26 /* DockProgressView.swift in Sources */,
+				1790438F1F85AAE900CEF8EF /* ProgressSliderCell.swift in Sources */,
 				17F0A4DB1F84224600AD8082 /* String+PodcastTrim.swift in Sources */,
 				C80F65D61ADE156C00277D77 /* AppDelegate.swift in Sources */,
+				179043931F85B28100CEF8EF /* NSColor+Util.swift in Sources */,
 				A441E3B11B4FF0BE008DBC37 /* SPMediaKeyTap.m in Sources */,
 				17AF115B1C0FCF1900620A32 /* Javascript.swift in Sources */,
 			);
