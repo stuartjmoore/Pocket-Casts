@@ -20,14 +20,14 @@
                             <allowedToolbarItems>
                                 <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="k8u-jp-sHf"/>
                                 <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="Yms-xo-OpC"/>
-                                <toolbarItem implicitItemIdentifier="2B13B966-1929-4297-972B-213C7179F424" label="Up Next" paletteLabel="Up Next" id="0tl-sN-weP">
+                                <toolbarItem implicitItemIdentifier="2B13B966-1929-4297-972B-213C7179F424" label="Up Next" paletteLabel="Up Next" image="Up Next" id="0tl-sN-weP">
                                     <nil key="toolTip"/>
                                     <size key="minSize" width="18" height="18"/>
                                     <size key="maxSize" width="37" height="32"/>
                                     <button key="view" verticalHuggingPriority="750" id="dth-WQ-RgE">
                                         <rect key="frame" x="7" y="14" width="37" height="28"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="roundTextured" title="≔" bezelStyle="texturedRounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="FBj-gh-sFn">
+                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="Up Next" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="FBj-gh-sFn">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system" size="20"/>
                                         </buttonCell>
@@ -226,13 +226,13 @@
                                         <autoresizingMask key="autoresizingMask"/>
                                         <subviews>
                                             <visualEffectView blendingMode="behindWindow" material="sidebar" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="2Ns-f8-CUv">
-                                                <rect key="frame" x="0.0" y="0.0" width="97" height="600"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="105" height="600"/>
                                                 <subviews>
-                                                    <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="16" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" horizontalHuggingPriority="1000" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cOj-Ha-QCi">
-                                                        <rect key="frame" x="4" y="227" width="89" height="349"/>
+                                                    <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="24" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" horizontalHuggingPriority="1000" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cOj-Ha-QCi">
+                                                        <rect key="frame" x="8" y="195" width="89" height="381"/>
                                                         <subviews>
                                                             <button horizontalHuggingPriority="1000" tag="50" translatesAutoresizingMaskIntoConstraints="NO" id="pZG-jg-qcf">
-                                                                <rect key="frame" x="16" y="292" width="57" height="57"/>
+                                                                <rect key="frame" x="16" y="324" width="57" height="57"/>
                                                                 <buttonCell key="cell" type="square" title="Discover" bezelStyle="shadowlessSquare" image="Discover" imagePosition="above" alignment="center" tag="50" imageScaling="proportionallyDown" inset="2" id="q6y-2y-gaT">
                                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                     <font key="font" metaFont="system"/>
@@ -242,7 +242,7 @@
                                                                 </connections>
                                                             </button>
                                                             <button horizontalHuggingPriority="1000" tag="49" translatesAutoresizingMaskIntoConstraints="NO" id="QwK-Ac-qYq">
-                                                                <rect key="frame" x="14.5" y="219" width="60" height="57"/>
+                                                                <rect key="frame" x="14.5" y="243" width="60" height="57"/>
                                                                 <buttonCell key="cell" type="square" title="Podcasts" bezelStyle="shadowlessSquare" image="Podcasts" imagePosition="above" alignment="center" tag="49" imageScaling="proportionallyDown" inset="2" id="FK0-Su-ZV6">
                                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                     <font key="font" metaFont="system"/>
@@ -252,7 +252,7 @@
                                                                 </connections>
                                                             </button>
                                                             <button horizontalHuggingPriority="1000" tag="51" translatesAutoresizingMaskIntoConstraints="NO" id="LAr-yF-SrQ">
-                                                                <rect key="frame" x="0.0" y="146" width="89" height="57"/>
+                                                                <rect key="frame" x="0.0" y="162" width="89" height="57"/>
                                                                 <buttonCell key="cell" type="square" title="New Releases" bezelStyle="shadowlessSquare" image="New Releases" imagePosition="above" alignment="center" tag="51" imageScaling="proportionallyDown" inset="2" id="TTV-5w-E8R">
                                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                     <font key="font" metaFont="system"/>
@@ -262,7 +262,7 @@
                                                                 </connections>
                                                             </button>
                                                             <button horizontalHuggingPriority="1000" tag="52" translatesAutoresizingMaskIntoConstraints="NO" id="ImB-Px-2hy">
-                                                                <rect key="frame" x="8" y="73" width="73" height="57"/>
+                                                                <rect key="frame" x="8" y="81" width="73" height="57"/>
                                                                 <buttonCell key="cell" type="square" title="In Progress" bezelStyle="shadowlessSquare" image="In Progress" imagePosition="above" alignment="center" tag="52" imageScaling="proportionallyDown" inset="2" id="Gv0-9G-AsX">
                                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                     <font key="font" metaFont="system"/>
@@ -299,8 +299,8 @@
                                                     </stackView>
                                                 </subviews>
                                                 <constraints>
-                                                    <constraint firstItem="cOj-Ha-QCi" firstAttribute="leading" secondItem="2Ns-f8-CUv" secondAttribute="leading" constant="4" id="DOV-Ax-hiL"/>
-                                                    <constraint firstAttribute="trailing" secondItem="cOj-Ha-QCi" secondAttribute="trailing" constant="4" id="ISN-ws-dMJ"/>
+                                                    <constraint firstItem="cOj-Ha-QCi" firstAttribute="leading" secondItem="2Ns-f8-CUv" secondAttribute="leading" constant="8" id="DOV-Ax-hiL"/>
+                                                    <constraint firstAttribute="trailing" secondItem="cOj-Ha-QCi" secondAttribute="trailing" constant="8" id="ISN-ws-dMJ"/>
                                                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="cOj-Ha-QCi" secondAttribute="bottom" id="LkT-UF-mx0"/>
                                                     <constraint firstItem="cOj-Ha-QCi" firstAttribute="top" secondItem="2Ns-f8-CUv" secondAttribute="top" constant="24" id="XKr-IH-mMf"/>
                                                 </constraints>
@@ -575,5 +575,6 @@
         <image name="New Releases" width="40" height="40"/>
         <image name="Podcasts" width="40" height="40"/>
         <image name="Starred" width="40" height="40"/>
+        <image name="Up Next" width="30" height="25"/>
     </resources>
 </document>
