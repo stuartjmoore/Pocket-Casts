@@ -229,11 +229,11 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="97" height="600"/>
                                                 <subviews>
                                                     <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="16" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" horizontalHuggingPriority="1000" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cOj-Ha-QCi">
-                                                        <rect key="frame" x="4" y="285" width="89" height="291"/>
+                                                        <rect key="frame" x="4" y="227" width="89" height="349"/>
                                                         <subviews>
                                                             <button horizontalHuggingPriority="1000" tag="50" translatesAutoresizingMaskIntoConstraints="NO" id="pZG-jg-qcf">
-                                                                <rect key="frame" x="16" y="242" width="57" height="49"/>
-                                                                <buttonCell key="cell" type="square" title="Discover" bezelStyle="shadowlessSquare" image="NSTrashEmpty" imagePosition="above" alignment="center" tag="50" imageScaling="proportionallyDown" inset="2" id="q6y-2y-gaT">
+                                                                <rect key="frame" x="16" y="292" width="57" height="57"/>
+                                                                <buttonCell key="cell" type="square" title="Discover" bezelStyle="shadowlessSquare" image="Discover" imagePosition="above" alignment="center" tag="50" imageScaling="proportionallyDown" inset="2" id="q6y-2y-gaT">
                                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                     <font key="font" metaFont="system"/>
                                                                 </buttonCell>
@@ -242,8 +242,8 @@
                                                                 </connections>
                                                             </button>
                                                             <button horizontalHuggingPriority="1000" tag="49" translatesAutoresizingMaskIntoConstraints="NO" id="QwK-Ac-qYq">
-                                                                <rect key="frame" x="14.5" y="177" width="60" height="49"/>
-                                                                <buttonCell key="cell" type="square" title="Podcasts" bezelStyle="shadowlessSquare" image="NSFontPanel" imagePosition="above" alignment="center" tag="49" imageScaling="proportionallyDown" inset="2" id="FK0-Su-ZV6">
+                                                                <rect key="frame" x="14.5" y="219" width="60" height="57"/>
+                                                                <buttonCell key="cell" type="square" title="Podcasts" bezelStyle="shadowlessSquare" image="Podcasts" imagePosition="above" alignment="center" tag="49" imageScaling="proportionallyDown" inset="2" id="FK0-Su-ZV6">
                                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                     <font key="font" metaFont="system"/>
                                                                 </buttonCell>
@@ -252,8 +252,8 @@
                                                                 </connections>
                                                             </button>
                                                             <button horizontalHuggingPriority="1000" tag="51" translatesAutoresizingMaskIntoConstraints="NO" id="LAr-yF-SrQ">
-                                                                <rect key="frame" x="0.0" y="112" width="89" height="49"/>
-                                                                <buttonCell key="cell" type="square" title="New Releases" bezelStyle="shadowlessSquare" image="NSNetwork" imagePosition="above" alignment="center" tag="51" imageScaling="proportionallyDown" inset="2" id="TTV-5w-E8R">
+                                                                <rect key="frame" x="0.0" y="146" width="89" height="57"/>
+                                                                <buttonCell key="cell" type="square" title="New Releases" bezelStyle="shadowlessSquare" image="New Releases" imagePosition="above" alignment="center" tag="51" imageScaling="proportionallyDown" inset="2" id="TTV-5w-E8R">
                                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                     <font key="font" metaFont="system"/>
                                                                 </buttonCell>
@@ -262,8 +262,8 @@
                                                                 </connections>
                                                             </button>
                                                             <button horizontalHuggingPriority="1000" tag="52" translatesAutoresizingMaskIntoConstraints="NO" id="ImB-Px-2hy">
-                                                                <rect key="frame" x="8" y="65" width="73" height="31"/>
-                                                                <buttonCell key="cell" type="square" title="In Progress" bezelStyle="shadowlessSquare" image="NSInvalidDataFreestandingTemplate" imagePosition="above" alignment="center" tag="52" imageScaling="proportionallyDown" inset="2" id="Gv0-9G-AsX">
+                                                                <rect key="frame" x="8" y="73" width="73" height="57"/>
+                                                                <buttonCell key="cell" type="square" title="In Progress" bezelStyle="shadowlessSquare" image="In Progress" imagePosition="above" alignment="center" tag="52" imageScaling="proportionallyDown" inset="2" id="Gv0-9G-AsX">
                                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                     <font key="font" metaFont="system"/>
                                                                 </buttonCell>
@@ -272,8 +272,8 @@
                                                                 </connections>
                                                             </button>
                                                             <button horizontalHuggingPriority="1000" tag="53" translatesAutoresizingMaskIntoConstraints="NO" id="MeC-oc-4jC">
-                                                                <rect key="frame" x="20" y="0.0" width="49" height="49"/>
-                                                                <buttonCell key="cell" type="square" title="Starred" bezelStyle="shadowlessSquare" image="NSInfo" imagePosition="above" alignment="center" tag="53" imageScaling="proportionallyDown" inset="2" id="fyR-YY-Jmr">
+                                                                <rect key="frame" x="20" y="0.0" width="49" height="57"/>
+                                                                <buttonCell key="cell" type="square" title="Starred" bezelStyle="shadowlessSquare" image="Starred" imagePosition="above" alignment="center" tag="53" imageScaling="proportionallyDown" inset="2" id="fyR-YY-Jmr">
                                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                     <font key="font" metaFont="system"/>
                                                                 </buttonCell>
@@ -570,10 +570,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="NSFontPanel" width="32" height="32"/>
-        <image name="NSInfo" width="32" height="32"/>
-        <image name="NSInvalidDataFreestandingTemplate" width="14" height="14"/>
-        <image name="NSNetwork" width="32" height="32"/>
-        <image name="NSTrashEmpty" width="32" height="32"/>
+        <image name="Discover" width="40" height="40"/>
+        <image name="In Progress" width="40" height="40"/>
+        <image name="New Releases" width="40" height="40"/>
+        <image name="Podcasts" width="40" height="40"/>
+        <image name="Starred" width="40" height="40"/>
     </resources>
 </document>
