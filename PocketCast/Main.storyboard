@@ -208,7 +208,7 @@
                 </windowController>
                 <customObject id="TGU-pa-pTr" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="995" y="117.5"/>
+            <point key="canvasLocation" x="995" y="117"/>
         </scene>
         <!--Web View Controller-->
         <scene sceneID="nxn-yH-2p2">
@@ -217,8 +217,122 @@
                     <view key="view" focusRingType="none" id="LDY-2F-JJN">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <splitView arrangesAllSubviews="NO" dividerStyle="thin" vertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wtP-gh-Cv5">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <subviews>
+                                    <customView misplaced="YES" id="jk3-3W-JjA">
+                                        <rect key="frame" x="0.0" y="0.0" width="297" height="600"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <subviews>
+                                            <visualEffectView blendingMode="behindWindow" material="sidebar" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="2Ns-f8-CUv">
+                                                <rect key="frame" x="0.0" y="0.0" width="97" height="600"/>
+                                                <subviews>
+                                                    <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="16" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" horizontalHuggingPriority="1000" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cOj-Ha-QCi">
+                                                        <rect key="frame" x="4" y="285" width="89" height="291"/>
+                                                        <subviews>
+                                                            <button horizontalHuggingPriority="1000" tag="50" translatesAutoresizingMaskIntoConstraints="NO" id="pZG-jg-qcf">
+                                                                <rect key="frame" x="16" y="242" width="57" height="49"/>
+                                                                <buttonCell key="cell" type="square" title="Discover" bezelStyle="shadowlessSquare" image="NSTrashEmpty" imagePosition="above" alignment="center" tag="50" imageScaling="proportionallyDown" inset="2" id="q6y-2y-gaT">
+                                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                    <font key="font" metaFont="system"/>
+                                                                </buttonCell>
+                                                                <connections>
+                                                                    <action selector="handleTabTap:" target="yRR-xE-ySh" id="dg9-8P-IgF"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button horizontalHuggingPriority="1000" tag="49" translatesAutoresizingMaskIntoConstraints="NO" id="QwK-Ac-qYq">
+                                                                <rect key="frame" x="14.5" y="177" width="60" height="49"/>
+                                                                <buttonCell key="cell" type="square" title="Podcasts" bezelStyle="shadowlessSquare" image="NSFontPanel" imagePosition="above" alignment="center" tag="49" imageScaling="proportionallyDown" inset="2" id="FK0-Su-ZV6">
+                                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                    <font key="font" metaFont="system"/>
+                                                                </buttonCell>
+                                                                <connections>
+                                                                    <action selector="handleTabTap:" target="yRR-xE-ySh" id="mSl-95-2c7"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button horizontalHuggingPriority="1000" tag="51" translatesAutoresizingMaskIntoConstraints="NO" id="LAr-yF-SrQ">
+                                                                <rect key="frame" x="0.0" y="112" width="89" height="49"/>
+                                                                <buttonCell key="cell" type="square" title="New Releases" bezelStyle="shadowlessSquare" image="NSNetwork" imagePosition="above" alignment="center" tag="51" imageScaling="proportionallyDown" inset="2" id="TTV-5w-E8R">
+                                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                    <font key="font" metaFont="system"/>
+                                                                </buttonCell>
+                                                                <connections>
+                                                                    <action selector="handleTabTap:" target="yRR-xE-ySh" id="S3E-SL-QGj"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button horizontalHuggingPriority="1000" tag="52" translatesAutoresizingMaskIntoConstraints="NO" id="ImB-Px-2hy">
+                                                                <rect key="frame" x="8" y="65" width="73" height="31"/>
+                                                                <buttonCell key="cell" type="square" title="In Progress" bezelStyle="shadowlessSquare" image="NSInvalidDataFreestandingTemplate" imagePosition="above" alignment="center" tag="52" imageScaling="proportionallyDown" inset="2" id="Gv0-9G-AsX">
+                                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                    <font key="font" metaFont="system"/>
+                                                                </buttonCell>
+                                                                <connections>
+                                                                    <action selector="handleTabTap:" target="yRR-xE-ySh" id="pNO-w5-nUj"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button horizontalHuggingPriority="1000" tag="53" translatesAutoresizingMaskIntoConstraints="NO" id="MeC-oc-4jC">
+                                                                <rect key="frame" x="20" y="0.0" width="49" height="49"/>
+                                                                <buttonCell key="cell" type="square" title="Starred" bezelStyle="shadowlessSquare" image="NSInfo" imagePosition="above" alignment="center" tag="53" imageScaling="proportionallyDown" inset="2" id="fyR-YY-Jmr">
+                                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                    <font key="font" metaFont="system"/>
+                                                                </buttonCell>
+                                                                <connections>
+                                                                    <action selector="handleTabTap:" target="yRR-xE-ySh" id="jWw-UT-9eK"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                        <visibilityPriorities>
+                                                            <integer value="1000"/>
+                                                            <integer value="1000"/>
+                                                            <integer value="1000"/>
+                                                            <integer value="1000"/>
+                                                            <integer value="1000"/>
+                                                        </visibilityPriorities>
+                                                        <customSpacing>
+                                                            <real value="3.4028234663852886e+38"/>
+                                                            <real value="3.4028234663852886e+38"/>
+                                                            <real value="3.4028234663852886e+38"/>
+                                                            <real value="3.4028234663852886e+38"/>
+                                                            <real value="3.4028234663852886e+38"/>
+                                                        </customSpacing>
+                                                    </stackView>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="cOj-Ha-QCi" firstAttribute="leading" secondItem="2Ns-f8-CUv" secondAttribute="leading" constant="4" id="DOV-Ax-hiL"/>
+                                                    <constraint firstAttribute="trailing" secondItem="cOj-Ha-QCi" secondAttribute="trailing" constant="4" id="ISN-ws-dMJ"/>
+                                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="cOj-Ha-QCi" secondAttribute="bottom" id="LkT-UF-mx0"/>
+                                                    <constraint firstItem="cOj-Ha-QCi" firstAttribute="top" secondItem="2Ns-f8-CUv" secondAttribute="top" constant="24" id="XKr-IH-mMf"/>
+                                                </constraints>
+                                            </visualEffectView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="2Ns-f8-CUv" secondAttribute="trailing" id="Qkv-Ps-4ab"/>
+                                            <constraint firstAttribute="bottom" secondItem="2Ns-f8-CUv" secondAttribute="bottom" id="Z52-TO-O7j"/>
+                                            <constraint firstItem="2Ns-f8-CUv" firstAttribute="top" secondItem="jk3-3W-JjA" secondAttribute="top" id="lWk-WD-8Hf"/>
+                                            <constraint firstItem="2Ns-f8-CUv" firstAttribute="leading" secondItem="jk3-3W-JjA" secondAttribute="leading" id="pe8-OC-cqY"/>
+                                        </constraints>
+                                    </customView>
+                                    <customView fixedFrame="YES" id="F02-fI-YiO">
+                                        <rect key="frame" x="298" y="0.0" width="302" height="600"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                    </customView>
+                                </subviews>
+                                <holdingPriorities>
+                                    <real value="249"/>
+                                    <real value="1"/>
+                                </holdingPriorities>
+                            </splitView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="wtP-gh-Cv5" secondAttribute="bottom" id="6aj-pr-Jly"/>
+                            <constraint firstItem="wtP-gh-Cv5" firstAttribute="leading" secondItem="LDY-2F-JJN" secondAttribute="leading" id="ad0-FR-82c"/>
+                            <constraint firstItem="wtP-gh-Cv5" firstAttribute="top" secondItem="LDY-2F-JJN" secondAttribute="top" id="xfz-mJ-AGc"/>
+                            <constraint firstAttribute="trailing" secondItem="wtP-gh-Cv5" secondAttribute="trailing" id="yXQ-Fv-YGw"/>
+                        </constraints>
                     </view>
                     <connections>
+                        <outlet property="webContainerView" destination="F02-fI-YiO" id="nOd-kn-fSR"/>
                         <segue destination="1yl-7M-Mrb" kind="sheet" identifier="LoginSheetIdentifier" id="Ntn-zz-zNe"/>
                     </connections>
                 </viewController>
@@ -455,4 +569,11 @@
             <point key="canvasLocation" x="995.5" y="-324"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="NSFontPanel" width="32" height="32"/>
+        <image name="NSInfo" width="32" height="32"/>
+        <image name="NSInvalidDataFreestandingTemplate" width="14" height="14"/>
+        <image name="NSNetwork" width="32" height="32"/>
+        <image name="NSTrashEmpty" width="32" height="32"/>
+    </resources>
 </document>

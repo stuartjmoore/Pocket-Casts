@@ -69,6 +69,12 @@ class Javascript {
         case spacebar = 32 // Play/Pause
         case left = 37 // Skip backward
         case right = 39 // Skip forward
+        case one = 49 // Open Podcast section
+        case two = 50 // Open Discover section
+        case three = 51 // Open New Releases section
+        case four = 52 // Open In Progress section
+        case five = 53 // Open Star section
+        case six = 54 // Open Settings section
         case e = 69 // Open playing episode popup
         case u = 85 // Open Up Next
         /*
@@ -77,12 +83,6 @@ class Javascript {
         plus - Increase speed
         s - Search
         t - Change theme
-        1 - Open Podcast section
-        2 - Open Discover section
-        3 - Open New Releases section
-        4 - Open In Progress section
-        5 - Open Star section
-        6 - Open Settings section
         */
     }
 
