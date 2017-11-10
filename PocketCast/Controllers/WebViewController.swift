@@ -32,7 +32,6 @@ class WebViewController: NSViewController {
             webView = WKWebView(frame: view.bounds)
         }
 
-        webView.navigationDelegate = self
         webView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(webView, positioned: .below, relativeTo: nil)
 
@@ -41,7 +40,7 @@ class WebViewController: NSViewController {
         view.bottomAnchor.constraint(equalTo: webView.bottomAnchor).isActive = true
         view.trailingAnchor.constraint(equalTo: webView.trailingAnchor).isActive = true
 
-        if let pocketCastsURL = URL(string: "https://play.pocketcasts.com/web") {
+        if let pocketCastsURL = URL(string: "https://playbeta.pocketcasts.com/web/new-releases") {
             let pocketCastsRequest = URLRequest(url: pocketCastsURL)
             webView.load(pocketCastsRequest)
         } else {
@@ -62,8 +61,8 @@ class WebViewController: NSViewController {
         return javascript.playerState == .playing
     }
 
-    var playerVisible: Bool {
-        return javascript.playerVisible
+    func timeInterval(atPercentage percentage: Double) -> TimeInterval {
+        return percentage * javascript.durationTimeInterval
     }
 
     // MARK: Actions
@@ -80,76 +79,18 @@ class WebViewController: NSViewController {
         javascript.jumpForward()
     }
 
-    func clickSettingsButton() {
-        javascript.clickSettingsButton()
-        /*
-        let menu = NSMenu(title: "Settings")
-
-        for item in javascript.settingsMenuItems {
-            switch item {
-            case .Link(let title, _):
-                menu.addItemWithTitle(title, action: "settingMenuDidSelect:", keyEquivalent: "")
-            case .Action(let title, _):
-                menu.addItemWithTitle(title, action: "settingMenuDidSelect:", keyEquivalent: "")
-            case .Separator:
-                menu.addItem(NSMenuItem.separatorItem())
-            }
-        }
-
-        menu.popUpMenuPositioningItem(nil, atLocation: NSEvent.mouseLocation(), inView: nil)
-        */
+    func jump(toPercentage percentage: Double) {
+        javascript.jump(toPercentage: percentage)
     }
 
-    func settingMenuDidSelect(_ menuItem: NSMenuItem) {
-        if let index = menuItem.menu?.index(of: menuItem) {
-            let item = javascript.settingsMenuItems[index]
-            switch item {
-            case .link(_, let url):
-                // TODO: sign out doesn't work
-                NSWorkspace.shared().open(url)
-            case .action(_, _):
-                // TODO: action
-                break
-            case .separator:
-                break
-            }
-        }
+    // MARK: UI
+
+    func showUpNext() {
+        javascript.press(key: .u)
     }
 
-    func hidePlayer() {
-        javascript.hidePlayer()
-    }
-
-    func showPlayer() {
-        javascript.showPlayer()
-    }
-
-}
-
-// MARK: - WKNavigationDelegate
-
-extension WebViewController: WKNavigationDelegate {
-
-    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-        if navigationAction.request.url?.path == "/account", let url = navigationAction.request.url {
-            NSWorkspace.shared().open(url)
-            decisionHandler(.cancel)
-        } else if navigationAction.request.url?.path == "/users/sign_in" {
-            performSegue(withIdentifier: "LoginSheetIdentifier", sender: navigationAction.request)
-            decisionHandler(.cancel)
-        } else if navigationAction.navigationType == .linkActivated, let url = navigationAction.request.url {
-            NSWorkspace.shared().open(url)
-            decisionHandler(.cancel)
-        } else {
-            decisionHandler(.allow)
-        }
-    }
-
-    override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
-        if segue.identifier == "LoginSheetIdentifier",
-        let loginViewController = segue.destinationController as? LoginViewController, let request = sender as? URLRequest {
-            loginViewController.request = request
-        }
+    func showEpisodeInfo() {
+        javascript.press(key: .e)
     }
 
 }
@@ -160,6 +101,10 @@ extension WebViewController: JavascriptDelegate {
 
     var windowController: MainWindowController? {
         return view.window?.windowController as? MainWindowController
+    }
+
+    func javascriptAlbumArtDidChange(_ url: URL?) {
+        windowController?.albumArtURL = url
     }
 
     func javascriptShowTitleDidChange(_ showTitle: String?) {
@@ -177,24 +122,20 @@ extension WebViewController: JavascriptDelegate {
     func javascriptCurrentPercentageDidChange(_ currentPercentage: Float) {
         windowController?.progressPercentage = currentPercentage
 
-        if let dockView = NSApplication.shared().dockTile.contentView as? DockProgressView {
+        if let dockView = NSApplication.shared.dockTile.contentView as? DockProgressView {
             dockView.percentage = currentPercentage
             NSApp.dockTile.display()
         } else {
             let dockView = DockProgressView()
             dockView.percentage = currentPercentage
 
-            NSApplication.shared().dockTile.contentView = dockView
+            NSApplication.shared.dockTile.contentView = dockView
             NSApp.dockTile.display()
         }
     }
 
     func javascriptPlayerStateDidChange(_ playerState: PlayerState) {
         windowController?.playerState = playerState
-
-        if playerState == .paused || playerState == .playing  {
-            windowController?.playerVisible = javascript.playerVisible
-        }
     }
 
 }

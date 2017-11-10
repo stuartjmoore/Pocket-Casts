@@ -10,6 +10,7 @@ import Foundation
 import WebKit
 
 protocol JavascriptDelegate: class {
+    func javascriptAlbumArtDidChange(_ url: URL?)
     func javascriptShowTitleDidChange(_ title: String?)
     func javascriptEpisodeTitleDidChange(_ title: String?)
     func javascriptRemainingTimeDidChange(_ remainingTime: String?)
@@ -24,11 +25,16 @@ enum PlayerState {
 
 class Javascript {
 
+    fileprivate let playerString = "document.getElementsByTagName('audio')[0]"
+    fileprivate let leftControlsString = "document.getElementsByClassName('player-controls')[0].getElementsByClassName('controls-left')[0]"
+    fileprivate let centerControlsString = "document.getElementsByClassName('player-controls')[0].getElementsByClassName('controls-center')[0]"
+
     fileprivate let webView: WKWebView
     fileprivate var updatePropertiesTimer: Timer!
 
     weak var delegate: JavascriptDelegate?
 
+    var albumArtURL: URL? { didSet(oldValue) { if oldValue != albumArtURL { delegate?.javascriptAlbumArtDidChange(albumArtURL) } } }
     var showTitle: String? { didSet(oldValue) { if oldValue != showTitle { delegate?.javascriptShowTitleDidChange(showTitle) } } }
     var episodeTitle: String? { didSet(oldValue) { if oldValue != episodeTitle { delegate?.javascriptEpisodeTitleDidChange(episodeTitle) } } }
     var remainingTime: String? { didSet(oldValue) { if oldValue != remainingTime { delegate?.javascriptRemainingTimeDidChange(remainingTime) } } }
@@ -41,9 +47,9 @@ class Javascript {
         }
     }
 
-    var remainingTimeInterval: TimeInterval = 0 {
+    var durationTimeInterval: TimeInterval = 0 {
         didSet(oldValue) {
-            if oldValue != remainingTimeInterval {
+            if oldValue != durationTimeInterval {
                 delegate?.javascriptCurrentPercentageDidChange(currentPercentage)
             }
         }
@@ -59,6 +65,31 @@ class Javascript {
 
     // MARK: -
 
+    enum Key: Int {
+        case spacebar = 32 // Play/Pause
+        case left = 37 // Skip backward
+        case right = 39 // Skip forward
+        case e = 69 // Open playing episode popup
+        case u = 85 // Open Up Next
+        /*
+        m - Mute sound
+        minus - Reduce speed
+        plus - Increase speed
+        s - Search
+        t - Change theme
+        1 - Open Podcast section
+        2 - Open Discover section
+        3 - Open New Releases section
+        4 - Open In Progress section
+        5 - Open Star section
+        6 - Open Settings section
+        */
+    }
+
+    func press(key: Key) {
+        webView.evaluateJavaScript("var e = new Event('keydown'); e.which = e.keyCode = \(key.rawValue); document.dispatchEvent(e);", completionHandler: nil)
+    }
+
     class func sourceFromCSS(_ css: String) -> String {
         let strippedCSS = css.replacingOccurrences(of: "\n", with: " ")
         return "var styleTag = document.createElement('style');" +
@@ -73,7 +104,7 @@ class Javascript {
 
         updatePropertiesTimer = Timer.scheduledTimer(timeInterval: 0.5,
             target: self,
-            selector: #selector(updatePropertiesTimerDidFire(_:)),
+            selector: #selector(updatePropertiesTimerDidFire),
             userInfo: nil,
             repeats: true
         )
@@ -81,37 +112,45 @@ class Javascript {
 
     // MARK: - Timers
 
-    @objc fileprivate func updatePropertiesTimerDidFire(_ timer: Timer) {
-        webView.evaluateJavaScript("angular.element(document).injector().get('mediaPlayer').episode.podcast.title") { [weak self] (data, _) in
-            self?.showTitle = data  as? String
+    @objc func updatePropertiesTimerDidFire() {
+        webView.evaluateJavaScript("\(leftControlsString).getElementsByClassName('podcast-image')[0].getElementsByTagName('img')[0]['src']") { [weak self] (data, _) in
+            guard let urlString = data as? String, let albumArtURL = URL(string: urlString) else {
+                return
+            }
+
+            self?.albumArtURL = albumArtURL
         }
 
-        webView.evaluateJavaScript("angular.element(document).injector().get('mediaPlayer').episode.title") { [weak self] (data, _) in
-            self?.episodeTitle = data  as? String
+        webView.evaluateJavaScript("\(centerControlsString).getElementsByClassName('podcast-title')[0].innerText") { [weak self] (data, _) in
+            self?.showTitle = data as? String
         }
 
-        webView.evaluateJavaScript("document.getElementById('audio_player').getElementsByClassName('remaining_time')[0].innerText") { [weak self] (data, _) in
-            let remainingTimeDisplay = data  as? String
+        webView.evaluateJavaScript("\(centerControlsString).getElementsByClassName('episode-title')[0].innerText") { [weak self] (data, _) in
+            self?.episodeTitle = data as? String
+        }
+
+        webView.evaluateJavaScript("\(centerControlsString).getElementsByClassName('time-remaining')[0].innerText") { [weak self] (data, _) in
+            let remainingTimeDisplay = data as? String
             self?.remainingTime = remainingTimeDisplay != "-00:00" ? remainingTimeDisplay : nil
         }
 
-        webView.evaluateJavaScript("angular.element(document).injector().get('mediaPlayer').currentTime") { [weak self] (data, _) in
-            self?.currentTimeInterval = data  as? TimeInterval ?? 0
+        webView.evaluateJavaScript("\(playerString).currentTime") { [weak self] (data, _) in
+            self?.currentTimeInterval = data as? TimeInterval ?? 0
         }
 
-        webView.evaluateJavaScript("angular.element(document).injector().get('mediaPlayer').remainingTime") { [weak self] (data, _) in
-            self?.remainingTimeInterval = data  as? TimeInterval ?? 0
+        webView.evaluateJavaScript("\(playerString).duration") { [weak self] (data, _) in
+            self?.durationTimeInterval = data as? TimeInterval ?? 0
         }
 
-        webView.evaluateJavaScript("angular.element(document).injector().get('mediaPlayer').playing") { [weak self] (data, _) in
-            let isPlaying = data  as? Bool ?? false
+        webView.evaluateJavaScript("\(playerString).paused") { [weak self] (data, _) in
+            let isPaused = data as? Bool ?? false
 
             if self?.episodeTitle == nil {
                 self?.playerState = .stopped
-            } else if isPlaying {
-                self?.playerState = .playing
-            } else {
+            } else if isPaused {
                 self?.playerState = .paused
+            } else {
+                self?.playerState = .playing
             } // TODO: add .Buffering
         }
     }
@@ -119,92 +158,27 @@ class Javascript {
     // MARK: -
 
     var currentPercentage: Float {
-        let percentage = Float(currentTimeInterval / (currentTimeInterval + remainingTimeInterval))
+        let percentage = Float(currentTimeInterval / durationTimeInterval)
         return percentage.isFinite ? max(0, min(percentage, 1)) : 0
     }
 
-    var playerVisible: Bool {
-        guard let paddingBottomString = valueFor("document.getElementById('main').style.paddingBottom") as? String else {
-            return false
-        }
-
-        if paddingBottomString == "" {
-            return true // HACK: First pass doesn’t return values
-        }
-
-        guard let paddingBottom = Int(paddingBottomString.trimmingCharacters(in: .letters)) else {
-            return false
-        }
-
-        return (paddingBottom != 0)
-    }
-
     // MARK: -
-
-    enum MenuItem {
-        case link(String, URL)
-        case action(String, String)
-        case separator
-    }
-
-    var settingsMenuItems: [MenuItem] {
-        guard let titleStrings = valueFor("Array.prototype.slice.call(document.getElementById('header').getElementsByClassName('dropdown-menu')[0].getElementsByTagName('li')).map(function(node) { return node.innerText })") as? [String] else {
-            return []
-        }
-
-        guard let actionStrings = valueFor("Array.prototype.slice.call(document.getElementById('header').getElementsByClassName('dropdown-menu')[0].getElementsByTagName('li')).map(function(node) { return node.firstChild ? (node.firstChild.href ? node.firstChild.href : (node.firstChild.attributes.getNamedItem('ng-click') ? node.firstChild.attributes.getNamedItem('ng-click').value : '')) : '' })") as? [String] else {
-            return []
-        }
-
-        let titles: [String?] = titleStrings.map({ $0 == "" ? nil : $0.trimmingCharacters(in: .newlines) })
-        let actions: [String?] = actionStrings.map({ $0 == "" ? nil : $0 })
-
-        let items: [MenuItem] = zip(titles, actions).map({ (title, action) in
-            if let title = title, let action = action, let url = URL(string: action) /* TODO: where hasPrefix("http") */ {
-                return .link(title, url)
-            } else if let title = title, let action = action {
-                return .action(title, action)
-            } else {
-                return .separator
-            }
-        })
-
-        return items
-    }
-
-    // MARK: -
-
-    func searchText(_ text: String) {
-        webView.evaluateJavaScript("document.getElementById('search_input_value').value = '\(text)';", completionHandler:  nil)
-        // angular.element("#search_input_value").scope().inputChangeHandler("alison")
-        //
-        // TODO: fire onChange()
-    }
-
-    func clickSettingsButton() {
-        webView.evaluateJavaScript("document.getElementsByClassName('dropdown-toggle')[0].firstChild.click();", completionHandler:  nil)
-    }
-
-    func hidePlayer() {
-        webView.evaluateJavaScript("document.getElementById('main').style.paddingBottom = 0;" +
-                                   "document.getElementById('audio_player').style.display = 'none';", completionHandler:  nil)
-    }
-
-    func showPlayer() {
-        webView.evaluateJavaScript("document.getElementById('main').style.paddingBottom = '66px';" +
-                                   "document.getElementById('audio_player').style.display = 'block';", completionHandler:  nil)
-    }
 
     func playPause() {
-        webView.evaluateJavaScript("angular.element(document).injector().get('mediaPlayer').playPause()", completionHandler:  nil)
+        press(key: .spacebar)
     }
 
     func jumpForward() {
-        webView.evaluateJavaScript("angular.element(document).injector().get('mediaPlayer').jumpForward()", completionHandler:  nil)
+        press(key: .right)
     }
 
     func jumpBack() {
-        webView.evaluateJavaScript("angular.element(document).injector().get('mediaPlayer').jumpBack()", completionHandler:  nil)
+        press(key: .left)
+    }
+
+    func jump(toPercentage percentage: Double) {
+        let timeInterval = percentage * durationTimeInterval
+        webView.evaluateJavaScript("\(playerString).currentTime = \(timeInterval)", completionHandler: nil)
     }
 
     // MARK: -
@@ -228,6 +202,10 @@ class Javascript {
 }
 
 extension JavascriptDelegate {
+
+    func javascriptAlbumArtDidChange(_ url: URL?) {
+        return
+    }
 
     func javascriptShowTitleDidChange(_ title: String?) {
         return

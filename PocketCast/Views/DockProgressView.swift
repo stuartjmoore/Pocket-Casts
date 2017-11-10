@@ -21,7 +21,7 @@ class DockProgressView: NSView {
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
 
-        let icon = NSWorkspace.shared().icon(forFile: Bundle.main.bundlePath)
+        let icon = NSWorkspace.shared.icon(forFile: Bundle.main.bundlePath)
         icon.draw(in: bounds, from: .zero, operation: .sourceOver, fraction: 1)
 
         let rect = bounds.insetBy(dx: thickness + thickness / 2, dy: thickness + thickness / 2)

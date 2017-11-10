@@ -25,7 +25,7 @@ static CGEventRef tapEventCallback(CGEventTapProxy proxy, CGEventType type, CGEv
 
 #pragma mark -
 #pragma mark Setup and teardown
--(id)initWithDelegate:(id)delegate;
+-(nonnull id)initWithDelegate:(nonnull id)delegate;
 {
 	_delegate = delegate;
 	[self startWatchingAppSwitching];
@@ -119,7 +119,7 @@ static CGEventRef tapEventCallback(CGEventTapProxy proxy, CGEventType type, CGEv
 #endif
 }
 
-+ (NSArray*)defaultMediaKeyUserBundleIdentifiers;
++ (nonnull NSArray*)defaultMediaKeyUserBundleIdentifiers;
 {
 	return [NSArray arrayWithObjects:
 		[[NSBundle mainBundle] bundleIdentifier], // your app
@@ -241,7 +241,7 @@ static CGEventRef tapEventCallback(CGEventTapProxy proxy, CGEventType type, CGEv
 
 
 // event will have been retained in the other thread
--(void)handleAndReleaseMediaKeyEvent:(NSEvent *)event {
+-(void)handleAndReleaseMediaKeyEvent:(nonnull NSEvent *)event {
 	//[event autorelease];
 	
 	[_delegate mediaKeyTap:self receivedMediaKeyEvent:event];
@@ -257,8 +257,8 @@ static CGEventRef tapEventCallback(CGEventTapProxy proxy, CGEventType type, CGEv
 
 #pragma mark Task switching callbacks
 
-NSString *kMediaKeyUsingBundleIdentifiersDefaultsKey = @"SPApplicationsNeedingMediaKeys";
-NSString *kIgnoreMediaKeysDefaultsKey = @"SPIgnoreMediaKeys";
+NSString* _Nonnull kMediaKeyUsingBundleIdentifiersDefaultsKey = @"SPApplicationsNeedingMediaKeys";
+NSString* _Nonnull kIgnoreMediaKeysDefaultsKey = @"SPIgnoreMediaKeys";
 
 
 

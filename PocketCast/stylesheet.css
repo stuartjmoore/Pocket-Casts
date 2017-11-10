@@ -6,51 +6,40 @@
 //  Copyright © 2015 Stuart Moore. All rights reserved.
 */
 
-/* Hide toolbar */
+/* San Francisco font */
 
-#main {
-    padding-top: 0;
+* {
+    font-family: -apple-system !important;
 }
 
-#header {
-    -webkit-box-shadow: 0 0 0 0 transparent;
-    box-shadow: 0 0 0 0 transparent;
-    top: -70px;
+/* Scroll navigation */
+
+.navigation {
+    overflow-y: overlay;
+    padding-bottom: 122px;
 }
 
-/* System color highlight */
+/* Hide logo */
 
-#content_left .episode_section.selected {
-    background-color: #577287; /* TODO: Get system color */
+.navigation > .logo {
+    visibility: collapse;
 }
 
-/* Remove wide background */
-
-#main #content_container {
-    background-color: white;
+.navigation > .nav-podcasts {
+    margin-top: 20px;
 }
 
-media="screen" @media screen and (max-width: 1722px) and (min-width: 1361px) #main #content_container #content_row #content_middle {
-    -webkit-box-shadow: 0 0 0 0 transparent;
-    box-shadow: 0 0 0 0 transparent;
+.navigation > .nav-discover, .navigation > .nav-starred {
+    margin-bottom: 0;
 }
 
-/* Shrink sidebar */
+/* Hide player */
 
-#main #content_container #content_row #content_middle .scrollable {
-    margin-left: 224px;
+.layout .layout-footer {
+    height: 0;
 }
 
-#main #content_container #content_row #content_left,
-#main #content_container #content_row #content_left .scrollable,
-#content_left .list .podcast {
-    width: 224px;
-}
-
-#content_left .list .podcast .podcast_text {
-    width: 149px;
-}
-
-#content_left .list .podcast .podcast_text .text, #content_left .list .podcast .podcast_text .title, #content_left .list .podcast .podcast_text .author {
-    width: 110px;
+.player-controls {
+    -webkit-box-shadow: none;
+    box-shadow: none;
 }

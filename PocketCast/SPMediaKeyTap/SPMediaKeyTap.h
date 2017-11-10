@@ -17,26 +17,26 @@
 	// The app that is frontmost in this list owns media keys
 	NSMutableArray *_mediaKeyAppList;
 }
-+ (NSArray*)defaultMediaKeyUserBundleIdentifiers;
++ (nonnull NSArray*)defaultMediaKeyUserBundleIdentifiers;
 
--(id)initWithDelegate:(id)delegate;
+-(nonnull id)initWithDelegate:(nonnull id)delegate;
 
 +(BOOL)usesGlobalMediaKeyTap;
 -(void)startWatchingMediaKeys;
 -(void)stopWatchingMediaKeys;
--(void)handleAndReleaseMediaKeyEvent:(NSEvent *)event;
+-(void)handleAndReleaseMediaKeyEvent:(nonnull NSEvent *)event;
 @end
 
 @interface NSObject (SPMediaKeyTapDelegate)
--(void)mediaKeyTap:(SPMediaKeyTap*)keyTap receivedMediaKeyEvent:(NSEvent*)event;
+-(void)mediaKeyTap:(nullable SPMediaKeyTap*)keyTap receivedMediaKeyEvent:(nonnull NSEvent*)event;
 @end
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-extern NSString *kMediaKeyUsingBundleIdentifiersDefaultsKey;
-extern NSString *kIgnoreMediaKeysDefaultsKey;
+extern NSString* _Nonnull kMediaKeyUsingBundleIdentifiersDefaultsKey;
+extern NSString* _Nonnull kIgnoreMediaKeysDefaultsKey;
 
 #ifdef __cplusplus
 }
