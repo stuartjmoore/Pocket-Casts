@@ -47,8 +47,8 @@ extension LoginViewController: WKNavigationDelegate {
 
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         if navigationAction.request.url?.path == "/web" {
-            (presenting as? WebViewController)?.loadRequest(navigationAction.request)
-            presenting?.dismissViewController(self)
+            (presentingViewController as? WebViewController)?.loadRequest(navigationAction.request)
+            presentingViewController?.dismiss(self)
             decisionHandler(.cancel)
         } else {
             decisionHandler(.allow)

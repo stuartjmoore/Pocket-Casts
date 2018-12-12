@@ -33,8 +33,8 @@ class MainWindowController: NSWindowController {
     override func windowDidLoad() {
         shouldCascadeWindows = false
         window?.titleVisibility = .hidden
-        window?.setFrameAutosaveName(NSWindow.FrameAutosaveName(rawValue: "Main Window"))
-        windowFrameAutosaveName = NSWindow.FrameAutosaveName(rawValue: "Main Window")
+        window?.setFrameAutosaveName("Main Window")
+        windowFrameAutosaveName = "Main Window"
 
         super.windowDidLoad()
 

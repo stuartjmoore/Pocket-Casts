@@ -193,7 +193,7 @@ class Javascript {
         }
 
         while !finished {
-            RunLoop.current.run(mode: .defaultRunLoopMode, before: .distantFuture)
+            RunLoop.current.run(mode: .default, before: .distantFuture)
         }
 
         return value
