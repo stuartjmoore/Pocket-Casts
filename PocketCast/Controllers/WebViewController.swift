@@ -42,7 +42,7 @@ class WebViewController: NSViewController {
         webContainerView.bottomAnchor.constraint(equalTo: webView.bottomAnchor).isActive = true
         webContainerView.trailingAnchor.constraint(equalTo: webView.trailingAnchor).isActive = true
 
-        if let pocketCastsURL = URL(string: "https://playbeta.pocketcasts.com/web/new-releases") {
+        if let pocketCastsURL = URL(string: "https://play.pocketcasts.com/web/new-releases") {
             let pocketCastsRequest = URLRequest(url: pocketCastsURL)
             webView.load(pocketCastsRequest)
         } else {
