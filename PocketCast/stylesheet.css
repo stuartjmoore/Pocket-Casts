@@ -14,7 +14,7 @@
 
 /* Hide navigation */
 
-.navigation {
+.navigation, div[class^="styled__NavigationWrapper"] {
     display: none;
 }
 
@@ -24,7 +24,7 @@
 
 /* Hide player */
 
-.layout .layout-footer {
+.layout .layout-footer, div[class^="styled__LayoutFooter"] {
     height: 0;
 }
 
