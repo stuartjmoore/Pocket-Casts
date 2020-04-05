@@ -12,30 +12,19 @@
     font-family: -apple-system !important;
 }
 
-/* Scroll navigation */
+/* Hide navigation */
 
-.navigation {
-    overflow-y: overlay;
-    padding-bottom: 122px;
+.navigation, nav[class^="styled__NavigationWrapper"] {
+    display: none;
 }
 
-/* Hide logo */
-
-.navigation > .logo {
-    visibility: collapse;
-}
-
-.navigation > .nav-podcasts {
-    margin-top: 20px;
-}
-
-.navigation > .nav-discover, .navigation > .nav-starred {
-    margin-bottom: 0;
+.layout {
+    min-width: 0;
 }
 
 /* Hide player */
 
-.layout .layout-footer {
+.layout .layout-footer, div[class^="styled__LayoutFooter"] {
     height: 0;
 }
 

@@ -11,6 +11,8 @@ import WebKit
 
 class WebViewController: NSViewController {
 
+    @IBOutlet fileprivate var webContainerView: NSView!
+
     fileprivate var javascript: Javascript!
     fileprivate var loginSheet: NSPanel!
     fileprivate var webView: WKWebView!
@@ -33,14 +35,14 @@ class WebViewController: NSViewController {
         }
 
         webView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(webView, positioned: .below, relativeTo: nil)
+        webContainerView.addSubview(webView, positioned: .below, relativeTo: nil)
 
-        view.topAnchor.constraint(equalTo: webView.topAnchor).isActive = true
-        view.leadingAnchor.constraint(equalTo: webView.leadingAnchor).isActive = true
-        view.bottomAnchor.constraint(equalTo: webView.bottomAnchor).isActive = true
-        view.trailingAnchor.constraint(equalTo: webView.trailingAnchor).isActive = true
+        webContainerView.topAnchor.constraint(equalTo: webView.topAnchor).isActive = true
+        webContainerView.leadingAnchor.constraint(equalTo: webView.leadingAnchor).isActive = true
+        webContainerView.bottomAnchor.constraint(equalTo: webView.bottomAnchor).isActive = true
+        webContainerView.trailingAnchor.constraint(equalTo: webView.trailingAnchor).isActive = true
 
-        if let pocketCastsURL = URL(string: "https://playbeta.pocketcasts.com/web/new-releases") {
+        if let pocketCastsURL = URL(string: "https://play.pocketcasts.com/web/new-releases") {
             let pocketCastsRequest = URLRequest(url: pocketCastsURL)
             webView.load(pocketCastsRequest)
         } else {
@@ -53,6 +55,16 @@ class WebViewController: NSViewController {
 
     func loadRequest(_ request: URLRequest) {
         webView.load(request)
+    }
+
+    // MARK: - Actions
+
+    @IBAction func handleTabTap(_ sender: NSButton) {
+        guard let key = Javascript.Key(rawValue: sender.tag) else {
+            return
+        }
+
+        javascript.press(key: key)
     }
 
     // MARK: - Javascript

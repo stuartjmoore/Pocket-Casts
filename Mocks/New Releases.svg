@@ -1,0 +1,15 @@
+<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <title>newreleases</title>
+  <defs>
+    <path d="M8 17H0V0h9v9h8v9H8v-1z" id="a"/>
+  </defs>
+  <g fill="none" fill-rule="evenodd">
+    <g transform="translate(-1 3)">
+      <mask id="b" fill="#fff">
+        <use xlink:href="#a"/>
+      </mask>
+      <path d="M5 12.994c0 .004 9.994.006 9.994.006.004 0 .006-9.994.006-9.994C15 3.002 5.006 3 5.006 3 5.002 3 5 12.994 5 12.994zM5.006 1h9.988C16.102 1 17 1.897 17 3.006v9.988C17 14.102 16.103 15 14.994 15H5.006C3.898 15 3 14.103 3 12.994V3.006C3 1.898 3.897 1 5.006 1z" fill="#FFF" opacity=".5" mask="url(#b)"/>
+    </g>
+    <circle fill="#FFF" cx="15" cy="5" r="4"/>
+  </g>
+</svg>
