@@ -69,7 +69,7 @@ class Javascript {
         case spacebar = 32 // Play/Pause
         case left = 37 // Skip backward
         case right = 39 // Skip forward
-        case one = 49 // Open Podcast section
+        case one = 49 // Open Podcasts section
         case two = 50 // Open Discover section
         case three = 51 // Open New Releases section
         case four = 52 // Open In Progress section
@@ -87,7 +87,30 @@ class Javascript {
     }
 
     func press(key: Key) {
-        webView.evaluateJavaScript("var e = new Event('keydown'); e.which = e.keyCode = \(key.rawValue); document.dispatchEvent(e);", completionHandler: nil)
+        switch key {
+        case .one: // Open Podcasts section
+            webView.evaluateJavaScript("document.getElementsByTagName('a')[1].click()") { (any, error) in
+                print(any ?? error ?? "")
+            }
+        case .two: // Open Discover section
+            webView.evaluateJavaScript("document.getElementsByTagName('a')[2].click()") { (any, error) in
+                print(any ?? error ?? "")
+            }
+        case .three: // Open New Releases section
+            webView.evaluateJavaScript("document.getElementsByTagName('a')[3].click()") { (any, error) in
+                print(any ?? error ?? "")
+            }
+        case .four: // Open In Progress section
+            webView.evaluateJavaScript("document.getElementsByTagName('a')[4].click()") { (any, error) in
+                print(any ?? error ?? "")
+            }
+        case .five: // Open Star section
+            webView.evaluateJavaScript("document.getElementsByTagName('a')[5].click()") { (any, error) in
+                print(any ?? error ?? "")
+            }
+        default:
+            ()
+        }
     }
 
     class func sourceFromCSS(_ css: String) -> String {
@@ -165,20 +188,29 @@ class Javascript {
     // MARK: -
 
     func playPause() {
-        press(key: .spacebar)
+        webView.evaluateJavaScript("\(playerString).paused ? \(playerString).play() : \(playerString).pause();") { (any, error) in
+            print(any ?? error ?? "")
+        }
     }
 
     func jumpForward() {
-        press(key: .right)
+        webView.evaluateJavaScript("\(playerString).currentTime += 30;") { (any, error) in
+            print(any ?? error ?? "")
+        }
     }
 
     func jumpBack() {
-        press(key: .left)
+        webView.evaluateJavaScript("\(playerString).currentTime -= 15;") { (any, error) in
+            print(any ?? error ?? "")
+        }
     }
 
     func jump(toPercentage percentage: Double) {
         let timeInterval = percentage * durationTimeInterval
-        webView.evaluateJavaScript("\(playerString).currentTime = \(timeInterval)", completionHandler: nil)
+
+        webView.evaluateJavaScript("\(playerString).currentTime = \(timeInterval)") { (any, error) in
+            print(any ?? error ?? "")
+        }
     }
 
     // MARK: -
